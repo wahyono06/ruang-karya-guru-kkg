@@ -171,6 +171,10 @@
                     <button onclick="navigate('galeri')" data-nav="galeri" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition">
                         Galeri Karya
                     </button>
+                    <button onclick="navigate('qna')" data-nav="qna" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition flex items-center gap-1.5">
+                        <span>Tanya Admin</span>
+                        <span id="nav-qna-badge" class="hidden px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-white">0</span>
+                    </button>
                     <button onclick="navigate('tentang')" data-nav="tentang" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition">
                         Tentang Kami
                     </button>
@@ -195,6 +199,10 @@
             <button onclick="resetClassroomState(); navigate('kelas'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Ruang Kelas (1–6)</button>
             <button onclick="navigate('generator'); toggleMobileMenu()" id="nav-generator-mobile" class="hidden w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Laboratorium Generator</button>
             <button onclick="navigate('galeri'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Galeri Karya Guru</button>
+            <button onclick="navigate('qna'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 flex items-center justify-between">
+                <span>Tanya Admin (Q&A)</span>
+                <span id="mobile-qna-badge" class="hidden px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-white">0</span>
+            </button>
             <button onclick="navigate('tentang'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Tentang KKG Kampung Laut</button>
         </div>
     </header>
@@ -512,15 +520,7 @@
                     <div class="lg:col-span-2">
                         <select id="filter-mapel" onchange="renderGallery()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-700 focus:outline-none focus:border-skybrand-500 bg-white">
                             <option value="all">Semua Mapel</option>
-                            <option value="Pendidikan Agama">Pendidikan Agama</option>
-                            <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
-                            <option value="Bahasa Indonesia">Bahasa Indonesia</option>
-                            <option value="Matematika">Matematika</option>
-                            <option value="IPAS">IPAS</option>
-                            <option value="PJOK">PJOK</option>
-                            <option value="Seni Budaya">Seni Budaya</option>
-                            <option value="Bahasa Inggris">Bahasa Inggris</option>
-                            <option value="Muatan Lokal">Muatan Lokal</option>
+                            <!-- Diisi dinamis -->
                         </select>
                     </div>
                 </div>
@@ -529,6 +529,47 @@
             <!-- Grid Kartu Karya -->
             <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Diisi JS -->
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW Q&A: FORUM DISKUSI & TANYA ADMIN (KHUSUS ANGGOTA)            -->
+        <!-- ================================================================= -->
+        <section id="view-qna" class="view-section hidden batik-ceplok rounded-3xl max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 my-2">
+            <!-- Header Q&A -->
+            <div class="bg-gradient-to-r from-navy-900 via-navy-800 to-skybrand-900 text-white rounded-3xl p-6 sm:p-8 shadow-md mb-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <span class="px-3 py-1 rounded-full bg-turq-500/25 border border-turq-300/30 text-turq-200 text-xs font-bold">
+                            Komunikasi Langsung KKG Kampung Laut
+                        </span>
+                        <h1 class="font-display font-extrabold text-2xl sm:text-3xl mt-2">Forum Q&A & Tanya Admin</h1>
+                        <p class="text-xs sm:text-sm text-slate-200 mt-1 max-w-2xl">
+                            Wadah tanya jawab resmi antara Guru Anggota dan Pengurus Admin KKG. Pengunjung umum dapat membaca arsip jawaban, sedangkan diskusi aktif khusus Guru Anggota yang login.
+                        </p>
+                    </div>
+                    <div id="qna-header-action" class="shrink-0">
+                        <!-- Diisi dinamis sesuai status login -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter & Pencarian Q&A -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs mb-6 flex flex-col sm:flex-row gap-3">
+                <div class="flex-1 relative">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" id="qna-search" oninput="renderQnaView()" placeholder="Cari pertanyaan, topik perangkat ajar, atau nama guru..." class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
+                </div>
+                <select id="qna-filter-status" onchange="renderQnaView()" class="px-3.5 py-2 rounded-xl border border-slate-200 text-sm text-slate-700 bg-white">
+                    <option value="all">Semua Pertanyaan</option>
+                    <option value="waiting">Menunggu Jawaban Admin</option>
+                    <option value="answered">Sudah Dijawab Admin</option>
+                </select>
+            </div>
+
+            <!-- Daftar Thread Pertanyaan & Diskusi -->
+            <div id="qna-threads-list" class="space-y-4">
+                <!-- Diisi dinamis oleh JS -->
             </div>
         </section>
 
@@ -1070,6 +1111,7 @@
                 'PJOK',
                 'Seni Budaya',
                 'Bahasa Inggris',
+                'Koding',
                 'Muatan Lokal'
             ],
 
@@ -1090,7 +1132,9 @@
             generators: [...defaultGenerators],
             works: [],
             discussions: {},
-            teachersList: []
+            teachersList: [],
+            qnaThreads: [],
+            adminWhatsapp: '6281234567890'
         };
 
         // -------------------------------------------------------------------
@@ -1191,12 +1235,13 @@
                 }
             });
 
-            // 5. Pantau Pengaturan Tema & Kategori (settings/appConfig)
+            // 5. Pantau Pengaturan Tema, Kategori & Mapel (settings/appConfig)
             onSnapshot(doc(window.fbDb, 'settings', 'appConfig'), async (docSnap) => {
                 if (!docSnap.exists()) {
                     await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
                         themeConfig: appState.themeConfig,
-                        categories: appState.categories
+                        categories: appState.categories,
+                        subjects: appState.subjects
                     });
                 } else {
                     const cfg = docSnap.data();
@@ -1206,6 +1251,10 @@
                     }
                     if (Array.isArray(cfg.categories)) {
                         appState.categories = cfg.categories;
+                    }
+                    if (Array.isArray(cfg.subjects)) {
+                        // Pastikan 'Koding' tetap tersedia jika belum pernah dihapus/disinkronkan
+                        appState.subjects = cfg.subjects.includes('Koding') ? cfg.subjects : [...cfg.subjects, 'Koding'];
                     }
                     refreshCurrentView();
                 }
@@ -1248,6 +1297,32 @@
                     renderClassTabContent();
                 }
             });
+
+            // 8. Pantau Forum Q&A & Tanya Admin (qna_threads)
+            onSnapshot(collection(window.fbDb, 'qna_threads'), (snapshot) => {
+                const list = [];
+                snapshot.forEach(d => list.push({ id: d.id, ...d.data() }));
+                list.sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || (b.createdAt || 0) - (a.createdAt || 0));
+                appState.qnaThreads = list;
+
+                // Hitung pertanyaan yang belum dijawab Admin untuk lencana notifikasi
+                const waitingCount = list.filter(item => !item.hasAdminReply).length;
+                const badgeDesktop = document.getElementById('nav-qna-badge');
+                const badgeMobile = document.getElementById('mobile-qna-badge');
+                if (badgeDesktop && badgeMobile) {
+                    if (waitingCount > 0 && appState.currentUserRole === 'admin') {
+                        badgeDesktop.textContent = waitingCount;
+                        badgeMobile.textContent = waitingCount;
+                        badgeDesktop.classList.remove('hidden');
+                        badgeMobile.classList.remove('hidden');
+                    } else {
+                        badgeDesktop.classList.add('hidden');
+                        badgeMobile.classList.add('hidden');
+                    }
+                }
+
+                if (appState.currentView === 'qna') renderQnaView();
+            });
         };
 
         function refreshCurrentView() {
@@ -1260,6 +1335,7 @@
             if (appState.currentView === 'galeri') renderGallery();
             if (appState.currentView === 'dashboard-guru') renderTeacherDashboard();
             if (appState.currentView === 'dashboard-admin') renderAdminDashboard();
+            if (appState.currentView === 'qna') renderQnaView();
         }
 
         // -------------------------------------------------------------------
@@ -1279,6 +1355,22 @@
                 if (navGenDesktop) navGenDesktop.classList.add('hidden');
                 if (navGenMobile) navGenMobile.classList.add('hidden');
                 if (homeGenSection) homeGenSection.classList.add('hidden');
+            }
+
+            // Perbarui visibilitas badge Q&A Admin saat role berubah
+            const waitingCount = (appState.qnaThreads || []).filter(item => !item.hasAdminReply).length;
+            const badgeDesktop = document.getElementById('nav-qna-badge');
+            const badgeMobile = document.getElementById('mobile-qna-badge');
+            if (badgeDesktop && badgeMobile) {
+                if (waitingCount > 0 && appState.currentUserRole === 'admin') {
+                    badgeDesktop.textContent = waitingCount;
+                    badgeMobile.textContent = waitingCount;
+                    badgeDesktop.classList.remove('hidden');
+                    badgeMobile.classList.remove('hidden');
+                } else {
+                    badgeDesktop.classList.add('hidden');
+                    badgeMobile.classList.add('hidden');
+                }
             }
         }
 
@@ -2090,13 +2182,19 @@
         // -------------------------------------------------------------------
         function renderGallery() {
             const catSelect = document.getElementById('filter-kategori');
-            if (catSelect && catSelect.options.length <= 1) {
-                appState.categories.forEach(cat => {
-                    const opt = document.createElement('option');
-                    opt.value = cat;
-                    opt.textContent = cat;
-                    catSelect.appendChild(opt);
-                });
+            if (catSelect) {
+                const prevCat = catSelect.value || 'all';
+                catSelect.innerHTML = '<option value="all">Semua Kategori</option>' +
+                    appState.categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+                catSelect.value = appState.categories.includes(prevCat) ? prevCat : 'all';
+            }
+
+            const mapelSelect = document.getElementById('filter-mapel');
+            if (mapelSelect) {
+                const prevMapel = mapelSelect.value || 'all';
+                mapelSelect.innerHTML = '<option value="all">Semua Mapel</option>' +
+                    appState.subjects.map(m => `<option value="${m}">${m}</option>`).join('');
+                mapelSelect.value = appState.subjects.includes(prevMapel) ? prevMapel : 'all';
             }
 
             const search = (document.getElementById('filter-search')?.value || '').toLowerCase();
@@ -3020,19 +3118,47 @@ Topik Utama       : ${topik}
                 `;
             } else if (activeAdminTab === 'kategori') {
                 body.innerHTML = `
-                    <h2 class="font-display font-bold text-lg text-navy-900 mb-1">Pengaturan Kategori Karya</h2>
-                    <p class="text-xs text-slate-500 mb-4">Kategori ini muncul pada filter Galeri Karya dan formulir unggah guru.</p>
-                    <div class="flex flex-wrap gap-2 mb-5">
-                        ${appState.categories.map(cat => `
-                            <span class="px-3.5 py-2 rounded-xl bg-slate-100 text-navy-900 text-xs font-semibold flex items-center gap-2">
-                                ${cat}
-                            </span>
-                        `).join('')}
+                    <div class="space-y-8">
+                        <!-- Bagian 1: Pengaturan Kategori Karya -->
+                        <div>
+                            <h2 class="font-display font-bold text-lg text-navy-900 mb-1">1. Pengaturan Kategori Karya</h2>
+                            <p class="text-xs text-slate-500 mb-4">Tambah atau hapus kategori karya yang muncul pada filter Galeri Karya, Ruang Kelas, dan formulir unggah guru.</p>
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                ${appState.categories.map(cat => `
+                                    <span class="pl-3.5 pr-2 py-1.5 rounded-xl bg-slate-100 border border-slate-200/80 text-navy-900 text-xs font-semibold inline-flex items-center gap-2">
+                                        <span>${cat}</span>
+                                        <button type="button" onclick="deleteCategory('${cat.replace(/'/g, "\'")}')" title="Hapus kategori ${cat}" class="w-5 h-5 rounded-lg bg-white hover:bg-rose-600 text-slate-400 hover:text-white flex items-center justify-center transition">
+                                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </span>
+                                `).join('')}
+                            </div>
+                            <form onsubmit="addNewCategory(event)" class="flex gap-2 max-w-md">
+                                <input type="text" id="new-cat-name" required placeholder="Tambah kategori baru..." class="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                                <button type="submit" class="px-4 py-2 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold transition">Tambah Kategori</button>
+                            </form>
+                        </div>
+
+                        <!-- Bagian 2: Pengaturan Mata Pelajaran (Mapel) -->
+                        <div class="pt-6 border-t border-slate-200">
+                            <h2 class="font-display font-bold text-lg text-navy-900 mb-1">2. Pengaturan Mata Pelajaran (Mapel)</h2>
+                            <p class="text-xs text-slate-500 mb-4">Kelola daftar mata pelajaran (termasuk <strong>Koding</strong>) untuk filter Galeri, Ruang Kelas, Generator, dan form unggah karya.</p>
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                ${appState.subjects.map(subj => `
+                                    <span class="pl-3.5 pr-2 py-1.5 rounded-xl bg-skybrand-50 border border-skybrand-200/80 text-navy-900 text-xs font-semibold inline-flex items-center gap-2">
+                                        <span>${subj}</span>
+                                        <button type="button" onclick="deleteSubject('${subj.replace(/'/g, "\'")}')" title="Hapus mapel ${subj}" class="w-5 h-5 rounded-lg bg-white hover:bg-rose-600 text-slate-400 hover:text-white flex items-center justify-center transition">
+                                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </span>
+                                `).join('')}
+                            </div>
+                            <form onsubmit="addNewSubject(event)" class="flex gap-2 max-w-md">
+                                <input type="text" id="new-subj-name" required placeholder="Tambah mata pelajaran baru (misal: Informatika)..." class="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                                <button type="submit" class="px-4 py-2 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold transition">Tambah Mapel</button>
+                            </form>
+                        </div>
                     </div>
-                    <form onsubmit="addNewCategory(event)" class="flex gap-2 max-w-md">
-                        <input type="text" id="new-cat-name" required placeholder="Tambah kategori baru..." class="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
-                        <button type="submit" class="px-4 py-2 rounded-xl bg-navy-900 text-white text-xs font-semibold">Tambah</button>
-                    </form>
                 `;
             } else if (activeAdminTab === 'tampilan') {
                 const currentImg = appState.themeConfig.heroImageUrl;
@@ -3323,17 +3449,120 @@ Topik Utama       : ${topik}
             e.preventDefault();
             const input = document.getElementById('new-cat-name');
             const val = input.value.trim();
-            if (val && !appState.categories.includes(val)) {
-                const updated = [...appState.categories, val];
-                if (window.fbDb && window.fbTools) {
-                    const { doc, setDoc } = window.fbTools;
-                    await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
-                        categories: updated
-                    }, { merge: true });
-                }
-                input.value = '';
-                showToast(`Kategori "${val}" disimpan permanen!`, 'success');
+            if (!val) return;
+            if (appState.categories.some(c => c.toLowerCase() === val.toLowerCase())) {
+                showToast(`Kategori "${val}" sudah ada dalam daftar.`, 'info');
+                return;
             }
+            const updated = [...appState.categories, val];
+            appState.categories = updated;
+            if (window.fbDb && window.fbTools) {
+                const { doc, setDoc } = window.fbTools;
+                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
+                    categories: updated
+                }, { merge: true });
+            }
+            input.value = '';
+            renderAdminTabBody();
+            showToast(`Kategori "${val}" berhasil ditambahkan!`, 'success');
+        }
+
+        async function deleteCategory(catName) {
+            if (appState.categories.length <= 1) {
+                showToast('Minimal harus tersisa 1 kategori aktif.', 'error');
+                return;
+            }
+            const usedCount = appState.works.filter(w => w.category === catName).length;
+            openModal(`
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-display font-bold text-lg text-navy-900">Hapus Kategori "${catName}"?</h3>
+                    <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                    ${usedCount > 0
+                        ? `Kategori <strong>${catName}</strong> saat ini terpasang pada <strong>${usedCount} karya guru</strong>. Karya lama tetap aman tersimpan, namun kategori ini akan dihapus dari pilihan filter & unggah baru.`
+                        : `Kategori <strong>${catName}</strong> akan dihapus dari daftar pilihan filter & formulir unggah karya.`
+                    }
+                </p>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold">Batal</button>
+                    <button type="button" onclick="confirmDeleteCategory('${catName.replace(/'/g, "\'")}')" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold">Ya, Hapus Kategori</button>
+                </div>
+            `);
+        }
+
+        async function confirmDeleteCategory(catName) {
+            const updated = appState.categories.filter(c => c !== catName);
+            appState.categories = updated;
+            if (window.fbDb && window.fbTools) {
+                const { doc, setDoc } = window.fbTools;
+                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
+                    categories: updated
+                }, { merge: true });
+            }
+            closeModal();
+            renderAdminTabBody();
+            showToast(`Kategori "${catName}" telah dihapus.`, 'info');
+        }
+
+        async function addNewSubject(e) {
+            e.preventDefault();
+            const input = document.getElementById('new-subj-name');
+            const val = input.value.trim();
+            if (!val) return;
+            if (appState.subjects.some(s => s.toLowerCase() === val.toLowerCase())) {
+                showToast(`Mata pelajaran "${val}" sudah ada dalam daftar.`, 'info');
+                return;
+            }
+            const updated = [...appState.subjects, val];
+            appState.subjects = updated;
+            if (window.fbDb && window.fbTools) {
+                const { doc, setDoc } = window.fbTools;
+                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
+                    subjects: updated
+                }, { merge: true });
+            }
+            input.value = '';
+            renderAdminTabBody();
+            showToast(`Mata pelajaran "${val}" berhasil ditambahkan!`, 'success');
+        }
+
+        async function deleteSubject(subjName) {
+            if (appState.subjects.length <= 1) {
+                showToast('Minimal harus tersisa 1 mata pelajaran aktif.', 'error');
+                return;
+            }
+            const usedCount = appState.works.filter(w => w.mapel === subjName).length;
+            openModal(`
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-display font-bold text-lg text-navy-900">Hapus Mapel "${subjName}"?</h3>
+                    <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                    ${usedCount > 0
+                        ? `Mata pelajaran <strong>${subjName}</strong> terpasang pada <strong>${usedCount} karya guru</strong>. Karya yang sudah terbit tetap aman, namun mapel ini akan dihapus dari daftar pilihan baru.`
+                        : `Mata pelajaran <strong>${subjName}</strong> akan dihapus dari daftar pilihan filter & formulir unggah karya.`
+                    }
+                </p>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold">Batal</button>
+                    <button type="button" onclick="confirmDeleteSubject('${subjName.replace(/'/g, "\'")}')" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold">Ya, Hapus Mapel</button>
+                </div>
+            `);
+        }
+
+        async function confirmDeleteSubject(subjName) {
+            const updated = appState.subjects.filter(s => s !== subjName);
+            appState.subjects = updated;
+            if (window.fbDb && window.fbTools) {
+                const { doc, setDoc } = window.fbTools;
+                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
+                    subjects: updated
+                }, { merge: true });
+            }
+            closeModal();
+            renderAdminTabBody();
+            showToast(`Mata pelajaran "${subjName}" telah dihapus.`, 'info');
         }
 
         async function applyThemePalette(paletteKey, isSilent = false) {
@@ -3545,8 +3774,267 @@ Topik Utama       : ${topik}
             }, 3500);
         }
 
+        // -------------------------------------------------------------------
+        // 11. LOGIKA FORUM Q&A & DISKUSI LANGSUNG KE ADMIN
+        // -------------------------------------------------------------------
+        function renderQnaView() {
+            const actionBox = document.getElementById('qna-header-action');
+            const listBox = document.getElementById('qna-threads-list');
+            if (!actionBox || !listBox) return;
+
+            const isMemberOrAdmin = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
+
+            // Tombol di kanan header Q&A
+            if (isMemberOrAdmin) {
+                actionBox.innerHTML = `
+                    <button onclick="openNewQnaModal()" class="px-5 py-3 rounded-2xl bg-turq-500 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-2 transition">
+                        <i data-lucide="message-square-plus" class="w-4 h-4"></i>
+                        <span>Ajukan Pertanyaan Baru</span>
+                    </button>
+                `;
+            } else {
+                actionBox.innerHTML = `
+                    <button onclick="navigate('auth'); switchAuthMode('login-guru');" class="px-5 py-3 rounded-2xl bg-white text-navy-900 hover:bg-turq-50 text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-2 transition">
+                        <i data-lucide="log-in" class="w-4 h-4 text-turq-600"></i>
+                        <span>Login Anggota untuk Bertanya</span>
+                    </button>
+                `;
+            }
+
+            const keyword = (document.getElementById('qna-search')?.value || '').toLowerCase();
+            const statusFilter = document.getElementById('qna-filter-status')?.value || 'all';
+
+            const filtered = appState.qnaThreads.filter(t => {
+                const matchText = !keyword ||
+                    (t.question || '').toLowerCase().includes(keyword) ||
+                    (t.detail || '').toLowerCase().includes(keyword) ||
+                    (t.author || '').toLowerCase().includes(keyword);
+                const matchStatus = statusFilter === 'all' ||
+                    (statusFilter === 'waiting' && !t.hasAdminReply) ||
+                    (statusFilter === 'answered' && t.hasAdminReply);
+                return matchText && matchStatus;
+            });
+
+            if (filtered.length === 0) {
+                listBox.innerHTML = `
+                    <div class="bg-white rounded-3xl p-10 text-center border border-slate-200/80">
+                        <p class="font-display font-bold text-navy-900 text-base">Belum Ada Pertanyaan di Forum</p>
+                        <p class="text-xs text-slate-500 mt-1">Guru anggota yang sudah login dapat memulai pertanyaan atau diskusi langsung dengan Admin KKG.</p>
+                    </div>
+                `;
+                renderIcons();
+                return;
+            }
+
+            listBox.innerHTML = filtered.map(t => {
+                const replies = Array.isArray(t.replies) ? t.replies : [];
+                return `
+                    <article class="bg-white rounded-3xl p-5 sm:p-6 border ${t.pinned ? 'border-amber-300 ring-2 ring-amber-100' : 'border-slate-200/90'} shadow-xs space-y-4">
+                        <!-- Header Pertanyaan -->
+                        <div class="flex flex-wrap items-start justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-2">
+                                ${t.pinned ? `<span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold flex items-center gap-1"><i data-lucide="pin" class="w-3 h-3"></i> Disematkan</span>` : ''}
+                                <span class="px-2.5 py-0.5 rounded-full bg-skybrand-50 text-skybrand-700 text-[11px] font-bold">${t.topic || 'Umum'}</span>
+                                ${t.hasAdminReply
+                                    ? `<span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3 h-3"></i> Dijawab Admin</span>`
+                                    : `<span class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-semibold">Menunggu Jawaban Admin</span>`
+                                }
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-slate-400">${t.date}</span>
+                                ${appState.currentUserRole === 'admin' ? `
+                                    <button onclick="togglePinQna('${t.id}', ${!t.pinned})" title="Sematkan / Lepas" class="p-1.5 rounded-lg text-slate-400 hover:bg-amber-50 hover:text-amber-700">
+                                        <i data-lucide="pin" class="w-3.5 h-3.5"></i>
+                                    </button>
+                                    <button onclick="deleteQnaThread('${t.id}')" title="Hapus Diskusi" class="p-1.5 rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-600">
+                                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Isi Pertanyaan -->
+                        <div>
+                            <h3 class="font-display font-bold text-base sm:text-lg text-navy-900">${t.question}</h3>
+                            <p class="text-sm text-slate-600 mt-1.5 leading-relaxed whitespace-pre-line">${t.detail}</p>
+                            <p class="text-xs text-slate-500 mt-3">
+                                Ditanyakan oleh: <strong class="text-navy-900">${t.author}</strong> (${t.school})
+                            </p>
+                        </div>
+
+                        <!-- Daftar Balasan & Diskusi -->
+                        <div class="pt-3 border-t border-slate-100 space-y-2.5">
+                            ${replies.map(r => `
+                                <div class="p-3.5 rounded-2xl ${r.isAdmin ? 'bg-turq-50/90 border border-turq-200' : 'bg-slate-50 border border-slate-100'} text-xs">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="font-bold text-navy-900">${r.author}</span>
+                                            ${r.isAdmin
+                                                ? `<span class="px-2 py-0.5 rounded-full bg-turq-600 text-white text-[10px] font-bold">Jawaban Resmi Admin</span>`
+                                                : `<span class="text-slate-400">• ${r.school}</span>`
+                                            }
+                                        </div>
+                                        <span class="text-[11px] text-slate-400">${r.time}</span>
+                                    </div>
+                                    <p class="text-slate-700 text-xs sm:text-sm leading-relaxed whitespace-pre-line">${r.text}</p>
+                                </div>
+                            `).join('')}
+
+                            <!-- Kolom Balas Khusus Guru Anggota & Admin -->
+                            ${isMemberOrAdmin ? `
+                                <form onsubmit="submitQnaReply(event, '${t.id}')" class="flex flex-col sm:flex-row gap-2 pt-1">
+                                    <input type="text" id="qna-reply-input-${t.id}" required placeholder="${appState.currentUserRole === 'admin' ? 'Tulis jawaban resmi Admin KKG...' : 'Tulis tanggapan atau komentar diskusi...'}" class="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-skybrand-500">
+                                    <button type="submit" class="px-4 py-2 rounded-xl ${appState.currentUserRole === 'admin' ? 'bg-turq-600 hover:bg-turq-500' : 'bg-navy-900 hover:bg-skybrand-600'} text-white text-xs font-semibold transition shrink-0">
+                                        ${appState.currentUserRole === 'admin' ? 'Kirim Jawaban Admin' : 'Kirim Komentar'}
+                                    </button>
+                                </form>
+                            ` : `
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 text-[11px] text-slate-500 flex items-center justify-between">
+                                    <span>Hanya Guru Anggota KKG yang login yang dapat ikut berdiskusi atau berkomentar.</span>
+                                    <button onclick="navigate('auth'); switchAuthMode('login-guru');" class="font-bold text-skybrand-600 hover:underline ml-2 shrink-0">Login Anggota</button>
+                                </div>
+                            `}
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            renderIcons();
+        }
+
+        function openNewQnaModal() {
+            if (appState.currentUserRole === 'guest') {
+                showToast('Silakan login sebagai Guru Anggota terlebih dahulu.', 'info');
+                navigate('auth');
+                return;
+            }
+
+            openModal(`
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="font-display font-bold text-xl text-navy-900">Tanya Admin / Buat Topik Diskusi</h3>
+                        <p class="text-xs text-slate-500">Pertanyaan akan langsung muncul di panel Admin KKG Kampung Laut.</p>
+                    </div>
+                    <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+                </div>
+
+                <form onsubmit="submitNewQna(event)" class="space-y-3.5">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Kategori Topik</label>
+                        <select id="qna-topic" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
+                            <option value="Perangkat Ajar & Kurikulum">Perangkat Ajar & Kurikulum</option>
+                            <option value="Penggunaan Generator & Web">Penggunaan Generator & Web</option>
+                            <option value="Kode Kelas & Keanggotaan">Kode Kelas & Keanggotaan</option>
+                            <option value="Kegiatan KKG Kampung Laut">Kegiatan KKG Kampung Laut</option>
+                            <option value="Diskusi Praktik Baik">Diskusi Praktik Baik</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Judul Pertanyaan / Topik *</label>
+                        <input type="text" id="qna-question" required placeholder="Contoh: Bagaimana cara mendapatkan kode kelas untuk Kelas 5?" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Detail Penjelasan *</label>
+                        <textarea id="qna-detail" rows="3" required placeholder="Tuliskan detail pertanyaan atau hal yang ingin didiskusikan..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm"></textarea>
+                    </div>
+                    <label class="flex items-center gap-2 text-xs text-slate-600 cursor-pointer pt-1">
+                        <input type="checkbox" id="qna-notify-wa" checked class="rounded text-turq-600">
+                        <span>Kirim notifikasi langsung ke WhatsApp Admin setelah mengirim</span>
+                    </label>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-turq-600 text-white font-semibold text-sm transition">
+                        Kirim Pertanyaan Sekarang
+                    </button>
+                </form>
+            `);
+        }
+
+        async function submitNewQna(e) {
+            e.preventDefault();
+            const topic = document.getElementById('qna-topic').value;
+            const question = document.getElementById('qna-question').value.trim();
+            const detail = document.getElementById('qna-detail').value.trim();
+            const notifyWa = document.getElementById('qna-notify-wa')?.checked;
+
+            const isAdmin = appState.currentUserRole === 'admin';
+            const authorName = isAdmin ? 'Admin KKG Kampung Laut' : appState.teacherProfile.name;
+            const authorSchool = isAdmin ? 'Pengurus KKG' : appState.teacherProfile.school;
+
+            const newThread = {
+                topic,
+                question,
+                detail,
+                authorId: isAdmin ? 'admin-kkg' : appState.teacherProfile.id,
+                author: authorName,
+                school: authorSchool,
+                date: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }),
+                createdAt: Date.now(),
+                hasAdminReply: isAdmin,
+                pinned: false,
+                replies: []
+            };
+
+            if (window.fbDb && window.fbTools) {
+                const { collection, addDoc } = window.fbTools;
+                await addDoc(collection(window.fbDb, 'qna_threads'), newThread);
+            }
+
+            closeModal();
+            showToast('Pertanyaan berhasil dikirim ke Forum & Admin!', 'success');
+
+            if (notifyWa && !isAdmin && appState.adminWhatsapp) {
+                const waText = encodeURIComponent(
+                    `Halo Admin KKG Kampung Laut,\nSaya *${authorName}* (${authorSchool}) baru saja mengajukan pertanyaan di Ruang Karya Guru:\n\n*${question}*\n${detail}`
+                );
+                window.open(`https://wa.me/${appState.adminWhatsapp}?text=${waText}`, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        async function submitQnaReply(e, threadId) {
+            e.preventDefault();
+            const input = document.getElementById(`qna-reply-input-${threadId}`);
+            const text = input?.value.trim();
+            if (!text) return;
+
+            const isAdmin = appState.currentUserRole === 'admin';
+            const replyObj = {
+                id: 'rep-' + Date.now(),
+                author: isAdmin ? 'Admin KKG Kampung Laut' : appState.teacherProfile.name,
+                school: isAdmin ? 'Pengurus KKG' : appState.teacherProfile.school,
+                isAdmin,
+                text,
+                time: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })
+            };
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc, arrayUnion } = window.fbTools;
+                const updatePayload = { replies: arrayUnion(replyObj) };
+                if (isAdmin) updatePayload.hasAdminReply = true;
+                await updateDoc(doc(window.fbDb, 'qna_threads', threadId), updatePayload);
+            }
+
+            input.value = '';
+            showToast(isAdmin ? 'Jawaban resmi Admin berhasil diterbitkan!' : 'Komentar diskusi terkirim!', 'success');
+        }
+
+        async function togglePinQna(threadId, newPinState) {
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'qna_threads', threadId), { pinned: newPinState });
+            }
+            showToast(newPinState ? 'Pertanyaan disematkan di atas.' : 'Semat dilepas.', 'info');
+        }
+
+        async function deleteQnaThread(threadId) {
+            if (window.fbDb && window.fbTools) {
+                const { doc, deleteDoc } = window.fbTools;
+                await deleteDoc(doc(window.fbDb, 'qna_threads', threadId));
+            }
+            showToast('Topik diskusi dihapus.', 'info');
+        }
+
         // Inisialisasi Halaman Awal
         window.addEventListener('DOMContentLoaded', () => {
+            applyThemePalette('samudra', true);
             clearAuthForms();
             updateHeaderAuth();
             updateRoleVisibility();
