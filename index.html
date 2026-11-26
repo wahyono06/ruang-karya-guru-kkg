@@ -138,7 +138,7 @@
                     <button onclick="navigate('beranda')" data-nav="beranda" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-navy-900 bg-skybrand-50 transition">
                         Beranda
                     </button>
-                    <button onclick="navigate('kelas')" data-nav="kelas" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition">
+                    <button onclick="resetClassroomState(); navigate('kelas')" data-nav="kelas" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition">
                         Ruang Kelas
                     </button>
                     <button onclick="navigate('generator')" data-nav="generator" id="nav-generator-desktop" class="nav-link hidden px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-900 hover:bg-slate-100 transition">
@@ -168,7 +168,7 @@
         <!-- Drawer Menu Mobile -->
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-lg">
             <button onclick="navigate('beranda'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-navy-900 bg-skybrand-50">Beranda</button>
-            <button onclick="navigate('kelas'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Ruang Kelas (1–6)</button>
+            <button onclick="resetClassroomState(); navigate('kelas'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Ruang Kelas (1–6)</button>
             <button onclick="navigate('generator'); toggleMobileMenu()" id="nav-generator-mobile" class="hidden w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Laboratorium Generator</button>
             <button onclick="navigate('galeri'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Galeri Karya Guru</button>
             <button onclick="navigate('tentang'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Tentang KKG Kampung Laut</button>
@@ -769,7 +769,8 @@
             updateDoc,
             addDoc,
             deleteDoc,
-            increment
+            increment,
+            arrayUnion
         } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -799,7 +800,8 @@
             updateDoc,
             addDoc,
             deleteDoc,
-            increment
+            increment,
+            arrayUnion
         };
 
         if (typeof window.initFirebaseSync === 'function') {
@@ -1082,6 +1084,7 @@
                     appState.currentUserRole = 'guest';
                 }
 
+                resetClassroomState();
                 updateHeaderAuth();
                 updateRoleVisibility();
                 refreshCurrentView();
@@ -1281,12 +1284,24 @@
             }, 150);
         }
 
+        function resetClassroomState() {
+            appState.activeClassId = null;
+            appState.activeClassTab = 'terbaru';
+            appState.activeClassPerangkatFilter = 'all';
+            appState.activeClassMapelFilter = 'all';
+            const detailView = document.getElementById('classroom-detail-view');
+            const listView = document.getElementById('classroom-list-view');
+            if (detailView) detailView.classList.add('hidden');
+            if (listView) listView.classList.remove('hidden');
+        }
+
         async function logoutUser() {
             if (window.fbAuth && window.fbTools) {
                 await window.fbTools.signOut(window.fbAuth);
             }
             appState.currentUserRole = 'guest';
             appState.firebaseUser = null;
+            resetClassroomState();
             clearAuthForms();
             updateHeaderAuth();
             updateRoleVisibility();
@@ -2405,10 +2420,11 @@ Topik Utama       : ${topik}
                 time: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })
             });
 
+            const newCommentObj = work.comments[work.comments.length - 1];
             if (window.fbDb && window.fbTools) {
-                const { doc, updateDoc } = window.fbTools;
+                const { doc, updateDoc, arrayUnion } = window.fbTools;
                 await updateDoc(doc(window.fbDb, 'works', workId), {
-                    comments: work.comments
+                    comments: arrayUnion(newCommentObj)
                 });
             }
 
