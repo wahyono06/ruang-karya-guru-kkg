@@ -113,32 +113,6 @@
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-turq-200 selection:text-navy-900 flex flex-col min-h-screen">
 
     <!-- ===================================================================== -->
-    <!-- BILAH SIMULASI PERAN (UNTUK MENGUJI ALUR PENGUNJUNG, GURU, & ADMIN)    -->
-    <!-- ===================================================================== -->
-    <div class="bg-navy-950 text-slate-200 text-xs py-2 px-4 border-b border-white/10">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2">
-                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-turq-500/20 text-turq-200 border border-turq-500/30">
-                    Mode Prototipe Interaktif
-                </span>
-                <span class="hidden sm:inline text-slate-400">Uji tampilan & hak akses berdasarkan peran pengguna:</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-                <span class="text-slate-400 mr-1">Peran Aktif:</span>
-                <button onclick="switchRole('guest')" id="role-btn-guest" class="px-2.5 py-1 rounded-lg font-medium transition bg-white/10 text-white hover:bg-white/20">
-                    Pengunjung
-                </button>
-                <button onclick="switchRole('teacher')" id="role-btn-teacher" class="px-2.5 py-1 rounded-lg font-medium transition text-slate-300 hover:bg-white/10">
-                    Guru Anggota
-                </button>
-                <button onclick="switchRole('admin')" id="role-btn-admin" class="px-2.5 py-1 rounded-lg font-medium transition text-slate-300 hover:bg-white/10">
-                    Admin KKG
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================================================================== -->
     <!-- HEADER & NAVIGASI UTAMA                                               -->
     <!-- ===================================================================== -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
@@ -301,7 +275,7 @@
                                 <i data-lucide="users" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <p class="text-2xl sm:text-3xl font-display font-extrabold text-white" id="stat-home-teachers">48</p>
+                                <p class="text-2xl sm:text-3xl font-display font-extrabold text-white" id="stat-home-teachers">0</p>
                                 <p class="text-xs sm:text-sm text-slate-300">Guru SD Tergabung</p>
                             </div>
                         </div>
@@ -321,7 +295,7 @@
                                 <i data-lucide="folder-check" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <p class="text-2xl sm:text-3xl font-display font-extrabold text-white" id="stat-home-works">6</p>
+                                <p class="text-2xl sm:text-3xl font-display font-extrabold text-white" id="stat-home-works">0</p>
                                 <p class="text-xs sm:text-sm text-slate-300">Karya & Perangkat Terpublikasi</p>
                             </div>
                         </div>
@@ -612,14 +586,14 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Email Guru</label>
-                        <input type="email" required value="siti.aminah@sdnkl01.sch.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
+                        <input type="email" id="login-guru-email" required placeholder="nama@sekolah.sch.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
                     </div>
                     <div>
                         <div class="flex justify-between items-center mb-1">
                             <label class="block text-xs font-semibold text-slate-700">Kata Sandi</label>
                             <button type="button" onclick="switchAuthMode('lupa-password')" class="text-xs font-medium text-skybrand-600 hover:underline">Lupa password?</button>
                         </div>
-                        <input type="password" required value="••••••••" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
+                        <input type="password" id="login-guru-pass" required placeholder="Masukkan kata sandi" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-turq-600 text-white font-semibold text-sm transition shadow-sm">
                         Masuk ke Dashboard Guru
@@ -663,7 +637,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Password *</label>
-                        <input type="password" required placeholder="Minimal 6 karakter" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                        <input type="password" id="reg-pass" required minlength="6" placeholder="Minimal 6 karakter" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-turq-600 hover:bg-turq-500 text-white font-semibold text-sm transition shadow-sm">
                         Daftar & Masuk
@@ -679,11 +653,11 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Email Admin</label>
-                        <input type="email" required value="admin@kkgkampunglaut.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
+                        <input type="email" id="login-admin-email" required placeholder="admin@kkgkampunglaut.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Kata Sandi Admin</label>
-                        <input type="password" required value="••••••••" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
+                        <input type="password" id="login-admin-pass" required placeholder="Masukkan kata sandi admin" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-semibold text-sm transition">
                         Masuk ke Dashboard Admin
@@ -698,7 +672,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Email Terdaftar</label>
-                        <input type="email" required placeholder="nama@sekolah.sch.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
+                        <input type="email" id="reset-email" required placeholder="nama@sekolah.sch.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-skybrand-600 hover:bg-skybrand-500 text-white font-semibold text-sm transition">
                         Kirim Tautan Pemulihan
@@ -746,7 +720,7 @@
                     </div>
                 </div>
                 <p class="text-xs text-slate-400 text-center sm:text-right">
-                    Prototipe Desain Platform Pendidikan SD • Siap Integrasi GitHub Pages & Firebase
+                    Portal Resmi Digital KKG Kecamatan Kampung Laut • Kabupaten Cilacap
                 </p>
             </div>
         </div>
@@ -764,10 +738,70 @@
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
 
     <!-- ===================================================================== -->
-    <!-- JAVASCRIPT LOGIKA APLIKASI & STATE PROTOTIPE                          -->
+    <!-- KONEKSI FIREBASE AUTHENTICATION & CLOUD FIRESTORE (PRODUKSI)          -->
+    <!-- ===================================================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
+            sendPasswordResetEmail,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            setDoc,
+            getDoc,
+            collection,
+            onSnapshot,
+            updateDoc,
+            addDoc,
+            deleteDoc,
+            increment
+        } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBpzDr9EpISn1XMguOrW5RmOSUn_8ICsfc",
+            authDomain: "ruang-karya-guru-kkg.firebaseapp.com",
+            projectId: "ruang-karya-guru-kkg",
+            storageBucket: "ruang-karya-guru-kkg.firebasestorage.app",
+            messagingSenderId: "195317911950",
+            appId: "1:195317911950:web:06558f12cee09cbcf314df",
+            measurementId: "G-L9WXLVX8SM"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        window.fbAuth = getAuth(app);
+        window.fbDb = getFirestore(app);
+        window.fbTools = {
+            signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
+            sendPasswordResetEmail,
+            onAuthStateChanged,
+            signOut,
+            doc,
+            setDoc,
+            getDoc,
+            collection,
+            onSnapshot,
+            updateDoc,
+            addDoc,
+            deleteDoc,
+            increment
+        };
+
+        if (typeof window.initFirebaseSync === 'function') {
+            window.initFirebaseSync();
+        }
+    </script>
+
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT LOGIKA APLIKASI & SINKRONISASI CLOUD FIRESTORE             -->
     <!-- ===================================================================== -->
     <script>
-        // Helper aman untuk merender ikon Lucide tanpa error jika CDN belum siap
         function renderIcons() {
             if (window.lucide && typeof window.lucide.createIcons === 'function') {
                 window.lucide.createIcons();
@@ -775,17 +809,77 @@
         }
 
         // -------------------------------------------------------------------
-        // 1. DATA STATE PROTOTIPE (SIAP DIHUBUNGKAN KE CLOUD FIRESTORE)
+        // 1. STATE APLIKASI PRODUKSI (KOSONG DARI DATA CONTOH, SINKRON FIRESTORE)
         // -------------------------------------------------------------------
+        const defaultClassrooms = [
+            { id: 'kelas-1', name: 'Kelas 1', fase: 'Fase A', code: 'KKG-KL1', membersCount: 0, description: 'Kolaborasi literasi awal, numerasi dasar, dan pembelajaran menyenangkan kelas awal.' },
+            { id: 'kelas-2', name: 'Kelas 2', fase: 'Fase A', code: 'KKG-KL2', membersCount: 0, description: 'Penguatan karakter, membaca pemahaman, dan permainan edukatif tematik.' },
+            { id: 'kelas-3', name: 'Kelas 3', fase: 'Fase B', code: 'KKG-KL3', membersCount: 0, description: 'Transisi fase B, eksplorasi lingkungan sekitar, dan LKPD kontekstual.' },
+            { id: 'kelas-4', name: 'Kelas 4', fase: 'Fase B', code: 'KKG-KL4', membersCount: 0, description: 'Pengembangan IPAS pesisir, proyek profil pelajar, dan media interaktif.' },
+            { id: 'kelas-5', name: 'Kelas 5', fase: 'Fase C', code: 'KKG-KL5', membersCount: 0, description: 'Pembelajaran mendalam (deep learning), pemecahan masalah, dan literasi digital.' },
+            { id: 'kelas-6', name: 'Kelas 6', fase: 'Fase C', code: 'KKG-KL6', membersCount: 0, description: 'Persiapan jenjang lanjutan, asesmen sumatif bermakna, dan karya proyek akhir.' }
+        ];
+
+        const defaultGenerators = [
+            {
+                id: 'gen-mpi',
+                badge: 'Modul A',
+                name: 'Generator MPI',
+                subtitle: 'Media Pembelajaran Interaktif',
+                description: 'Membantu guru merancang storyboard slide interaktif, simulasi visual, dan kuis pemahaman langsung untuk proyektor kelas atau gawai siswa.',
+                icon: 'monitor-play',
+                color: 'sky',
+                mode: 'internal',
+                externalUrl: '',
+                thumbnailUrl: ''
+            },
+            {
+                id: 'gen-rpm',
+                badge: 'Modul B',
+                name: 'Generator RPM',
+                subtitle: 'Rencana Pembelajaran Mendalam',
+                description: 'Menyusun Rencana Pembelajaran Mendalam (Deep Learning) lengkap dengan tujuan pembelajaran, asesmen awal, aktivitas bermakna, dan refleksi.',
+                icon: 'file-spreadsheet',
+                color: 'turq',
+                mode: 'internal',
+                externalUrl: '',
+                thumbnailUrl: ''
+            },
+            {
+                id: 'gen-bahan',
+                badge: 'Modul C',
+                name: 'Generator Bahan Ajar',
+                subtitle: 'Materi, LKPD, Modul & Latihan Soal',
+                description: 'Menghasilkan kerangka bacaan siswa, Lembar Kerja Peserta Didik (LKPD) berbasis aktivitas, serta paket soal evaluasi formatif.',
+                icon: 'book-open-check',
+                color: 'indigo',
+                mode: 'internal',
+                externalUrl: '',
+                thumbnailUrl: ''
+            },
+            {
+                id: 'gen-game',
+                badge: 'Modul D',
+                name: 'Generator Game Edukasi',
+                subtitle: 'Permainan Pembelajaran Interaktif',
+                description: 'Merancang mekanisme permainan tebak konsep, petualangan numerasi, dan kuis kelompok yang ramah dimainkan siswa SD.',
+                icon: 'gamepad-2',
+                color: 'amber',
+                mode: 'internal',
+                externalUrl: '',
+                thumbnailUrl: ''
+            }
+        ];
+
         const appState = {
             currentView: 'beranda',
             currentUserRole: 'guest', // 'guest' | 'teacher' | 'admin'
+            firebaseUser: null,
             activeClassId: null,
             activeClassTab: 'terbaru',
             activeClassPerangkatFilter: 'all',
             activeClassMapelFilter: 'all',
 
-            // Pengaturan Tampilan & Tema (Dapat Diatur Admin)
             themeConfig: {
                 activePalette: 'samudra',
                 heroImageUrl: '',
@@ -895,7 +989,6 @@
                 }
             },
 
-            // Daftar Mata Pelajaran SD
             subjects: [
                 'Pendidikan Agama',
                 'Pendidikan Pancasila',
@@ -908,253 +1001,193 @@
                 'Muatan Lokal'
             ],
 
-            // Kategori Karya yang dapat diatur Admin
             categories: ['MPI', 'RPM', 'Bahan Ajar', 'Game Edukasi', 'LKPD', 'Media Pembelajaran', 'Karya Lainnya'],
 
-            // Profil Guru Aktif (Simulasi Login Guru)
             teacherProfile: {
-                id: 'guru-01',
-                name: 'Siti Aminah, S.Pd.SD',
-                nip: '19870415 201001 2 014',
-                school: 'SDN Klaces 01',
-                email: 'siti.aminah@sdnkl01.sch.id',
+                id: '',
+                name: 'Pendidik KKG',
+                nip: '',
+                school: 'SD Negeri Kampung Laut',
+                email: '',
                 assignedClass: 'Kelas 4',
-                joinedClasses: ['kelas-4'],
-                activities: [
-                    'Mengunggah "LKPD Eksplorasi Tumbuhan Bakau" (Menunggu persetujuan Admin)',
-                    'Bergabung ke Ruang Kelas 4 (Kode: KKG-KL4)',
-                    'Mempublikasikan "MPI Interaktif: Mengenal Ekosistem Mangrove Segara Anakan"'
-                ]
+                joinedClasses: [],
+                activities: []
             },
 
-            // 6 Ruang Kelas (Kode dikelola Admin)
-            classrooms: [
-                { id: 'kelas-1', name: 'Kelas 1', fase: 'Fase A', code: 'KKG-KL1', membersCount: 8, description: 'Kolaborasi literasi awal, numerasi dasar, dan pembelajaran menyenangkan kelas awal.' },
-                { id: 'kelas-2', name: 'Kelas 2', fase: 'Fase A', code: 'KKG-KL2', membersCount: 7, description: 'Penguatan karakter, membaca pemahaman, dan permainan edukatif tematik.' },
-                { id: 'kelas-3', name: 'Kelas 3', fase: 'Fase B', code: 'KKG-KL3', membersCount: 9, description: 'Transisi fase B, eksplorasi lingkungan sekitar, dan LKPD kontekstual.' },
-                { id: 'kelas-4', name: 'Kelas 4', fase: 'Fase B', code: 'KKG-KL4', membersCount: 10, description: 'Pengembangan IPAS pesisir, proyek profil pelajar, dan media interaktif.' },
-                { id: 'kelas-5', name: 'Kelas 5', fase: 'Fase C', code: 'KKG-KL5', membersCount: 7, description: 'Pembelajaran mendalam (deep learning), pemecahan masalah, dan literasi digital.' },
-                { id: 'kelas-6', name: 'Kelas 6', fase: 'Fase C', code: 'KKG-KL6', membersCount: 7, description: 'Persiapan jenjang lanjutan, asesmen sumatif bermakna, dan karya proyek akhir.' }
-            ],
-
-            // Daftar Modul Generator (Bisa ditambah/edit langsung oleh Admin lewat Dashboard)
-            generators: [
-                {
-                    id: 'gen-mpi',
-                    badge: 'Modul A',
-                    name: 'Generator MPI',
-                    subtitle: 'Media Pembelajaran Interaktif',
-                    description: 'Membantu guru merancang storyboard slide interaktif, simulasi visual, dan kuis pemahaman langsung untuk proyektor kelas atau gawai siswa.',
-                    icon: 'monitor-play',
-                    color: 'sky',
-                    mode: 'internal', // 'internal' (kerangka bawaan) atau 'external' (link URL)
-                    externalUrl: '',
-                    thumbnailUrl: ''
-                },
-                {
-                    id: 'gen-rpm',
-                    badge: 'Modul B',
-                    name: 'Generator RPM',
-                    subtitle: 'Rencana Pembelajaran Mendalam',
-                    description: 'Menyusun Rencana Pembelajaran Mendalam (Deep Learning) lengkap dengan tujuan pembelajaran, asesmen awal, aktivitas bermakna, dan refleksi.',
-                    icon: 'file-spreadsheet',
-                    color: 'turq',
-                    mode: 'internal',
-                    externalUrl: '',
-                    thumbnailUrl: ''
-                },
-                {
-                    id: 'gen-bahan',
-                    badge: 'Modul C',
-                    name: 'Generator Bahan Ajar',
-                    subtitle: 'Materi, LKPD, Modul & Latihan Soal',
-                    description: 'Menghasilkan kerangka bacaan siswa, Lembar Kerja Peserta Didik (LKPD) berbasis aktivitas, serta paket soal evaluasi formatif.',
-                    icon: 'book-open-check',
-                    color: 'indigo',
-                    mode: 'internal',
-                    externalUrl: '',
-                    thumbnailUrl: ''
-                },
-                {
-                    id: 'gen-game',
-                    badge: 'Modul D',
-                    name: 'Generator Game Edukasi',
-                    subtitle: 'Permainan Pembelajaran Interaktif',
-                    description: 'Merancang mekanisme permainan tebak konsep, petualangan numerasi, dan kuis kelompok yang ramah dimainkan siswa SD.',
-                    icon: 'gamepad-2',
-                    color: 'amber',
-                    mode: 'internal',
-                    externalUrl: '',
-                    thumbnailUrl: ''
-                }
-            ],
-
-            // Daftar Karya Guru (status: 'approved' | 'pending')
-            works: [
-                {
-                    id: 'karya-101',
-                    title: 'MPI Interaktif: Mengenal Ekosistem Mangrove Segara Anakan',
-                    authorId: 'guru-01',
-                    author: 'Siti Aminah, S.Pd.SD',
-                    school: 'SDN Klaces 01',
-                    kelas: 'Kelas 4',
-                    mapel: 'IPAS',
-                    category: 'MPI',
-                    date: '18 Nov 2026',
-                    status: 'approved',
-                    likes: 24,
-                    views: 142,
-                    likedByMe: false,
-                    thumbnailUrl: '',
-                    downloadUrl: 'https://drive.google.com/example-mpi-mangrove',
-                    summary: 'Media presentasi interaktif dilengkapi kuis identifikasi flora dan fauna pesisir Kampung Laut beserta manfaat hutan bakau.',
-                    comments: [
-                        { id: 'com-1', author: 'Slamet Riyadi, S.Pd.', school: 'SDN Ujunggagak 02', role: 'Guru', text: 'Sangat kontekstual dengan lingkungan anak-anak kita di Kampung Laut, Bu Siti. Izin unduh untuk minggu depan!', time: '2 hari lalu' },
-                        { id: 'com-2', author: 'Siti Aminah, S.Pd.SD', school: 'SDN Klaces 01', role: 'Penulis Karya', text: 'Silakan Pak Slamet, semoga bermanfaat untuk siswa di Ujunggagak.', time: '1 hari lalu' }
-                    ]
-                },
-                {
-                    id: 'karya-102',
-                    title: 'RPM Deep Learning: Pecahan Senilai Berbasis Hasil Tangkapan Nelayan',
-                    authorId: 'guru-02',
-                    author: 'Eko Prasetyo, S.Pd.',
-                    school: 'SDN Panikel 03',
-                    kelas: 'Kelas 5',
-                    mapel: 'Matematika',
-                    category: 'RPM',
-                    date: '15 Nov 2026',
-                    status: 'approved',
-                    likes: 19,
-                    views: 98,
-                    likedByMe: false,
-                    thumbnailUrl: '',
-                    downloadUrl: 'https://drive.google.com/example-rpm-pecahan',
-                    summary: 'Rencana Pembelajaran Mendalam 2 pertemuan dengan pemantik pembagian hasil tangkapan ikan dan udang secara adil.',
-                    comments: [
-                        { id: 'com-3', author: 'Yuni Astuti, S.Pd.', school: 'SDN Klaces 01', role: 'Guru', text: 'Alur asesmen awalnya sangat membantu memetakan pemahaman pecahan siswa.', time: '3 hari lalu' }
-                    ]
-                },
-                {
-                    id: 'karya-103',
-                    title: 'Game Edukasi: Petualangan Perahu Numerasi Bilangan Cacah',
-                    authorId: 'guru-03',
-                    author: 'Rina Marlina, S.Pd.',
-                    school: 'SDN Panikel 01',
-                    kelas: 'Kelas 1',
-                    mapel: 'Matematika',
-                    category: 'Game Edukasi',
-                    date: '12 Nov 2026',
-                    status: 'approved',
-                    likes: 31,
-                    views: 185,
-                    likedByMe: false,
-                    thumbnailUrl: '',
-                    downloadUrl: 'https://drive.google.com/example-game-numerasi',
-                    summary: 'Permainan kuis berhitung 1 sampai 20 dengan ilustrasi perahu penyeberangan antar dusun di Kampung Laut.',
-                    comments: []
-                },
-                {
-                    id: 'karya-104',
-                    title: 'LKPD Membaca Pemahaman: Cerita Rakyat Asal-Usul Segara Anakan',
-                    authorId: 'guru-04',
-                    author: 'Tri Wahyuni, S.Pd.',
-                    school: 'SDN Panikel 02',
-                    kelas: 'Kelas 3',
-                    mapel: 'Bahasa Indonesia',
-                    category: 'LKPD',
-                    date: '10 Nov 2026',
-                    status: 'approved',
-                    likes: 16,
-                    views: 76,
-                    likedByMe: false,
-                    thumbnailUrl: '',
-                    downloadUrl: 'https://drive.google.com/example-lkpd-cerita',
-                    summary: 'Lembar kerja peserta didik untuk melatih kemampuan menemukan ide pokok dan pesan moral cerita daerah.',
-                    comments: []
-                },
-                {
-                    id: 'karya-105',
-                    title: 'Bahan Ajar Gotong Royong Menjaga Kebersihan Dermaga Desa',
-                    authorId: 'guru-05',
-                    author: 'Ahmad Fauzi, S.Pd.',
-                    school: 'SDN Klaces 02',
-                    kelas: 'Kelas 2',
-                    mapel: 'Pendidikan Pancasila',
-                    category: 'Bahan Ajar',
-                    date: '08 Nov 2026',
-                    status: 'approved',
-                    likes: 14,
-                    views: 64,
-                    likedByMe: false,
-                    thumbnailUrl: '',
-                    downloadUrl: '',
-                    summary: 'Bahan bacaan bergambar tentang nilai persatuan dan tanggung jawab warga desa pesisir.',
-                    comments: []
-                },
-                {
-                    id: 'karya-106',
-                    title: 'Media Pembelajaran Siklus Air & Pasang Surut Air Laut',
-                    authorId: 'guru-06',
-                    author: 'Drs. Sutrisno',
-                    school: 'SDN Ujungalang 01',
-                    kelas: 'Kelas 6',
-                    mapel: 'IPAS',
-                    category: 'Media Pembelajaran',
-                    date: '05 Nov 2026',
-                    status: 'approved',
-                    likes: 27,
-                    views: 159,
-                    likedByMe: false,
-                    thumbnailUrl: '',
-                    downloadUrl: 'https://drive.google.com/example-media-pasangsurut',
-                    summary: 'Infografis animasi proses penguapan, hujan, serta fenomena pasang surut di perairan Kampung Laut.',
-                    comments: []
-                },
-                {
-                    id: 'karya-107',
-                    title: 'LKPD Eksplorasi Tumbuhan Bakau dan Manfaatnya bagi Pesisir',
-                    authorId: 'guru-01',
-                    author: 'Siti Aminah, S.Pd.SD',
-                    school: 'SDN Klaces 01',
-                    kelas: 'Kelas 4',
-                    mapel: 'IPAS',
-                    category: 'LKPD',
-                    date: '25 Nov 2026',
-                    status: 'pending',
-                    likes: 0,
-                    views: 3,
-                    likedByMe: false,
-                    thumbnailUrl: '',
-                    downloadUrl: 'https://drive.google.com/example-lkpd-bakau',
-                    summary: 'Lembar pengamatan lapangan sederhana di sekitar sekolah untuk mengenal jenis akar bakau.',
-                    comments: []
-                }
-            ],
-
-            // Forum diskusi per kelas
-            discussions: {
-                'kelas-1': [
-                    { author: 'Rina Marlina, S.Pd.', school: 'SDN Panikel 01', time: '2 hari lalu', text: 'Bapak/Ibu guru kelas 1, media kartu suku kata bergambar perahu sangat membantu siswa yang baru mengenal huruf.' }
-                ],
-                'kelas-4': [
-                    { author: 'Slamet Riyadi, S.Pd.', school: 'SDN Ujunggagak 02', time: 'Kemarin', text: 'Izin mengadaptasi MPI Ekosistem Mangrove dari Bu Siti Aminah untuk pembelajaran IPAS minggu depan.' },
-                    { author: 'Siti Aminah, S.Pd.SD', school: 'SDN Klaces 01', time: '5 jam lalu', text: 'Silakan Pak Slamet, file sudah saya tautkan di menu Perangkat Pembelajaran Kelas 4.' }
-                ]
-            },
-
-            // Daftar akun guru untuk Dashboard Admin
-            teachersList: [
-                { id: 'guru-01', name: 'Siti Aminah, S.Pd.SD', school: 'SDN Klaces 01', kelas: 'Kelas 4', status: 'Aktif' },
-                { id: 'guru-02', name: 'Eko Prasetyo, S.Pd.', school: 'SDN Panikel 03', kelas: 'Kelas 5', status: 'Aktif' },
-                { id: 'guru-03', name: 'Rina Marlina, S.Pd.', school: 'SDN Panikel 01', kelas: 'Kelas 1', status: 'Aktif' },
-                { id: 'guru-04', name: 'Tri Wahyuni, S.Pd.', school: 'SDN Panikel 02', kelas: 'Kelas 3', status: 'Aktif' },
-                { id: 'guru-05', name: 'Ahmad Fauzi, S.Pd.', school: 'SDN Klaces 02', kelas: 'Kelas 2', status: 'Aktif' },
-                { id: 'guru-06', name: 'Drs. Sutrisno', school: 'SDN Ujungalang 01', kelas: 'Kelas 6', status: 'Aktif' },
-            ]
+            classrooms: [...defaultClassrooms],
+            generators: [...defaultGenerators],
+            works: [],
+            discussions: {},
+            teachersList: []
         };
 
         // -------------------------------------------------------------------
-        // 2. NAVIGASI, HAK AKSES GENERATOR & SIMULASI PERAN
+        // 2. SINKRONISASI REAL-TIME DENGAN CLOUD FIRESTORE & FIREBASE AUTH
+        // -------------------------------------------------------------------
+        window.initFirebaseSync = function() {
+            if (!window.fbAuth || !window.fbDb || !window.fbTools) return;
+            const {
+                onAuthStateChanged, doc, getDoc, setDoc, collection, onSnapshot
+            } = window.fbTools;
+
+            // 1. Pantau Status Login Pengguna
+            onAuthStateChanged(window.fbAuth, async (user) => {
+                appState.firebaseUser = user;
+                if (user) {
+                    try {
+                        const userRef = doc(window.fbDb, 'users', user.uid);
+                        const userSnap = await getDoc(userRef);
+                        if (userSnap.exists()) {
+                            const data = userSnap.data();
+                            appState.currentUserRole = data.role === 'admin' ? 'admin' : 'teacher';
+                            appState.teacherProfile = {
+                                id: user.uid,
+                                name: data.name || user.email.split('@')[0],
+                                nip: data.nip || '',
+                                school: data.school || 'SDN Kampung Laut',
+                                email: user.email,
+                                assignedClass: data.assignedClass || 'Kelas 4',
+                                joinedClasses: Array.isArray(data.joinedClasses) ? data.joinedClasses : [],
+                                activities: Array.isArray(data.activities) ? data.activities : ['Masuk ke Ruang Karya Guru']
+                            };
+                        } else {
+                            // Jika akun dibuat langsung dari Firebase Console tanpa dokumen Firestore
+                            const defaultUser = {
+                                name: user.email.split('@')[0],
+                                nip: '',
+                                school: 'KKG Kampung Laut',
+                                email: user.email,
+                                assignedClass: 'Kelas 4',
+                                role: 'teacher',
+                                joinedClasses: [],
+                                activities: ['Akun diaktifkan']
+                            };
+                            await setDoc(userRef, defaultUser);
+                            appState.currentUserRole = 'teacher';
+                            appState.teacherProfile = { id: user.uid, ...defaultUser };
+                        }
+                    } catch (err) {
+                        console.error('Gagal memuat profil pengguna:', err);
+                    }
+                } else {
+                    appState.currentUserRole = 'guest';
+                }
+
+                updateHeaderAuth();
+                updateRoleVisibility();
+                refreshCurrentView();
+            });
+
+            // 2. Pantau Koleksi Karya Guru (works)
+            onSnapshot(collection(window.fbDb, 'works'), (snapshot) => {
+                const list = [];
+                snapshot.forEach(d => list.push({ id: d.id, ...d.data() }));
+                list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+                appState.works = list;
+                refreshCurrentView();
+            }, (err) => console.error('Firestore works error:', err));
+
+            // 3. Pantau Koleksi Ruang Kelas (classrooms) & Inisialisasi jika masih kosong
+            onSnapshot(collection(window.fbDb, 'classrooms'), async (snapshot) => {
+                if (snapshot.empty) {
+                    for (const cls of defaultClassrooms) {
+                        await setDoc(doc(window.fbDb, 'classrooms', cls.id), cls);
+                    }
+                } else {
+                    const list = [];
+                    snapshot.forEach(d => list.push({ id: d.id, ...d.data() }));
+                    list.sort((a, b) => a.id.localeCompare(b.id));
+                    appState.classrooms = list;
+                    refreshCurrentView();
+                }
+            });
+
+            // 4. Pantau Koleksi Generator (generators) & Inisialisasi jika masih kosong
+            onSnapshot(collection(window.fbDb, 'generators'), async (snapshot) => {
+                if (snapshot.empty) {
+                    for (const gen of defaultGenerators) {
+                        await setDoc(doc(window.fbDb, 'generators', gen.id), gen);
+                    }
+                } else {
+                    const list = [];
+                    snapshot.forEach(d => list.push({ id: d.id, ...d.data() }));
+                    appState.generators = list;
+                    refreshCurrentView();
+                }
+            });
+
+            // 5. Pantau Pengaturan Tema & Kategori (settings/appConfig)
+            onSnapshot(doc(window.fbDb, 'settings', 'appConfig'), async (docSnap) => {
+                if (!docSnap.exists()) {
+                    await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
+                        themeConfig: appState.themeConfig,
+                        categories: appState.categories
+                    });
+                } else {
+                    const cfg = docSnap.data();
+                    if (cfg.themeConfig) {
+                        appState.themeConfig = { ...appState.themeConfig, ...cfg.themeConfig };
+                        applyThemePalette(appState.themeConfig.activePalette, true);
+                    }
+                    if (Array.isArray(cfg.categories)) {
+                        appState.categories = cfg.categories;
+                    }
+                    refreshCurrentView();
+                }
+            });
+
+            // 6. Pantau Daftar Guru Terdaftar (users)
+            onSnapshot(collection(window.fbDb, 'users'), (snapshot) => {
+                const list = [];
+                snapshot.forEach(d => {
+                    const u = d.data();
+                    list.push({
+                        id: d.id,
+                        name: u.name || u.email,
+                        school: u.school || '-',
+                        kelas: u.assignedClass || '-',
+                        role: u.role || 'teacher',
+                        status: 'Aktif'
+                    });
+                });
+                appState.teachersList = list;
+                const homeTeachersEl = document.getElementById('stat-home-teachers');
+                if (homeTeachersEl) homeTeachersEl.textContent = list.length;
+                if (appState.currentView === 'dashboard-admin') renderAdminDashboard();
+            });
+
+            // 7. Pantau Diskusi Kelas (discussions)
+            onSnapshot(collection(window.fbDb, 'discussions'), (snapshot) => {
+                const grouped = {};
+                snapshot.forEach(d => {
+                    const item = d.data();
+                    if (!grouped[item.classId]) grouped[item.classId] = [];
+                    grouped[item.classId].push(item);
+                });
+                Object.keys(grouped).forEach(k => {
+                    grouped[k].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+                });
+                appState.discussions = grouped;
+                if (appState.currentView === 'kelas' && appState.activeClassId && appState.activeClassTab === 'forum') {
+                    renderClassTabContent();
+                }
+            });
+        };
+
+        function refreshCurrentView() {
+            if (appState.currentView === 'beranda') renderHome();
+            if (appState.currentView === 'kelas') {
+                if (appState.activeClassId) renderClassTabContent();
+                else renderClassrooms();
+            }
+            if (appState.currentView === 'generator') renderGenerators();
+            if (appState.currentView === 'galeri') renderGallery();
+            if (appState.currentView === 'dashboard-guru') renderTeacherDashboard();
+            if (appState.currentView === 'dashboard-admin') renderAdminDashboard();
+        }
+
+        // -------------------------------------------------------------------
+        // 3. NAVIGASI & HAK AKSES
         // -------------------------------------------------------------------
         function updateRoleVisibility() {
             const isMemberOrAdmin = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
@@ -1174,7 +1207,6 @@
         }
 
         function navigate(viewName) {
-            // Cegah pengunjung mengakses langsung halaman generator
             if (viewName === 'generator' && appState.currentUserRole === 'guest') {
                 showToast('Menu Generator hanya tersedia untuk Guru Anggota KKG. Silakan login terlebih dahulu.', 'info');
                 navigate('auth');
@@ -1183,17 +1215,11 @@
             }
 
             appState.currentView = viewName;
-
-            // Sembunyikan semua section
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
 
-            // Tampilkan target section
             const target = document.getElementById(`view-${viewName}`);
-            if (target) {
-                target.classList.remove('hidden');
-            }
+            if (target) target.classList.remove('hidden');
 
-            // Perbarui status aktif menu desktop
             document.querySelectorAll('.nav-link').forEach(btn => {
                 if (btn.dataset.nav === viewName) {
                     btn.classList.add('bg-skybrand-50', 'text-navy-900', 'font-semibold');
@@ -1204,14 +1230,7 @@
                 }
             });
 
-            // Refresh konten spesifik halaman
-            if (viewName === 'beranda') renderHome();
-            if (viewName === 'kelas') renderClassrooms();
-            if (viewName === 'generator') renderGenerators();
-            if (viewName === 'galeri') renderGallery();
-            if (viewName === 'dashboard-guru') renderTeacherDashboard();
-            if (viewName === 'dashboard-admin') renderAdminDashboard();
-
+            refreshCurrentView();
             window.scrollTo({ top: 0, behavior: 'smooth' });
             renderIcons();
         }
@@ -1221,40 +1240,21 @@
             menu.classList.toggle('hidden');
         }
 
-        function switchRole(role) {
-            appState.currentUserRole = role;
-
-            // Update tombol simulasi di bar paling atas
-            ['guest', 'teacher', 'admin'].forEach(r => {
-                const btn = document.getElementById(`role-btn-${r}`);
-                if (r === role) {
-                    btn.className = 'px-2.5 py-1 rounded-lg font-bold transition bg-turq-500 text-white shadow-xs';
-                } else {
-                    btn.className = 'px-2.5 py-1 rounded-lg font-medium transition text-slate-300 hover:bg-white/10';
-                }
-            });
-
+        async function logoutUser() {
+            if (window.fbAuth && window.fbTools) {
+                await window.fbTools.signOut(window.fbAuth);
+            }
+            appState.currentUserRole = 'guest';
             updateHeaderAuth();
             updateRoleVisibility();
-
-            if (role === 'guest') {
-                showToast('Beralih ke mode Pengunjung Umum (Menu Generator disembunyikan).', 'info');
-                if (appState.currentView === 'dashboard-guru' || appState.currentView === 'dashboard-admin' || appState.currentView === 'generator') {
-                    navigate('beranda');
-                } else {
-                    navigate(appState.currentView);
-                }
-            } else if (role === 'teacher') {
-                showToast(`Masuk sebagai Guru: ${appState.teacherProfile.name}`, 'success');
-                navigate('dashboard-guru');
-            } else if (role === 'admin') {
-                showToast('Masuk sebagai Admin KKG Kampung Laut', 'success');
-                navigate('dashboard-admin');
-            }
+            showToast('Anda telah keluar dari akun.', 'info');
+            navigate('beranda');
         }
 
         function updateHeaderAuth() {
             const container = document.getElementById('header-auth-area');
+            if (!container) return;
+
             if (appState.currentUserRole === 'guest') {
                 container.innerHTML = `
                     <button onclick="navigate('auth')" class="px-4 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold shadow-xs flex items-center gap-2 transition">
@@ -1269,7 +1269,7 @@
                             <i data-lucide="layout-dashboard" class="w-4 h-4 text-skybrand-600"></i>
                             <span class="hidden sm:inline">Dashboard Guru</span>
                         </button>
-                        <button onclick="switchRole('guest')" title="Keluar" class="p-2 rounded-xl text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition">
+                        <button onclick="logoutUser()" title="Keluar" class="p-2 rounded-xl text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition">
                             <i data-lucide="log-out" class="w-4 h-4"></i>
                         </button>
                     </div>
@@ -1281,7 +1281,7 @@
                             <i data-lucide="shield-check" class="w-4 h-4 text-amber-600"></i>
                             <span class="hidden sm:inline">Panel Admin</span>
                         </button>
-                        <button onclick="switchRole('guest')" title="Keluar" class="p-2 rounded-xl text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition">
+                        <button onclick="logoutUser()" title="Keluar" class="p-2 rounded-xl text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition">
                             <i data-lucide="log-out" class="w-4 h-4"></i>
                         </button>
                     </div>
@@ -1351,176 +1351,139 @@
             const homeWorksEl = document.getElementById('stat-home-works');
             if (homeWorksEl) homeWorksEl.textContent = approvedWorks.length;
 
+            const homeTeachersEl = document.getElementById('stat-home-teachers');
+            if (homeTeachersEl) homeTeachersEl.textContent = appState.teachersList.length;
+
             const container = document.getElementById('home-latest-works');
             if (container) {
-                container.innerHTML = approvedWorks.slice(0, 3).map(w => createWorkCardHTML(w)).join('');
+                container.innerHTML = approvedWorks.length > 0
+                    ? approvedWorks.slice(0, 3).map(w => createWorkCardHTML(w)).join('')
+                    : `<div class="col-span-full bg-slate-50 rounded-3xl p-8 text-center border border-slate-200/80">
+                        <p class="font-display font-bold text-navy-900 text-base">Belum Ada Karya yang Diterbitkan</p>
+                        <p class="text-xs text-slate-500 mt-1">Silakan login sebagai Guru Anggota KKG untuk mulai mengunggah karya pembelajaran pertama.</p>
+                       </div>`;
             }
             renderIcons();
         }
 
         function createWorkCardHTML(work) {
-            const badgeColors = {
-                'MPI': 'bg-skybrand-50 text-skybrand-600 border-skybrand-100',
-                'RPM': 'bg-turq-50 text-turq-600 border-turq-100',
-                'Bahan Ajar': 'bg-indigo-50 text-indigo-600 border-indigo-100',
-                'Game Edukasi': 'bg-amber-50 text-amber-700 border-amber-100',
-                'LKPD': 'bg-emerald-50 text-emerald-700 border-emerald-100',
-                'Media Pembelajaran': 'bg-purple-50 text-purple-700 border-purple-100'
-            };
-            const badgeClass = badgeColors[work.category] || 'bg-slate-100 text-slate-700 border-slate-200';
+            const likedClass = work.likedByMe ? 'text-rose-600 bg-rose-50 border-rose-200' : 'text-slate-600 bg-slate-50 border-slate-200 hover:bg-rose-50 hover:text-rose-600';
             const commentCount = work.comments ? work.comments.length : 0;
-
-            const thumbnailBlock = work.thumbnailUrl
+            const thumbHTML = work.thumbnailUrl
                 ? `
-                    <div class="h-40 relative overflow-hidden bg-navy-900">
+                    <div onclick="openWorkDetailModal('${work.id}', false)" class="cursor-pointer h-44 -mx-5 -mt-5 mb-4 relative overflow-hidden bg-slate-100 border-b border-slate-100 group">
                         <img src="${work.thumbnailUrl}" alt="${work.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-navy-900/20 to-transparent"></div>
-                        <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
-                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-navy-950/75 text-white backdrop-blur-xs">
-                                ${work.kelas} • ${work.mapel}
-                            </span>
-                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-turq-500 text-white shadow-xs">
-                                ${work.category}
-                            </span>
-                        </div>
-                        <div class="absolute bottom-2.5 left-3.5 right-3.5 flex items-center justify-between text-xs text-white/95">
-                            <span class="inline-flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> ${work.date}</span>
-                            <span class="inline-flex items-center gap-2">
-                                <span class="inline-flex items-center gap-1"><i data-lucide="eye" class="w-3.5 h-3.5"></i> ${work.views || 0}</span>
-                                <span class="inline-flex items-center gap-1"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> ${commentCount}</span>
-                            </span>
+                        <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-navy-900/90 text-white backdrop-blur-xs shadow-xs">${work.kelas}</span>
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/95 text-turq-700 backdrop-blur-xs shadow-xs">${work.category}</span>
                         </div>
                     </div>
                 `
                 : `
-                    <div class="h-40 bg-gradient-to-br from-navy-900 via-navy-800 to-skybrand-700 p-4 relative flex flex-col justify-between text-white overflow-hidden">
+                    <div onclick="openWorkDetailModal('${work.id}', false)" class="cursor-pointer h-36 -mx-5 -mt-5 mb-4 relative overflow-hidden bg-gradient-to-br from-navy-900 via-skybrand-900 to-turq-800 p-4 flex flex-col justify-between text-white group">
                         <div class="flex items-center justify-between gap-2 relative z-10">
-                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/15 backdrop-blur-xs">
-                                ${work.kelas} • ${work.mapel}
-                            </span>
-                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-turq-500 text-white">
-                                ${work.category}
-                            </span>
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/15 backdrop-blur-xs">${work.kelas}</span>
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-turq-500 text-white">${work.category}</span>
                         </div>
-                        <!-- Ilustrasi Dekoratif Bawaan Sesuai Kategori -->
-                        <div class="my-auto flex items-center gap-2.5 opacity-90 relative z-10">
-                            <div class="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
-                                <i data-lucide="monitor-play" class="w-5 h-5 text-turq-200"></i>
-                            </div>
-                            <span class="text-[11px] text-sky-100 line-clamp-1 font-medium">Pratinjau Perangkat ${work.category}</span>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-slate-200 relative z-10">
-                            <span class="inline-flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> ${work.date}</span>
-                            <span class="inline-flex items-center gap-2">
-                                <span class="inline-flex items-center gap-1"><i data-lucide="eye" class="w-3.5 h-3.5"></i> ${work.views || 0}</span>
-                                <span class="inline-flex items-center gap-1"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> ${commentCount}</span>
-                            </span>
+                        <div class="flex items-center justify-between relative z-10">
+                            <span class="text-xs font-semibold text-sky-200">${work.mapel}</span>
+                            <i data-lucide="file-badge" class="w-6 h-6 text-white/60 group-hover:scale-110 transition-transform"></i>
                         </div>
                     </div>
                 `;
 
             return `
-                <article class="bg-white rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-md transition flex flex-col justify-between overflow-hidden group">
+                <article class="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md transition flex flex-col justify-between overflow-hidden">
                     <div>
-                        <!-- Thumbnail / Screenshot Karya -->
-                        ${thumbnailBlock}
+                        ${thumbHTML}
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <span class="text-xs font-semibold text-skybrand-600">${work.mapel}</span>
+                            <span class="text-xs text-slate-400">${work.date}</span>
+                        </div>
 
-                        <!-- Detail Konten -->
-                        <div class="p-5">
-                            <span class="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-semibold border ${badgeClass} mb-2">
-                                ${work.category}
-                            </span>
-                            <h3 class="font-display font-bold text-base text-navy-900 group-hover:text-skybrand-600 transition line-clamp-2">
-                                ${work.title}
-                            </h3>
-                            <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                                ${work.summary}
-                            </p>
+                        <h3 onclick="openWorkDetailModal('${work.id}', false)" class="cursor-pointer font-display font-bold text-base sm:text-lg text-navy-900 leading-snug line-clamp-2 hover:text-skybrand-600 transition">
+                            ${work.title}
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
+                            ${work.summary}
+                        </p>
+                    </div>
 
-                            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2.5">
-                                <div class="w-8 h-8 rounded-full bg-skybrand-100 text-navy-900 font-bold text-xs flex items-center justify-center shrink-0">
+                    <div class="mt-4 pt-3 border-t border-slate-100">
+                        <div class="flex items-center justify-between text-xs text-slate-600 mb-3">
+                            <div class="flex items-center gap-2 min-w-0">
+                                <div class="w-7 h-7 rounded-full bg-navy-900 text-white font-bold text-xs flex items-center justify-center shrink-0">
                                     ${work.author.charAt(0)}
                                 </div>
-                                <div class="min-w-0">
-                                    <p class="text-xs font-semibold text-navy-900 truncate">${work.author}</p>
-                                    <p class="text-[11px] text-slate-500 truncate">${work.school}</p>
+                                <div class="truncate">
+                                    <p class="font-semibold text-navy-900 truncate">${work.author}</p>
+                                    <p class="text-[11px] text-slate-400 truncate">${work.school}</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Tombol Aksi -->
-                    <div class="px-5 pb-5 pt-1 flex items-center gap-2">
-                        <button onclick="openWorkDetailModal('${work.id}', false)" class="flex-1 py-2.5 px-3 rounded-xl bg-navy-900 hover:bg-skybrand-600 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5">
-                            <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                            <span>Lihat Karya</span>
-                        </button>
-                        ${work.downloadUrl ? `
-                            <button onclick="simulateDownload('${work.title}')" title="Unduh Perangkat" class="p-2.5 rounded-xl bg-turq-50 hover:bg-turq-100 text-turq-700 border border-turq-200 transition">
-                                <i data-lucide="download" class="w-4 h-4"></i>
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="toggleLikeWork('${work.id}')" title="Beri Apresiasi" class="px-2.5 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1 transition ${likedClass}">
+                                    <i data-lucide="heart" class="w-3.5 h-3.5 ${work.likedByMe ? 'fill-rose-600' : ''}"></i>
+                                    <span>${work.likes || 0}</span>
+                                </button>
+                                <button onclick="openWorkDetailModal('${work.id}', false)" title="Lihat Respon & Komentar" class="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-skybrand-50 text-slate-600 hover:text-skybrand-700 text-xs font-semibold flex items-center gap-1 transition">
+                                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                                    <span>${commentCount}</span>
+                                </button>
+                            </div>
+                            <button onclick="openWorkDetailModal('${work.id}', false)" class="px-3.5 py-1.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold flex items-center gap-1.5 transition">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                <span>Lihat Karya</span>
                             </button>
-                        ` : ''}
-                        <button onclick="toggleLikeWork('${work.id}')" title="Beri Apresiasi" class="px-3 py-2.5 rounded-xl border ${work.likedByMe ? 'bg-rose-50 border-rose-200 text-rose-600' : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-rose-50 hover:text-rose-600'} text-xs font-semibold flex items-center gap-1 transition">
-                            <i data-lucide="heart" class="w-3.5 h-3.5 ${work.likedByMe ? 'fill-rose-600' : ''}"></i>
-                            <span>${work.likes}</span>
-                        </button>
+                        </div>
                     </div>
                 </article>
             `;
         }
 
         // -------------------------------------------------------------------
-        // 4. RUANG KELAS (KELAS 1–6) & TAB PERANGKAT PEMBELAJARAN
+        // 4. RUANG KELAS (KELAS 1 - KELAS 6) & KODE KELAS
         // -------------------------------------------------------------------
         function renderClassrooms() {
             const grid = document.getElementById('classrooms-grid');
             if (!grid) return;
 
-            grid.innerHTML = appState.classrooms.map(cls => {
+            grid.innerHTML = appState.classrooms.map((cls, idx) => {
                 const isJoined = appState.currentUserRole === 'admin' ||
                     (appState.currentUserRole === 'teacher' && appState.teacherProfile.joinedClasses.includes(cls.id));
-                const classWorksCount = appState.works.filter(w => w.status === 'approved' && w.kelas === cls.name).length;
+                const approvedCount = appState.works.filter(w => w.status === 'approved' && w.kelas === cls.name).length;
 
                 return `
-                    <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-md transition flex flex-col justify-between">
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-md transition flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-4">
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-skybrand-50 text-skybrand-600">
-                                    ${cls.fase}
+                                <span class="w-12 h-12 rounded-2xl bg-gradient-to-br from-navy-900 to-skybrand-600 text-white font-display font-extrabold text-lg flex items-center justify-center shadow-xs">
+                                    ${idx + 1}
                                 </span>
-                                ${isJoined
-                                    ? `<span class="inline-flex items-center gap-1 text-xs font-semibold text-turq-600 bg-turq-50 px-2.5 py-1 rounded-full"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Anggota Aktif</span>`
-                                    : `<span class="inline-flex items-center gap-1 text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full"><i data-lucide="eye" class="w-3.5 h-3.5"></i> Akses Publik</span>`
-                                }
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold ${isJoined ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600'}">
+                                    ${isJoined ? 'Anggota Aktif' : cls.fase}
+                                </span>
                             </div>
 
-                            <h3 class="font-display font-extrabold text-xl text-navy-900">${cls.name}</h3>
+                            <h3 class="font-display font-bold text-xl text-navy-900">${cls.name}</h3>
                             <p class="text-xs text-slate-500 mt-2 leading-relaxed">${cls.description}</p>
-
-                            <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                                <span class="inline-flex items-center gap-1.5 font-medium text-navy-900">
-                                    <i data-lucide="folder-open" class="w-4 h-4 text-turq-600"></i>
-                                    ${classWorksCount} Perangkat & Karya
-                                </span>
-                                ${appState.currentUserRole === 'admin' ? `<span class="font-mono font-bold text-navy-900 bg-amber-100 px-2 py-0.5 rounded">${cls.code}</span>` : ''}
-                            </div>
                         </div>
 
-                        <div class="mt-5 flex items-center gap-2">
-                            <button onclick="openClassroomDetail('${cls.id}')" class="flex-1 py-3 px-4 rounded-xl bg-navy-900 hover:bg-skybrand-600 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5">
-                                <i data-lucide="door-open" class="w-4 h-4"></i>
-                                <span>Lihat Ruang Kelas</span>
+                        <div class="mt-6 pt-4 border-t border-slate-100">
+                            <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
+                                <span>${cls.membersCount || 0} Guru Anggota</span>
+                                <span>${approvedCount} Karya Terbit</span>
+                            </div>
+                            <button onclick="openClassroomDetail('${cls.id}')" class="w-full py-2.5 px-4 rounded-xl bg-skybrand-50 hover:bg-navy-900 text-navy-900 hover:text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                                <span>Masuk Ruang ${cls.name}</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </button>
-                            ${!isJoined && appState.currentUserRole !== 'admin' ? `
-                                <button onclick="openJoinClassModal('${cls.id}')" title="Gabung Anggota Kelas" class="py-3 px-3.5 rounded-xl bg-turq-50 hover:bg-turq-100 text-turq-700 border border-turq-200 text-xs font-semibold transition">
-                                    Gabung
-                                </button>
-                            ` : ''}
                         </div>
                     </div>
                 `;
             }).join('');
-
             renderIcons();
         }
 
@@ -1536,43 +1499,40 @@
             document.getElementById('classroom-list-view').classList.add('hidden');
             document.getElementById('classroom-detail-view').classList.remove('hidden');
 
-            const isMemberOrAdmin = appState.currentUserRole === 'admin' ||
+            const isMember = appState.currentUserRole === 'admin' ||
                 (appState.currentUserRole === 'teacher' && appState.teacherProfile.joinedClasses.includes(cls.id));
-
-            // Tampilkan tab Generator Kelas hanya untuk Guru Anggota / Admin
-            const genTabBtn = document.getElementById('ctab-generator');
-            if (genTabBtn) {
-                genTabBtn.classList.toggle('hidden', !isMemberOrAdmin);
-            }
 
             document.getElementById('class-detail-header').innerHTML = `
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <div class="flex items-center gap-2 mb-2">
                             <span class="px-3 py-1 rounded-full bg-white/15 text-xs font-bold">${cls.fase}</span>
-                            ${isMemberOrAdmin
-                                ? `<span class="px-3 py-1 rounded-full bg-turq-500/30 text-turq-200 text-xs font-semibold">Status: Anggota Aktif Kelas</span>`
-                                : `<span class="px-3 py-1 rounded-full bg-white/10 text-slate-200 text-xs">Mode Pengunjung (Lihat & Unduh Karya)</span>`
-                            }
+                            <span class="px-3 py-1 rounded-full bg-turq-500/30 text-turq-200 text-xs font-semibold">
+                                ${isMember ? 'Akses Penuh Anggota Kelas' : 'Mode Pratinjau Publik'}
+                            </span>
                         </div>
-                        <h2 class="font-display font-extrabold text-2xl sm:text-3xl">Ruang ${cls.name} — KKG Kampung Laut</h2>
+                        <h2 class="font-display font-extrabold text-2xl sm:text-3xl">Ruang Kolaborasi ${cls.name}</h2>
                         <p class="text-sm text-slate-200 mt-1 max-w-2xl">${cls.description}</p>
                     </div>
-                    <div class="flex flex-wrap gap-2 shrink-0">
-                        ${isMemberOrAdmin ? `
-                            <button onclick="handleUploadAction()" class="px-4 py-2.5 rounded-xl bg-turq-500 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
+                    <div class="shrink-0">
+                        ${isMember
+                            ? `<button onclick="handleUploadAction()" class="px-5 py-3 rounded-2xl bg-turq-500 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-2 transition">
                                 <i data-lucide="upload-cloud" class="w-4 h-4"></i>
-                                <span>Bagikan Karya ke ${cls.name}</span>
-                            </button>
-                        ` : `
-                            <button onclick="openJoinClassModal('${cls.id}')" class="px-4 py-2.5 rounded-xl bg-turq-500 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
-                                <i data-lucide="key-round" class="w-4 h-4"></i>
-                                <span>Gabung Anggota (Pakai Kode)</span>
-                            </button>
-                        `}
+                                <span>Bagikan Karya di ${cls.name}</span>
+                               </button>`
+                            : `<button onclick="openJoinClassModal('${cls.id}')" class="px-5 py-3 rounded-2xl bg-white text-navy-900 hover:bg-turq-50 text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-2 transition">
+                                <i data-lucide="key-round" class="w-4 h-4 text-turq-600"></i>
+                                <span>Masukkan Kode Kelas</span>
+                               </button>`
+                        }
                     </div>
                 </div>
             `;
+
+            const genTab = document.getElementById('ctab-generator');
+            if (genTab) {
+                genTab.classList.toggle('hidden', !isMember);
+            }
 
             switchClassTab('terbaru');
             renderIcons();
@@ -1587,184 +1547,156 @@
 
         function switchClassTab(tabName) {
             appState.activeClassTab = tabName;
-
             document.querySelectorAll('.class-tab').forEach(btn => {
-                btn.className = 'class-tab px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-200/70 transition';
+                if (btn.id === `ctab-${tabName}`) {
+                    btn.className = 'class-tab px-4 py-2 rounded-xl text-sm font-semibold bg-navy-900 text-white transition';
+                } else {
+                    btn.className = 'class-tab px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-200/70 transition';
+                }
             });
-            const genTabBtn = document.getElementById('ctab-generator');
-            const isMemberOrAdmin = appState.currentUserRole === 'admin' ||
-                (appState.currentUserRole === 'teacher' && appState.teacherProfile.joinedClasses.includes(appState.activeClassId));
-            if (genTabBtn && !isMemberOrAdmin) {
-                genTabBtn.classList.add('hidden');
-            }
-
-            const activeBtn = document.getElementById(`ctab-${tabName}`);
-            if (activeBtn) {
-                activeBtn.className = 'class-tab px-4 py-2 rounded-xl text-sm font-semibold bg-navy-900 text-white transition';
-            }
-
             renderClassTabContent();
         }
 
-        function setClassPerangkatFilter(category) {
-            appState.activeClassPerangkatFilter = category;
+        function setClassPerangkatFilter(val) {
+            appState.activeClassPerangkatFilter = val;
             renderClassTabContent();
         }
 
-        function setClassMapelFilter(mapel) {
-            appState.activeClassMapelFilter = mapel;
+        function setClassMapelFilter(val) {
+            appState.activeClassMapelFilter = val;
             renderClassTabContent();
         }
 
         function renderClassTabContent() {
-            const cls = appState.classrooms.find(c => c.id === appState.activeClassId);
-            if (!cls) return;
             const container = document.getElementById('class-tab-content');
+            const cls = appState.classrooms.find(c => c.id === appState.activeClassId);
+            if (!container || !cls) return;
+
+            const isMember = appState.currentUserRole === 'admin' ||
+                (appState.currentUserRole === 'teacher' && appState.teacherProfile.joinedClasses.includes(cls.id));
             const classWorks = appState.works.filter(w => w.status === 'approved' && w.kelas === cls.name);
 
             if (appState.activeClassTab === 'terbaru') {
                 container.innerHTML = classWorks.length > 0
                     ? `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${classWorks.map(w => createWorkCardHTML(w)).join('')}</div>`
-                    : `<div class="bg-white rounded-3xl p-8 text-center border border-slate-200"><p class="text-sm text-slate-500">Belum ada karya terbaru yang diterbitkan di ${cls.name}.</p></div>`;
+                    : `<div class="bg-white rounded-3xl p-8 text-center border border-slate-200/80">
+                        <p class="font-display font-bold text-navy-900">Belum Ada Karya Terbit di ${cls.name}</p>
+                        <p class="text-xs text-slate-500 mt-1">Jadilah guru pertama yang membagikan perangkat ajar atau media pembelajaran di ruang ini.</p>
+                       </div>`;
             } else if (appState.activeClassTab === 'perangkat') {
-                const filterCategories = ['all', ...appState.categories];
-                const filterSubjects = ['all', ...appState.subjects];
-                const filteredWorks = classWorks.filter(w => {
-                    const matchCat = appState.activeClassPerangkatFilter === 'all' || w.category === appState.activeClassPerangkatFilter;
+                const filtered = classWorks.filter(w => {
                     const matchMapel = appState.activeClassMapelFilter === 'all' || w.mapel === appState.activeClassMapelFilter;
-                    return matchCat && matchMapel;
+                    const matchCat = appState.activeClassPerangkatFilter === 'all' || w.category === appState.activeClassPerangkatFilter;
+                    return matchMapel && matchCat;
                 });
 
                 container.innerHTML = `
                     <div class="bg-white rounded-3xl p-5 border border-slate-200/80 mb-6 space-y-4">
                         <div>
-                            <p class="text-xs font-bold uppercase tracking-wider text-skybrand-600 mb-2.5">1. Pilih Mata Pelajaran (${cls.name})</p>
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">1. Pilih Mata Pelajaran</p>
                             <div class="flex flex-wrap gap-2">
-                                ${filterSubjects.map(sub => {
-                                    const active = appState.activeClassMapelFilter === sub;
-                                    return `
-                                        <button onclick="setClassMapelFilter('${sub}')" class="px-3.5 py-2 rounded-xl text-xs font-semibold transition ${active ? 'bg-navy-900 text-white shadow-2xs' : 'bg-skybrand-50/70 text-navy-900 hover:bg-skybrand-100'}">
-                                            ${sub === 'all' ? 'Semua Mapel' : sub}
-                                        </button>
-                                    `;
-                                }).join('')}
+                                <button onclick="setClassMapelFilter('all')" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition ${appState.activeClassMapelFilter === 'all' ? 'bg-navy-900 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                                    Semua Mapel
+                                </button>
+                                ${appState.subjects.map(m => `
+                                    <button onclick="setClassMapelFilter('${m}')" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition ${appState.activeClassMapelFilter === m ? 'bg-navy-900 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                                        ${m}
+                                    </button>
+                                `).join('')}
                             </div>
                         </div>
                         <div class="pt-3 border-t border-slate-100">
-                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">2. Pilih Jenis Perangkat Pembelajaran</p>
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">2. Pilih Jenis Perangkat Pembelajaran</p>
                             <div class="flex flex-wrap gap-2">
-                                ${filterCategories.map(cat => {
-                                    const active = appState.activeClassPerangkatFilter === cat;
-                                    return `
-                                        <button onclick="setClassPerangkatFilter('${cat}')" class="px-3.5 py-2 rounded-xl text-xs font-semibold transition ${active ? 'bg-turq-600 text-white shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}">
-                                            ${cat === 'all' ? 'Semua Perangkat' : cat}
-                                        </button>
-                                    `;
-                                }).join('')}
+                                <button onclick="setClassPerangkatFilter('all')" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition ${appState.activeClassPerangkatFilter === 'all' ? 'bg-turq-600 text-white' : 'bg-turq-50 text-turq-800 hover:bg-turq-100'}">
+                                    Semua Jenis
+                                </button>
+                                ${appState.categories.map(cat => `
+                                    <button onclick="setClassPerangkatFilter('${cat}')" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition ${appState.activeClassPerangkatFilter === cat ? 'bg-turq-600 text-white' : 'bg-turq-50 text-turq-800 hover:bg-turq-100'}">
+                                        ${cat}
+                                    </button>
+                                `).join('')}
                             </div>
                         </div>
                     </div>
-                    ${filteredWorks.length > 0
-                        ? `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${filteredWorks.map(w => createWorkCardHTML(w)).join('')}</div>`
-                        : `<div class="bg-white rounded-3xl p-8 text-center border border-slate-200"><p class="text-sm text-slate-500">Belum ada perangkat untuk pilihan Mapel <strong>${appState.activeClassMapelFilter === 'all' ? 'Semua Mapel' : appState.activeClassMapelFilter}</strong> & kategori <strong>${appState.activeClassPerangkatFilter === 'all' ? 'Semua Perangkat' : appState.activeClassPerangkatFilter}</strong> di ${cls.name}.</p></div>`
+                    ${filtered.length > 0
+                        ? `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${filtered.map(w => createWorkCardHTML(w)).join('')}</div>`
+                        : `<div class="bg-white rounded-3xl p-8 text-center border border-slate-200/80">
+                            <p class="font-display font-bold text-navy-900">Tidak Ada Perangkat Sesuai Filter</p>
+                            <p class="text-xs text-slate-500 mt-1">Coba pilih "Semua Mapel" atau "Semua Jenis" untuk melihat seluruh perangkat di ${cls.name}.</p>
+                           </div>`
                     }
                 `;
             } else if (appState.activeClassTab === 'forum') {
-                const isMemberOrAdmin = appState.currentUserRole === 'admin' ||
-                    (appState.currentUserRole === 'teacher' && appState.teacherProfile.joinedClasses.includes(cls.id));
                 const posts = appState.discussions[cls.id] || [];
-
                 container.innerHTML = `
                     <div class="bg-white rounded-3xl p-6 border border-slate-200/80 space-y-5">
-                        <h3 class="font-display font-bold text-lg text-navy-900">Forum Berbagi & Diskusi ${cls.name}</h3>
-                        ${isMemberOrAdmin ? `
+                        <h3 class="font-display font-bold text-lg text-navy-900">Forum Diskusi Guru ${cls.name}</h3>
+                        ${isMember ? `
                             <form onsubmit="postClassDiscussion(event)" class="flex flex-col sm:flex-row gap-2.5">
-                                <input type="text" id="class-forum-input" required placeholder="Tulis pertanyaan, ide pembelajaran, atau masukan untuk rekan guru ${cls.name}..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
-                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold transition">Kirim Diskusi</button>
+                                <input type="text" id="class-forum-input" required placeholder="Bagikan praktik baik, kendala pembelajaran, atau pertanyaan di ${cls.name}..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
+                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold transition">Kirim Pesan</button>
                             </form>
                         ` : `
-                            <div class="p-4 rounded-2xl bg-skybrand-50 border border-skybrand-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                                <p class="text-xs text-navy-900">Ingin ikut berdiskusi dengan guru ${cls.name}? Bergabung sebagai anggota kelas menggunakan kode akses.</p>
-                                <button onclick="openJoinClassModal('${cls.id}')" class="px-4 py-2 rounded-xl bg-navy-900 text-white text-xs font-semibold shrink-0">Gabung Kelas</button>
+                            <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900">
+                                <span>Gabung sebagai anggota ${cls.name} menggunakan Kode Kelas untuk ikut berdiskusi.</span>
+                                <button onclick="openJoinClassModal('${cls.id}')" class="px-4 py-2 rounded-xl bg-amber-600 text-white font-semibold self-start">Gabung Kelas</button>
                             </div>
                         `}
                         <div class="space-y-3 pt-2">
-                            ${posts.length === 0 ? `<p class="text-xs text-slate-400">Belum ada diskusi di kelas ini.</p>` : posts.map(p => `
-                                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                                    <div class="flex items-center justify-between text-xs mb-1">
-                                        <span class="font-bold text-navy-900">${p.author} <span class="font-normal text-slate-500">(${p.school})</span></span>
-                                        <span class="text-slate-400">${p.time}</span>
+                            ${posts.length === 0
+                                ? `<p class="text-xs text-slate-400">Belum ada diskusi di ${cls.name}. Mulai percakapan pertama!</p>`
+                                : posts.map(p => `
+                                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                                        <div class="flex items-center justify-between text-xs mb-1">
+                                            <span class="font-bold text-navy-900">${p.author} <span class="font-normal text-slate-400">• ${p.school}</span></span>
+                                            <span class="text-slate-400">${p.time}</span>
+                                        </div>
+                                        <p class="text-sm text-slate-700">${p.text}</p>
                                     </div>
-                                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${p.text}</p>
-                                </div>
-                            `).join('')}
+                                `).join('')
+                            }
                         </div>
                     </div>
                 `;
             } else if (appState.activeClassTab === 'generator') {
                 container.innerHTML = `
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         ${appState.generators.map(g => `
-                            <div class="bg-white rounded-2xl p-5 border border-slate-200 flex flex-col justify-between">
+                            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 flex items-center justify-between gap-4">
                                 <div>
-                                    <span class="text-[11px] font-bold text-turq-600">${g.badge}</span>
-                                    <h4 class="font-display font-bold text-base text-navy-900 mt-1">${g.name} (${cls.name})</h4>
-                                    <p class="text-xs text-slate-500 mt-1">${g.description}</p>
+                                    <span class="text-[11px] font-bold text-turq-600 uppercase">${g.badge}</span>
+                                    <h4 class="font-display font-bold text-base text-navy-900">${g.name} (${cls.name})</h4>
+                                    <p class="text-xs text-slate-500 mt-1">${g.subtitle}</p>
                                 </div>
-                                <button onclick="launchGenerator('${g.id}')" class="mt-4 w-full py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold transition">
-                                    Buka Generator
+                                <button onclick="launchGenerator('${g.id}', '${cls.name}')" class="px-4 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold shrink-0 transition">
+                                    Jalankan
                                 </button>
                             </div>
                         `).join('')}
                     </div>
                 `;
             }
-
             renderIcons();
         }
 
-        function postClassDiscussion(e) {
-            e.preventDefault();
-            const input = document.getElementById('class-forum-input');
-            const text = input.value.trim();
-            if (!text || !appState.activeClassId) return;
-
-            if (!appState.discussions[appState.activeClassId]) {
-                appState.discussions[appState.activeClassId] = [];
-            }
-
-            const authorName = appState.currentUserRole === 'admin' ? 'Admin KKG Kampung Laut' : appState.teacherProfile.name;
-            const authorSchool = appState.currentUserRole === 'admin' ? 'Pengurus KKG' : appState.teacherProfile.school;
-
-            appState.discussions[appState.activeClassId].unshift({
-                author: authorName,
-                school: authorSchool,
-                time: 'Baru saja',
-                text
-            });
-
-            input.value = '';
-            renderClassTabContent();
-            showToast('Pesan diskusi berhasil dikirim!', 'success');
-        }
-
-        function openJoinClassModal(preselectedClassId = '') {
+        function openJoinClassModal(preselectClassId = '') {
             if (appState.currentUserRole === 'guest') {
-                showToast('Silakan login sebagai Guru terlebih dahulu untuk bergabung ke ruang kelas.', 'info');
+                showToast('Silakan login atau daftar sebagai Guru terlebih dahulu.', 'info');
                 navigate('auth');
                 switchAuthMode('login-guru');
                 return;
             }
 
             const options = appState.classrooms.map(c =>
-                `<option value="${c.id}" ${c.id === preselectedClassId ? 'selected' : ''}>${c.name} (${c.fase})</option>`
+                `<option value="${c.id}" ${c.id === preselectClassId ? 'selected' : ''}>${c.name} (${c.fase})</option>`
             ).join('');
 
             openModal(`
                 <div class="flex items-center justify-between mb-4">
                     <div>
                         <h3 class="font-display font-bold text-xl text-navy-900">Gabung Anggota Ruang Kelas</h3>
-                        <p class="text-xs text-slate-500">Masukkan Kode Kelas dari Admin KKG (contoh: KKG-KL1 s.d. KKG-KL6).</p>
+                        <p class="text-xs text-slate-500">Masukkan Kode Kelas yang dibagikan oleh Admin KKG Kampung Laut.</p>
                     </div>
                     <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
                 </div>
@@ -1774,47 +1706,44 @@
                         <select id="join-class-select" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm bg-white">${options}</select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Kode Kelas *</label>
-                        <input type="text" id="join-class-code" required placeholder="Contoh: KKG-KL4" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-mono uppercase">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Kode Akses Kelas *</label>
+                        <input type="text" id="join-class-code" required placeholder="Contoh: KKG-KL4" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 font-mono text-sm uppercase">
                     </div>
-                    <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-sm font-semibold transition">
+                    <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-turq-600 text-white font-semibold text-sm transition">
                         Verifikasi & Gabung Kelas
                     </button>
                 </form>
             `);
         }
 
-        function submitJoinClass(e) {
+        async function postClassDiscussion(e) {
             e.preventDefault();
-            const classId = document.getElementById('join-class-select').value;
-            const codeInput = document.getElementById('join-class-code').value.trim().toUpperCase();
-            const cls = appState.classrooms.find(c => c.id === classId);
+            const input = document.getElementById('class-forum-input');
+            const text = input.value.trim();
+            if (!text || !appState.activeClassId) return;
 
-            if (!cls) return;
-            if (cls.code !== codeInput) {
-                showToast(`Kode kelas tidak sesuai untuk ${cls.name}. Cek kembali kode dari Admin.`, 'error');
-                return;
+            const authorName = appState.currentUserRole === 'admin' ? 'Admin KKG Kampung Laut' : appState.teacherProfile.name;
+            const authorSchool = appState.currentUserRole === 'admin' ? 'Pengurus KKG' : appState.teacherProfile.school;
+
+            const newPost = {
+                classId: appState.activeClassId,
+                author: authorName,
+                school: authorSchool,
+                time: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }),
+                createdAt: Date.now(),
+                text
+            };
+
+            if (window.fbDb && window.fbTools) {
+                await window.fbTools.addDoc(window.fbTools.collection(window.fbDb, 'discussions'), newPost);
             }
 
-            if (!appState.teacherProfile.joinedClasses.includes(classId)) {
-                appState.teacherProfile.joinedClasses.push(classId);
-                cls.membersCount += 1;
-                appState.teacherProfile.activities.unshift(`Bergabung ke Ruang ${cls.name} (Kode: ${cls.code})`);
-            }
-
-            closeModal();
-            showToast(`Berhasil bergabung sebagai anggota ${cls.name}!`, 'success');
-            if (appState.activeClassId === classId) {
-                openClassroomDetail(classId);
-            } else if (appState.currentView === 'kelas') {
-                renderClassrooms();
-            } else if (appState.currentView === 'dashboard-guru') {
-                renderTeacherDashboard();
-            }
+            input.value = '';
+            showToast('Pesan diskusi berhasil dikirim!', 'success');
         }
 
         // -------------------------------------------------------------------
-        // 5. GALERI KARYA, PRATINJAU DETAIL, APRESIASI & KOMENTAR
+        // 5. GALERI KARYA GURU & QR CODE PROYEKTOR
         // -------------------------------------------------------------------
         function renderGallery() {
             const catSelect = document.getElementById('filter-kategori');
@@ -1827,173 +1756,47 @@
                 });
             }
 
-            const q = (document.getElementById('filter-search')?.value || '').toLowerCase();
-            const fKelas = document.getElementById('filter-kelas')?.value || 'all';
-            const fKat = document.getElementById('filter-kategori')?.value || 'all';
-            const fMapel = document.getElementById('filter-mapel')?.value || 'all';
+            const search = (document.getElementById('filter-search')?.value || '').toLowerCase();
+            const kelas = document.getElementById('filter-kelas')?.value || 'all';
+            const kategori = document.getElementById('filter-kategori')?.value || 'all';
+            const mapel = document.getElementById('filter-mapel')?.value || 'all';
 
             const filtered = appState.works.filter(w => {
                 if (w.status !== 'approved') return false;
-                if (fKelas !== 'all' && w.kelas !== fKelas) return false;
-                if (fKat !== 'all' && w.category !== fKat) return false;
-                if (fMapel !== 'all' && w.mapel !== fMapel) return false;
-                if (q && !(w.title.toLowerCase().includes(q) || w.author.toLowerCase().includes(q) || w.school.toLowerCase().includes(q))) {
-                    return false;
-                }
-                return true;
+                const matchSearch = !search ||
+                    w.title.toLowerCase().includes(search) ||
+                    w.author.toLowerCase().includes(search) ||
+                    w.school.toLowerCase().includes(search);
+                const matchKelas = kelas === 'all' || w.kelas === kelas;
+                const matchKat = kategori === 'all' || w.category === kategori;
+                const matchMapel = mapel === 'all' || w.mapel === mapel;
+                return matchSearch && matchKelas && matchKat && matchMapel;
             });
 
             const grid = document.getElementById('gallery-grid');
-            if (grid) {
-                grid.innerHTML = filtered.length > 0
-                    ? filtered.map(w => createWorkCardHTML(w)).join('')
-                    : `<div class="col-span-full bg-white rounded-3xl p-10 text-center border border-slate-200">
-                        <p class="font-display font-bold text-navy-900">Tidak ada karya yang cocok dengan filter pencarian.</p>
-                        <p class="text-xs text-slate-500 mt-1">Coba ubah kata kunci atau pilih kategori kelas lainnya.</p>
-                       </div>`;
-            }
+            if (!grid) return;
+
+            grid.innerHTML = filtered.length > 0
+                ? filtered.map(w => createWorkCardHTML(w)).join('')
+                : `<div class="col-span-full bg-white rounded-3xl p-10 text-center border border-slate-200/80">
+                    <p class="font-display font-bold text-navy-900 text-base">Belum Ada Karya yang Ditemukan</p>
+                    <p class="text-xs text-slate-500 mt-1">Ubah kata kunci pencarian atau pilih filter kelas/kategori lainnya.</p>
+                   </div>`;
             renderIcons();
         }
 
-        function toggleLikeWork(workId) {
-            const work = appState.works.find(w => w.id === workId);
-            if (!work) return;
-            work.likedByMe = !work.likedByMe;
-            work.likes += work.likedByMe ? 1 : -1;
+        function toggleWorkQrBox(encodedUrl) {
+            const box = document.getElementById('work-qr-box');
+            const img = document.getElementById('work-qr-img');
+            if (!box || !img) return;
 
-            if (appState.currentView === 'beranda') renderHome();
-            if (appState.currentView === 'galeri') renderGallery();
-            if (appState.currentView === 'kelas' && appState.activeClassId) renderClassTabContent();
-            showToast(work.likedByMe ? 'Apresiasi dikirim kepada pembuat karya!' : 'Apresiasi dibatalkan.', 'info');
-        }
-
-        function simulateDownload(title) {
-            showToast(`Membuka tautan unduhan: "${title}"`, 'success');
-        }
-
-        function openWorkDetailModal(workId, isAdminPreview = false) {
-            const work = appState.works.find(w => w.id === workId);
-            if (!work) return;
-
-            // Tambah jumlah dilihat saat dibuka (kecuali mode pratinjau admin)
-            if (!isAdminPreview) {
-                work.views = (work.views || 0) + 1;
-                if (appState.currentView === 'beranda') renderHome();
-                if (appState.currentView === 'galeri') renderGallery();
+            if (box.classList.contains('hidden')) {
+                const decodedUrl = decodeURIComponent(encodedUrl);
+                img.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(decodedUrl)}`;
+                box.classList.remove('hidden');
+            } else {
+                box.classList.add('hidden');
             }
-
-            const comments = work.comments || [];
-            const canComment = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
-
-            openModal(`
-                <div class="flex items-start justify-between gap-3 mb-4">
-                    <div>
-                        <div class="flex flex-wrap items-center gap-2 mb-1.5">
-                            <span class="px-2.5 py-0.5 rounded-lg bg-skybrand-50 text-skybrand-600 text-xs font-bold">${work.kelas} • ${work.mapel}</span>
-                            <span class="px-2.5 py-0.5 rounded-lg bg-turq-50 text-turq-700 text-xs font-bold">${work.category}</span>
-                            ${work.status === 'pending' ? `<span class="px-2.5 py-0.5 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">Menunggu Kurasi Admin</span>` : ''}
-                        </div>
-                        <h3 class="font-display font-extrabold text-xl text-navy-900">${work.title}</h3>
-                    </div>
-                    <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 shrink-0"><i data-lucide="x" class="w-5 h-5"></i></button>
-                </div>
-
-                ${work.thumbnailUrl ? `
-                    <div class="mb-4 rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 max-h-60 flex items-center justify-center">
-                        <img src="${work.thumbnailUrl}" alt="Screenshot ${work.title}" class="w-full h-auto max-h-60 object-contain">
-                    </div>
-                ` : ''}
-
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 mb-4">
-                    <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 pb-3 mb-3 border-b border-slate-200/80">
-                        <span>Penyusun: <strong class="text-navy-900">${work.author}</strong> (${work.school})</span>
-                        <span>Diunggah: ${work.date} • <strong>${work.views || 0}x dilihat</strong></span>
-                    </div>
-                    <p class="text-sm text-slate-700 leading-relaxed">${work.summary}</p>
-                    ${work.downloadUrl ? `
-                        <div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
-                            <span class="text-xs text-slate-500 truncate max-w-xs">Tautan: ${work.downloadUrl}</span>
-                            <div class="flex items-center gap-2">
-                                <button type="button" onclick="toggleWorkQrBox('${encodeURIComponent(work.downloadUrl)}')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-skybrand-50 text-navy-900 border border-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
-                                    <i data-lucide="qr-code" class="w-3.5 h-3.5 text-skybrand-600"></i>
-                                    <span>QR Code Proyektor</span>
-                                </button>
-                                <button type="button" onclick="simulateDownload('${work.title}')" class="px-4 py-2 rounded-xl bg-turq-600 hover:bg-turq-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
-                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                                    <span>Buka / Unduh Karya</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div id="work-qr-box" class="hidden mt-3 p-4 rounded-2xl bg-white border border-slate-200 text-center">
-                            <p class="text-xs font-bold text-navy-900 mb-2">Pindai QR Code dari Layar Proyektor / HP</p>
-                            <img id="work-qr-img" src="" alt="QR Code Karya" class="w-36 h-36 mx-auto rounded-xl border border-slate-100 p-1">
-                            <p class="text-[11px] text-slate-500 mt-2">Arahkan kamera HP untuk langsung membuka tautan karya ini.</p>
-                        </div>
-                    ` : ''}
-                </div>
-
-                ${isAdminPreview && work.status === 'pending' ? `
-                    <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between gap-3 mb-4">
-                        <span class="text-xs font-semibold text-amber-900">Keputusan Kurasi Admin:</span>
-                        <div class="flex gap-2">
-                            <button onclick="closeModal(); approveWork('${work.id}')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold">Setujui & Terbitkan</button>
-                            <button onclick="closeModal(); rejectWork('${work.id}')" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold">Tolak Karya</button>
-                        </div>
-                    </div>
-                ` : ''}
-
-                <!-- Bagian Komentar & Balasan Guru -->
-                <div class="pt-3 border-t border-slate-200">
-                    <h4 class="font-display font-bold text-sm text-navy-900 mb-3">Respon & Tanya Jawab Guru (${comments.length})</h4>
-                    <div class="space-y-2.5 max-h-48 overflow-y-auto pr-1 mb-3">
-                        ${comments.length === 0 ? `<p class="text-xs text-slate-400">Belum ada respon atau komentar pada karya ini.</p>` : comments.map(c => `
-                            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
-                                <div class="flex items-center justify-between mb-1">
-                                    <div class="flex items-center gap-1.5">
-                                        <span class="font-bold text-navy-900">${c.author}</span>
-                                        ${c.role === 'Penulis Karya' ? `<span class="px-2 py-0.5 rounded-full bg-turq-100 text-turq-800 text-[10px] font-bold">Penulis Karya</span>` : ''}
-                                    </div>
-                                    <span class="text-[11px] text-slate-400">${c.time}</span>
-                                </div>
-                                <p class="text-slate-700 leading-relaxed">${c.text}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-
-                    ${canComment ? `
-                        <form onsubmit="submitWorkComment(event, '${work.id}')" class="flex gap-2">
-                            <input type="text" id="work-comment-input" required placeholder="${appState.teacherProfile.id === work.authorId && appState.currentUserRole === 'teacher' ? 'Tulis balasan untuk rekan guru...' : 'Tulis apresiasi atau pertanyaan untuk penyusun karya...'}" class="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-skybrand-500">
-                            <button type="submit" class="px-4 py-2 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold transition">Kirim</button>
-                        </form>
-                    ` : `
-                        <p class="text-[11px] text-slate-400">Login sebagai Guru untuk menulis komentar atau apresiasi tertulis.</p>
-                    `}
-                </div>
-            `);
-        }
-
-        function submitWorkComment(e, workId) {
-            e.preventDefault();
-            const work = appState.works.find(w => w.id === workId);
-            const input = document.getElementById('work-comment-input');
-            const text = input?.value.trim();
-            if (!work || !text) return;
-
-            if (!work.comments) work.comments = [];
-            const isAuthor = appState.currentUserRole === 'teacher' && appState.teacherProfile.id === work.authorId;
-
-            work.comments.push({
-                id: 'com-' + Date.now(),
-                author: appState.currentUserRole === 'admin' ? 'Admin KKG Kampung Laut' : appState.teacherProfile.name,
-                school: appState.currentUserRole === 'admin' ? 'Pengurus KKG' : appState.teacherProfile.school,
-                role: isAuthor ? 'Penulis Karya' : (appState.currentUserRole === 'admin' ? 'Admin KKG' : 'Guru'),
-                text,
-                time: 'Baru saja'
-            });
-
-            if (appState.currentView === 'dashboard-guru') renderTeacherDashboard();
-            openWorkDetailModal(workId, false);
-            showToast('Respon berhasil dikirim!', 'success');
         }
 
         // -------------------------------------------------------------------
@@ -2046,119 +1849,416 @@
                 `;
             }).join('');
 
-            // Slot ekspansi untuk Admin / Informasi
-            const expansionCard = `
-                <div class="bg-slate-100/70 rounded-3xl p-6 border-2 border-dashed border-slate-300 flex flex-col justify-between">
+            const slotHTML = `
+                <div class="rounded-3xl p-6 border-2 border-dashed border-slate-300 bg-slate-100/70 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="w-12 h-12 rounded-2xl bg-white text-slate-500 flex items-center justify-center shadow-2xs">
+                            <span class="w-12 h-12 rounded-2xl bg-white text-slate-500 flex items-center justify-center border border-slate-200">
                                 <i data-lucide="plus-circle" class="w-6 h-6"></i>
                             </span>
-                            <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-200 text-slate-600">Slot Modular</span>
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-white text-slate-500">Ekspansi KKG</span>
                         </div>
-                        <h3 class="font-display font-bold text-lg text-slate-700">Tambah Generator Baru</h3>
-                        <p class="text-xs font-semibold text-slate-400 mt-0.5">Integrasi Tautan / Gem / Web App</p>
-                        <p class="text-sm text-slate-500 mt-3 leading-relaxed">
-                            Punya tautan generator AI, Wordwall, Canva, atau aplikasi web buatan guru KKG? Admin dapat menambahkannya langsung tanpa ubah kode.
+                        <h3 class="font-display font-bold text-lg text-slate-700">Tambah Modul Generator</h3>
+                        <p class="text-sm text-slate-500 mt-2 leading-relaxed">
+                            Admin KKG dapat menambahkan tautan generator baru (Gemini Gem, Canva, atau Web App) kapan saja melalui Dashboard Admin.
                         </p>
                     </div>
-                    <button onclick="${appState.currentUserRole === 'admin' ? "navigate('dashboard-admin'); switchAdminTab('generator');" : "showToast('Hubungi Admin KKG untuk menambahkan tautan generator baru ke Laboratorium.', 'info')"}" class="mt-6 w-full py-3 px-4 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold flex items-center justify-center gap-2 transition">
-                        <span>${appState.currentUserRole === 'admin' ? '+ Kelola di Panel Admin' : 'Cara Menambahkan Generator'}</span>
-                    </button>
+                    ${appState.currentUserRole === 'admin'
+                        ? `<button onclick="navigate('dashboard-admin'); switchAdminTab('generator')" class="mt-6 w-full py-3 px-4 rounded-xl bg-white hover:bg-navy-900 hover:text-white text-navy-900 border border-slate-300 text-xs font-semibold transition">
+                            + Kelola Generator di Admin
+                           </button>`
+                        : `<div class="mt-6 py-2.5 px-4 rounded-xl bg-white/80 text-center text-xs font-semibold text-slate-500 border border-slate-200">
+                            Dikelola oleh Admin KKG Kampung Laut
+                           </div>`
+                    }
                 </div>
             `;
 
-            grid.innerHTML = cardsHTML + expansionCard;
+            grid.innerHTML = cardsHTML + slotHTML;
             renderIcons();
         }
 
-        function launchGenerator(genId) {
+        function launchGenerator(genId, defaultKelas = 'Kelas 4') {
             const gen = appState.generators.find(g => g.id === genId);
             if (!gen) return;
 
             if (gen.mode === 'external' && gen.externalUrl) {
                 window.open(gen.externalUrl, '_blank', 'noopener,noreferrer');
-                showToast(`Membuka ${gen.name} di tab baru...`, 'info');
-            } else {
-                openGeneratorWorkspace(gen.name, gen.subtitle);
+                showToast(`Membuka ${gen.name} di tab baru...`, 'success');
+                return;
             }
+            openGeneratorWorkspace(gen.name, gen.subtitle, defaultKelas);
         }
 
-        function openGeneratorWorkspace(generatorName, subtitle) {
+        function openGeneratorWorkspace(genTitle, genSubtitle, defaultKelas = 'Kelas 4') {
             if (appState.currentUserRole === 'guest') {
-                showToast('Fitur Generator khusus untuk Guru Anggota KKG. Silakan login terlebih dahulu.', 'info');
+                showToast('Silakan login sebagai Guru Anggota KKG untuk menggunakan Generator.', 'info');
                 navigate('auth');
-                switchAuthMode('login-guru');
                 return;
             }
 
+            const mapelOpts = appState.subjects.map(m => `<option value="${m}">${m}</option>`).join('');
             openModal(`
-                <div class="flex items-center justify-between mb-4">
+                <div class="flex items-start justify-between gap-3 mb-4">
                     <div>
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-turq-600">${subtitle}</span>
-                        <h3 class="font-display font-bold text-xl text-navy-900">${generatorName}</h3>
+                        <span class="px-2.5 py-0.5 rounded-full bg-turq-50 text-turq-700 text-[11px] font-bold">${genSubtitle}</span>
+                        <h3 class="font-display font-extrabold text-xl text-navy-900 mt-1">${genTitle}</h3>
                     </div>
                     <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
                 </div>
 
-                <form onsubmit="generateDraftPreview(event, '${generatorName}')" class="space-y-3.5">
+                <form onsubmit="generateDraftOutput(event, '${genTitle}')" class="space-y-3.5">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="block text-xs font-semibold text-slate-700 mb-1">Jenjang Kelas</label>
-                            <select id="gen-kelas" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm bg-white">
-                                <option>Kelas 1</option><option>Kelas 2</option><option>Kelas 3</option>
-                                <option selected>Kelas 4</option><option>Kelas 5</option><option>Kelas 6</option>
+                            <select id="gen-kelas" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
+                                ${['Kelas 1', 'Kelas 2', 'Kelas 3', 'Kelas 4', 'Kelas 5', 'Kelas 6'].map(k =>
+                                    `<option value="${k}" ${k === defaultKelas ? 'selected' : ''}>${k}</option>`
+                                ).join('')}
                             </select>
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-700 mb-1">Mata Pelajaran</label>
-                            <select id="gen-mapel" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm bg-white">
-                                <option>IPAS</option><option>Matematika</option><option>Bahasa Indonesia</option><option>Pendidikan Pancasila</option>
+                            <select id="gen-mapel" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
+                                ${mapelOpts}
                             </select>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Topik / Materi Pokok *</label>
-                        <input type="text" id="gen-topik" required placeholder="Contoh: Pelestarian Hutan Bakau di Kampung Laut" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Topik / Materi Pokok Pembelajaran *</label>
+                        <input type="text" id="gen-topik" required placeholder="Contoh: Ekosistem Hutan Bakau & Segara Anakan" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                     </div>
-                    <button type="submit" class="w-full py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-sm font-semibold transition">
-                        Susun Kerangka Perangkat
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Tujuan Pembelajaran Singkat *</label>
+                        <textarea id="gen-tujuan" rows="2" required placeholder="Peserta didik mampu mengidentifikasi..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-turq-600 text-white font-semibold text-sm flex items-center justify-center gap-2 transition">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                        <span>Susun Kerangka Perangkat</span>
                     </button>
                 </form>
 
-                <div id="gen-output-box" class="hidden mt-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-700 space-y-2">
-                    <!-- Hasil kerangka diisi JS -->
+                <div id="gen-result-box" class="hidden mt-5 pt-4 border-t border-slate-200">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-turq-700 uppercase">Hasil Kerangka Draf</span>
+                        <button type="button" onclick="copyGeneratedDraft()" class="text-xs font-semibold text-skybrand-600 hover:underline flex items-center gap-1">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span>Salin Teks</span>
+                        </button>
+                    </div>
+                    <textarea id="gen-result-text" rows="6" class="w-full p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-mono text-slate-700 leading-relaxed"></textarea>
                 </div>
             `);
         }
 
-        function generateDraftPreview(e, generatorName) {
+        function generateDraftOutput(e, genTitle) {
             e.preventDefault();
             const kelas = document.getElementById('gen-kelas').value;
             const mapel = document.getElementById('gen-mapel').value;
-            const topik = document.getElementById('gen-topik').value;
-            const out = document.getElementById('gen-output-box');
+            const topik = document.getElementById('gen-topik').value.trim();
+            const tujuan = document.getElementById('gen-tujuan').value.trim();
 
-            out.classList.remove('hidden');
-            out.innerHTML = `
-                <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-                    <span class="font-bold text-navy-900">Draf Kerangka: ${generatorName}</span>
-                    <span class="px-2 py-0.5 rounded bg-turq-100 text-turq-800 font-semibold">${kelas} • ${mapel}</span>
+            const output = `=== KERANGKA ${genTitle.toUpperCase()} ===
+Satuan Pendidikan : SD Wilayah KKG Kampung Laut
+Jenjang / Mapel   : ${kelas} — ${mapel}
+Topik Utama       : ${topik}
+
+1. TUJUAN PEMBELAJARAN:
+   ${tujuan}
+
+2. AKTIVITAS INTI KONTEKSTUAL (BERMAKNA & MENGGEMBIRAKAN):
+   - Pemantik Visual: Pengamatan fenomena sekitar lingkungan pesisir/perairan yang berkaitan dengan "${topik}".
+   - Eksplorasi Kelompok: Diskusi terbimbing & lembar aktivitas terstruktur sesuai karakteristik siswa ${kelas}.
+   - Penguatan & Refleksi: Kuis interaktif dan kesimpulan bersama.
+
+3. ASESMEN FORMATIF:
+   - Observasi keaktifan diskusi kelompok & unjuk kerja hasil karya siswa.`;
+
+            const box = document.getElementById('gen-result-box');
+            const textarea = document.getElementById('gen-result-text');
+            if (box && textarea) {
+                textarea.value = output;
+                box.classList.remove('hidden');
+            }
+            showToast('Kerangka perangkat berhasil disusun!', 'success');
+        }
+
+        function copyGeneratedDraft() {
+            const textarea = document.getElementById('gen-result-text');
+            if (!textarea) return;
+            textarea.select();
+            document.execCommand('copy');
+            showToast('Kerangka berhasil disalin ke papan klip!', 'success');
+        }
+
+        async function submitJoinClass(e) {
+            e.preventDefault();
+            const classId = document.getElementById('join-class-select').value;
+            const codeInput = document.getElementById('join-class-code').value.trim().toUpperCase();
+            const cls = appState.classrooms.find(c => c.id === classId);
+
+            if (!cls) return;
+            if (cls.code !== codeInput) {
+                showToast(`Kode kelas tidak sesuai untuk ${cls.name}. Cek kembali kode dari Admin.`, 'error');
+                return;
+            }
+
+            if (!appState.teacherProfile.joinedClasses.includes(classId)) {
+                appState.teacherProfile.joinedClasses.push(classId);
+                appState.teacherProfile.activities.unshift(`Bergabung ke Ruang ${cls.name} (Kode: ${cls.code})`);
+
+                if (window.fbDb && window.fbTools && appState.firebaseUser) {
+                    const { doc, updateDoc, increment } = window.fbTools;
+                    await updateDoc(doc(window.fbDb, 'users', appState.firebaseUser.uid), {
+                        joinedClasses: appState.teacherProfile.joinedClasses,
+                        activities: appState.teacherProfile.activities
+                    });
+                    await updateDoc(doc(window.fbDb, 'classrooms', classId), {
+                        membersCount: increment(1)
+                    });
+                }
+            }
+
+            closeModal();
+            showToast(`Berhasil bergabung sebagai anggota ${cls.name}!`, 'success');
+            if (appState.activeClassId === classId) {
+                openClassroomDetail(classId);
+            } else {
+                refreshCurrentView();
+            }
+        }
+        async function toggleLikeWork(workId) {
+            const work = appState.works.find(w => w.id === workId);
+            if (!work) return;
+            work.likedByMe = !work.likedByMe;
+            const delta = work.likedByMe ? 1 : -1;
+            work.likes = Math.max(0, (work.likes || 0) + delta);
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc, increment } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'works', workId), {
+                    likes: increment(delta)
+                });
+            }
+
+            refreshCurrentView();
+            showToast(work.likedByMe ? 'Apresiasi dikirim kepada pembuat karya!' : 'Apresiasi dibatalkan.', 'info');
+        }
+
+        function simulateDownload(title, url) {
+            if (url) {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }
+            showToast(`Membuka tautan karya: "${title}"`, 'success');
+        }
+
+        async function openWorkDetailModal(workId, isAdminPreview = false) {
+            const work = appState.works.find(w => w.id === workId);
+            if (!work) return;
+
+            if (!isAdminPreview) {
+                work.views = (work.views || 0) + 1;
+                if (window.fbDb && window.fbTools) {
+                    const { doc, updateDoc, increment } = window.fbTools;
+                    updateDoc(doc(window.fbDb, 'works', workId), {
+                        views: increment(1)
+                    }).catch(() => {});
+                }
+            }
+
+            const comments = work.comments || [];
+            const canComment = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
+
+            openModal(`
+                <div class="flex items-start justify-between gap-3 mb-4">
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                            <span class="px-2.5 py-0.5 rounded-lg bg-skybrand-50 text-skybrand-600 text-xs font-bold">${work.kelas} • ${work.mapel}</span>
+                            <span class="px-2.5 py-0.5 rounded-lg bg-turq-50 text-turq-700 text-xs font-bold">${work.category}</span>
+                            ${work.status === 'pending' ? `<span class="px-2.5 py-0.5 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">Menunggu Kurasi Admin</span>` : ''}
+                        </div>
+                        <h3 class="font-display font-extrabold text-xl text-navy-900">${work.title}</h3>
+                    </div>
+                    <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 shrink-0"><i data-lucide="x" class="w-5 h-5"></i></button>
                 </div>
-                <p><strong>1. Identitas Topik:</strong> ${topik}</p>
-                <p><strong>2. Pemantik Kontekstual:</strong> Mengamati fenomena nyata di lingkungan perairan/pesisir sekitar sekolah.</p>
-                <p><strong>3. Aktivitas Inti:</strong> Eksplorasi kelompok, diskusi terpandu, dan penyusunan produk belajar sederhana.</p>
-                <p><strong>4. Asesmen & Refleksi:</strong> Pertanyaan pemahaman bermakna dan umpan balik teman sebaya.</p>
-                <div class="pt-3 flex gap-2">
-                    <button type="button" onclick="showToast('Draf perangkat berhasil disalin ke papan klip!', 'success')" class="flex-1 py-2 px-3 rounded-xl bg-white border border-slate-300 text-navy-900 font-semibold hover:bg-slate-50 transition">
-                        Salin Kerangka
-                    </button>
-                    <button type="button" onclick="closeModal(); handleUploadAction()" class="flex-1 py-2 px-3 rounded-xl bg-turq-600 hover:bg-turq-500 text-white font-semibold transition">
-                        Bagikan ke Galeri
-                    </button>
+
+                ${work.thumbnailUrl ? `
+                    <div class="mb-4 rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 max-h-60 flex items-center justify-center">
+                        <img src="${work.thumbnailUrl}" alt="Screenshot ${work.title}" class="w-full h-auto max-h-60 object-contain">
+                    </div>
+                ` : ''}
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 mb-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 pb-3 mb-3 border-b border-slate-200/80">
+                        <span>Penyusun: <strong class="text-navy-900">${work.author}</strong> (${work.school})</span>
+                        <span>Diunggah: ${work.date} • <strong>${work.views || 0}x dilihat</strong></span>
+                    </div>
+                    <p class="text-sm text-slate-700 leading-relaxed">${work.summary}</p>
+                    ${work.downloadUrl ? `
+                        <div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
+                            <span class="text-xs text-slate-500 truncate max-w-xs">Tautan: ${work.downloadUrl}</span>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="toggleWorkQrBox('${encodeURIComponent(work.downloadUrl)}')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-skybrand-50 text-navy-900 border border-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
+                                    <i data-lucide="qr-code" class="w-3.5 h-3.5 text-skybrand-600"></i>
+                                    <span>QR Code Proyektor</span>
+                                </button>
+                                <button type="button" onclick="simulateDownload('${work.title}', '${work.downloadUrl}')" class="px-4 py-2 rounded-xl bg-turq-600 hover:bg-turq-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                    <span>Buka / Unduh Karya</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="work-qr-box" class="hidden mt-3 p-4 rounded-2xl bg-white border border-slate-200 text-center">
+                            <p class="text-xs font-bold text-navy-900 mb-2">Pindai QR Code dari Layar Proyektor / HP</p>
+                            <img id="work-qr-img" src="" alt="QR Code Karya" class="w-36 h-36 mx-auto rounded-xl border border-slate-100 p-1">
+                            <p class="text-[11px] text-slate-500 mt-2">Arahkan kamera HP untuk langsung membuka tautan karya ini.</p>
+                        </div>
+                    ` : ''}
                 </div>
-            `;
-            renderIcons();
+
+                ${isAdminPreview && work.status === 'pending' ? `
+                    <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between gap-3 mb-4">
+                        <span class="text-xs font-semibold text-amber-900">Keputusan Kurasi Admin:</span>
+                        <div class="flex gap-2">
+                            <button onclick="closeModal(); approveWork('${work.id}')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold">Setujui & Terbitkan</button>
+                            <button onclick="closeModal(); rejectWork('${work.id}')" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold">Tolak Karya</button>
+                        </div>
+                    </div>
+                ` : ''}
+
+                <div class="pt-3 border-t border-slate-200">
+                    <h4 class="font-display font-bold text-sm text-navy-900 mb-3">Respon & Tanya Jawab Guru (${comments.length})</h4>
+                    <div class="space-y-2.5 max-h-48 overflow-y-auto pr-1 mb-3">
+                        ${comments.length === 0 ? `<p class="text-xs text-slate-400">Belum ada respon atau komentar pada karya ini.</p>` : comments.map(c => `
+                            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="font-bold text-navy-900">${c.author}</span>
+                                        ${c.role === 'Penulis Karya' ? `<span class="px-2 py-0.5 rounded-full bg-turq-100 text-turq-800 text-[10px] font-bold">Penulis Karya</span>` : ''}
+                                    </div>
+                                    <span class="text-[11px] text-slate-400">${c.time}</span>
+                                </div>
+                                <p class="text-slate-700 leading-relaxed">${c.text}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    ${canComment ? `
+                        <form onsubmit="submitWorkComment(event, '${work.id}')" class="flex gap-2">
+                            <input type="text" id="work-comment-input" required placeholder="${appState.teacherProfile.id === work.authorId && appState.currentUserRole === 'teacher' ? 'Tulis balasan untuk rekan guru...' : 'Tulis apresiasi atau pertanyaan untuk penyusun karya...'}" class="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-skybrand-500">
+                            <button type="submit" class="px-4 py-2 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold transition">Kirim</button>
+                        </form>
+                    ` : `
+                        <p class="text-[11px] text-slate-400">Login sebagai Guru untuk menulis komentar atau apresiasi tertulis.</p>
+                    `}
+                </div>
+            `);
+        }
+
+        async function submitWorkComment(e, workId) {
+            e.preventDefault();
+            const work = appState.works.find(w => w.id === workId);
+            const input = document.getElementById('work-comment-input');
+            const text = input?.value.trim();
+            if (!work || !text) return;
+
+            if (!work.comments) work.comments = [];
+            const isAuthor = appState.currentUserRole === 'teacher' && appState.teacherProfile.id === work.authorId;
+
+            work.comments.push({
+                id: 'com-' + Date.now(),
+                author: appState.currentUserRole === 'admin' ? 'Admin KKG Kampung Laut' : appState.teacherProfile.name,
+                school: appState.currentUserRole === 'admin' ? 'Pengurus KKG' : appState.teacherProfile.school,
+                role: isAuthor ? 'Penulis Karya' : (appState.currentUserRole === 'admin' ? 'Admin KKG' : 'Guru'),
+                text,
+                time: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })
+            });
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'works', workId), {
+                    comments: work.comments
+                });
+            }
+
+            openWorkDetailModal(workId, false);
+            showToast('Respon berhasil disimpan!', 'success');
+        }
+        async function submitNewWork(e) {
+            e.preventDefault();
+            const title = document.getElementById('up-title').value;
+            const kelas = document.getElementById('up-kelas').value;
+            const category = document.getElementById('up-category').value;
+            const mapel = document.getElementById('up-mapel').value;
+            const summary = document.getElementById('up-summary').value;
+            const downloadUrl = document.getElementById('up-url').value;
+            const thumbnailUrl = document.getElementById('up-thumb-data')?.value || '';
+
+            const isAdmin = appState.currentUserRole === 'admin';
+            const newWork = {
+                title,
+                authorId: isAdmin ? 'admin-kkg' : appState.teacherProfile.id,
+                author: isAdmin ? 'Admin KKG Kampung Laut' : appState.teacherProfile.name,
+                school: isAdmin ? 'Pengurus KKG' : appState.teacherProfile.school,
+                kelas,
+                mapel,
+                category,
+                date: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }),
+                createdAt: Date.now(),
+                status: isAdmin ? 'approved' : 'pending',
+                likes: 0,
+                views: 0,
+                thumbnailUrl,
+                downloadUrl,
+                summary,
+                comments: []
+            };
+
+            if (window.fbDb && window.fbTools) {
+                const { collection, addDoc, doc, updateDoc } = window.fbTools;
+                await addDoc(collection(window.fbDb, 'works'), newWork);
+
+                if (!isAdmin && appState.firebaseUser) {
+                    appState.teacherProfile.activities.unshift(`Mengunggah "${title}" (${newWork.status === 'approved' ? 'Diterbitkan' : 'Menunggu persetujuan Admin'})`);
+                    await updateDoc(doc(window.fbDb, 'users', appState.firebaseUser.uid), {
+                        activities: appState.teacherProfile.activities
+                    });
+                }
+            }
+
+            closeModal();
+            showToast(isAdmin ? 'Karya Admin langsung diterbitkan ke Galeri!' : 'Karya berhasil dikirim! Status: Menunggu persetujuan Admin.', 'success');
+        }
+        async function addNewGenerator(e) {
+            e.preventDefault();
+            const name = document.getElementById('new-gen-name').value.trim();
+            const subtitle = document.getElementById('new-gen-sub').value.trim();
+            const color = document.getElementById('new-gen-color').value;
+            const description = document.getElementById('new-gen-desc').value.trim();
+            const externalUrl = document.getElementById('new-gen-url').value.trim();
+            const thumbnailUrl = document.getElementById('new-gen-thumb-data')?.value || '';
+
+            const nextLetter = String.fromCharCode(65 + appState.generators.length);
+            const genId = 'gen-' + Date.now();
+            const newGen = {
+                id: genId,
+                badge: `Modul ${nextLetter}`,
+                name,
+                subtitle,
+                description,
+                icon: 'sparkles',
+                color,
+                mode: externalUrl ? 'external' : 'internal',
+                externalUrl,
+                thumbnailUrl
+            };
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, setDoc } = window.fbTools;
+                await setDoc(doc(window.fbDb, 'generators', genId), newGen);
+            }
+
+            showToast(`"${name}" berhasil disimpan ke Cloud Firestore!`, 'success');
         }
 
         // -------------------------------------------------------------------
@@ -2391,44 +2491,6 @@
             `);
         }
 
-        function submitNewWork(e) {
-            e.preventDefault();
-            const title = document.getElementById('up-title').value;
-            const kelas = document.getElementById('up-kelas').value;
-            const category = document.getElementById('up-category').value;
-            const mapel = document.getElementById('up-mapel').value;
-            const summary = document.getElementById('up-summary').value;
-            const downloadUrl = document.getElementById('up-url').value;
-            const thumbnailUrl = document.getElementById('up-thumb-data')?.value || '';
-
-            const newWork = {
-                id: 'karya-' + Date.now(),
-                title,
-                authorId: appState.teacherProfile.id,
-                author: appState.teacherProfile.name,
-                school: appState.teacherProfile.school,
-                kelas,
-                mapel,
-                category,
-                date: 'Hari ini',
-                status: 'pending',
-                likes: 0,
-                views: 0,
-                likedByMe: false,
-                thumbnailUrl,
-                downloadUrl,
-                summary,
-                comments: []
-            };
-
-            appState.works.unshift(newWork);
-            appState.teacherProfile.activities.unshift(`Mengunggah "${title}" (Menunggu persetujuan Admin)`);
-            closeModal();
-            showToast('Karya berhasil dikirim! Status: Menunggu persetujuan Admin.', 'success');
-
-            if (appState.currentView === 'dashboard-guru') renderTeacherDashboard();
-        }
-
         // -------------------------------------------------------------------
         // 8. DASHBOARD ADMIN KKG
         // -------------------------------------------------------------------
@@ -2437,6 +2499,7 @@
         function renderAdminDashboard() {
             const pendingWorks = appState.works.filter(w => w.status === 'pending');
             const approvedWorks = appState.works.filter(w => w.status === 'approved');
+            const totalClassMembers = appState.classrooms.reduce((sum, c) => sum + (c.membersCount || 0), 0);
 
             document.getElementById('admin-dashboard-content').innerHTML = `
                 <div class="mb-8">
@@ -2448,11 +2511,11 @@
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                     <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs">
                         <p class="text-xs text-slate-500">Total Akun Guru</p>
-                        <p class="font-display font-extrabold text-2xl text-navy-900 mt-1">${appState.teachersList.length + 42} Guru</p>
+                        <p class="font-display font-extrabold text-2xl text-navy-900 mt-1">${appState.teachersList.length} Akun</p>
                     </div>
                     <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs">
-                        <p class="text-xs text-slate-500">Anggota Ruang Kelas</p>
-                        <p class="font-display font-extrabold text-2xl text-skybrand-600 mt-1">48 Anggota</p>
+                        <p class="text-xs text-slate-500">Keanggotaan Kelas</p>
+                        <p class="font-display font-extrabold text-2xl text-skybrand-600 mt-1">${totalClassMembers} Anggota</p>
                     </div>
                     <div class="bg-amber-50 rounded-2xl p-5 border border-amber-200">
                         <p class="text-xs text-amber-800 font-semibold">Menunggu Persetujuan</p>
@@ -2771,33 +2834,6 @@
             renderIcons();
         }
 
-        function addNewGenerator(e) {
-            e.preventDefault();
-            const name = document.getElementById('new-gen-name').value.trim();
-            const subtitle = document.getElementById('new-gen-sub').value.trim();
-            const color = document.getElementById('new-gen-color').value;
-            const description = document.getElementById('new-gen-desc').value.trim();
-            const externalUrl = document.getElementById('new-gen-url').value.trim();
-            const thumbnailUrl = document.getElementById('new-gen-thumb-data')?.value || '';
-
-            const nextLetter = String.fromCharCode(65 + appState.generators.length);
-            appState.generators.push({
-                id: 'gen-' + Date.now(),
-                badge: `Modul ${nextLetter}`,
-                name,
-                subtitle,
-                description,
-                icon: 'sparkles',
-                color,
-                mode: externalUrl ? 'external' : 'internal',
-                externalUrl,
-                thumbnailUrl
-            });
-
-            renderAdminDashboard();
-            showToast(`"${name}" berhasil ditambahkan ke Laboratorium Generator!`, 'success');
-        }
-
         function editGeneratorUrl(genId) {
             const gen = appState.generators.find(g => g.id === genId);
             if (!gen) return;
@@ -2813,11 +2849,11 @@
                         <input type="url" id="edit-gen-url-input" value="${gen.externalUrl || ''}" placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Unggah / Ganti Thumbnail Generator</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Unggah / Ganti Thumbnail Sampul Generator</label>
                         <input type="file" accept="image/*" onchange="handleImageFilePreview(this, 'edit-gen-thumb-preview', 'edit-gen-thumb-data')" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-skybrand-50 file:text-skybrand-700">
                         <input type="hidden" id="edit-gen-thumb-data" value="${gen.thumbnailUrl || ''}">
                         <div id="edit-gen-thumb-preview" class="${gen.thumbnailUrl ? '' : 'hidden'} mt-2 rounded-xl overflow-hidden border border-slate-200 bg-slate-50 p-1.5">
-                            <img src="${gen.thumbnailUrl || ''}" alt="Pratinjau Thumbnail" class="h-28 w-full object-cover rounded-lg">
+                            <img src="${gen.thumbnailUrl || ''}" alt="Sampul Generator" class="h-28 w-full object-cover rounded-lg">
                         </div>
                     </div>
                     <button type="submit" class="w-full py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold transition">
@@ -2827,52 +2863,7 @@
             `);
         }
 
-        function saveGeneratorUrl(e, genId) {
-            e.preventDefault();
-            const gen = appState.generators.find(g => g.id === genId);
-            const url = document.getElementById('edit-gen-url-input').value.trim();
-            const thumb = document.getElementById('edit-gen-thumb-data')?.value || '';
-            if (gen) {
-                gen.externalUrl = url;
-                gen.mode = url ? 'external' : 'internal';
-                gen.thumbnailUrl = thumb;
-            }
-            closeModal();
-            renderAdminDashboard();
-            showToast(`Pengaturan untuk ${gen.name} berhasil diperbarui!`, 'success');
-        }
-
-        function deleteGenerator(genId) {
-            appState.generators = appState.generators.filter(g => g.id !== genId);
-            renderAdminDashboard();
-            showToast('Modul generator dihapus dari daftar.', 'info');
-        }
-
-        function approveWork(workId) {
-            const w = appState.works.find(item => item.id === workId);
-            if (!w) return;
-            w.status = 'approved';
-            renderAdminDashboard();
-            showToast(`Karya "${w.title}" disetujui & diterbitkan ke Beranda, Galeri & ${w.kelas}!`, 'success');
-        }
-
-        function rejectWork(workId) {
-            appState.works = appState.works.filter(item => item.id !== workId);
-            renderAdminDashboard();
-            showToast('Karya ditolak / ditarik dari galeri publik.', 'info');
-        }
-
-        function updateClassCode(classId) {
-            const input = document.getElementById(`code-input-${classId}`);
-            const cls = appState.classrooms.find(c => c.id === classId);
-            if (cls && input && input.value.trim()) {
-                cls.code = input.value.trim().toUpperCase();
-                showToast(`Kode akses ${cls.name} diperbarui menjadi ${cls.code}`, 'success');
-            }
-        }
-
-        // Kompresi otomatis gambar thumbnail di browser (hemat kuota pesisir) & tampilkan pratinjau
-        function handleImageFilePreview(inputEl, previewBoxId, hiddenInputId) {
+        function handleImageFilePreview(inputEl, previewContainerId, hiddenDataId) {
             const file = inputEl.files && inputEl.files[0];
             if (!file) return;
 
@@ -2881,56 +2872,106 @@
                 const img = new Image();
                 img.onload = function() {
                     const canvas = document.createElement('canvas');
-                    const maxW = 720;
-                    const scale = img.width > maxW ? maxW / img.width : 1;
+                    const maxWidth = 720;
+                    const scale = img.width > maxWidth ? maxWidth / img.width : 1;
                     canvas.width = Math.round(img.width * scale);
                     canvas.height = Math.round(img.height * scale);
+
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.72);
 
-                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.78);
-                    const hiddenEl = document.getElementById(hiddenInputId);
-                    const previewBox = document.getElementById(previewBoxId);
-                    if (hiddenEl) hiddenEl.value = compressedDataUrl;
+                    const hiddenInput = document.getElementById(hiddenDataId);
+                    if (hiddenInput) hiddenInput.value = compressedDataUrl;
+
+                    const previewBox = document.getElementById(previewContainerId);
                     if (previewBox) {
-                        const previewImg = previewBox.querySelector('img');
-                        if (previewImg) previewImg.src = compressedDataUrl;
                         previewBox.classList.remove('hidden');
+                        previewBox.innerHTML = `<img src="${compressedDataUrl}" alt="Pratinjau Gambar" class="w-full h-36 object-cover rounded-xl">`;
                     }
-                    showToast('Thumbnail berhasil dimuat & dikompres ringan!', 'success');
                 };
                 img.src = ev.target.result;
             };
             reader.readAsDataURL(file);
         }
 
-        // Tampilkan / Sembunyikan QR Code di jendela detail karya
-        function toggleWorkQrBox(encodedUrl) {
-            const qrBox = document.getElementById('work-qr-box');
-            const qrImg = document.getElementById('work-qr-img');
-            if (!qrBox || !qrImg) return;
-
-            if (qrBox.classList.contains('hidden')) {
-                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodedUrl}`;
-                qrBox.classList.remove('hidden');
-            } else {
-                qrBox.classList.add('hidden');
+        async function saveGeneratorUrl(e, genId) {
+            e.preventDefault();
+            const gen = appState.generators.find(g => g.id === genId);
+            const url = document.getElementById('edit-gen-url-input').value.trim();
+            const thumb = document.getElementById('edit-gen-thumb-data')?.value || '';
+            if (gen && window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'generators', genId), {
+                    externalUrl: url,
+                    mode: url ? 'external' : 'internal',
+                    thumbnailUrl: thumb
+                });
             }
+            closeModal();
+            showToast(`Pengaturan untuk ${gen?.name || 'Generator'} berhasil disimpan permanen!`, 'success');
         }
 
-        function addNewCategory(e) {
+        async function deleteGenerator(genId) {
+            if (window.fbDb && window.fbTools) {
+                const { doc, deleteDoc } = window.fbTools;
+                await deleteDoc(doc(window.fbDb, 'generators', genId));
+            }
+            showToast('Modul generator dihapus dari database.', 'info');
+        }
+
+        async function approveWork(workId) {
+            const w = appState.works.find(item => item.id === workId);
+            if (!w) return;
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'works', workId), {
+                    status: 'approved'
+                });
+            }
+            showToast(`Karya "${w.title}" disetujui & diterbitkan ke Beranda, Galeri & ${w.kelas}!`, 'success');
+        }
+
+        async function rejectWork(workId) {
+            if (window.fbDb && window.fbTools) {
+                const { doc, deleteDoc } = window.fbTools;
+                await deleteDoc(doc(window.fbDb, 'works', workId));
+            }
+            showToast('Karya ditolak / dihapus dari database.', 'info');
+        }
+
+        async function updateClassCode(classId) {
+            const input = document.getElementById(`code-input-${classId}`);
+            const cls = appState.classrooms.find(c => c.id === classId);
+            if (cls && input && input.value.trim()) {
+                const newCode = input.value.trim().toUpperCase();
+                if (window.fbDb && window.fbTools) {
+                    const { doc, updateDoc } = window.fbTools;
+                    await updateDoc(doc(window.fbDb, 'classrooms', classId), {
+                        code: newCode
+                    });
+                }
+                showToast(`Kode akses ${cls.name} diperbarui menjadi ${newCode}`, 'success');
+            }
+        }
+        async function addNewCategory(e) {
             e.preventDefault();
             const input = document.getElementById('new-cat-name');
             const val = input.value.trim();
             if (val && !appState.categories.includes(val)) {
-                appState.categories.push(val);
+                const updated = [...appState.categories, val];
+                if (window.fbDb && window.fbTools) {
+                    const { doc, setDoc } = window.fbTools;
+                    await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
+                        categories: updated
+                    }, { merge: true });
+                }
                 input.value = '';
-                renderAdminDashboard();
-                showToast(`Kategori "${val}" ditambahkan!`, 'success');
+                showToast(`Kategori "${val}" disimpan permanen!`, 'success');
             }
         }
 
-        function applyThemePalette(paletteKey) {
+        async function applyThemePalette(paletteKey, isSilent = false) {
             const pal = appState.palettes[paletteKey];
             if (!pal) return;
             appState.themeConfig.activePalette = paletteKey;
@@ -2938,31 +2979,52 @@
             Object.entries(pal.vars).forEach(([cssVar, val]) => {
                 root.style.setProperty(cssVar, val);
             });
-            if (appState.currentView === 'dashboard-admin') renderAdminDashboard();
-            showToast(`Palet warna "${pal.name}" berhasil diterapkan!`, 'success');
+            if (!isSilent) {
+                if (window.fbDb && window.fbTools) {
+                    const { doc, setDoc } = window.fbTools;
+                    await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
+                        themeConfig: appState.themeConfig
+                    }, { merge: true });
+                }
+                showToast(`Palet warna "${pal.name}" disimpan & diterapkan!`, 'success');
+            }
         }
 
-        function saveHeroVisualSettings(e) {
+        async function saveHeroVisualSettings(e) {
             e.preventDefault();
             const imgData = document.getElementById('admin-hero-data-input')?.value.trim() || '';
             const caption = document.getElementById('admin-hero-caption-input')?.value.trim() || 'KKG Kampung Laut';
             appState.themeConfig.heroImageUrl = imgData;
             appState.themeConfig.heroImageCaption = caption;
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, setDoc } = window.fbTools;
+                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
+                    themeConfig: appState.themeConfig
+                }, { merge: true });
+            }
+
             renderHeroVisual();
-            renderAdminDashboard();
-            showToast('Gambar sampul Beranda berhasil diperbarui!', 'success');
+            showToast('Gambar sampul Beranda disimpan permanen!', 'success');
         }
 
-        function resetHeroVisual() {
+        async function resetHeroVisual() {
             appState.themeConfig.heroImageUrl = '';
             appState.themeConfig.heroImageCaption = 'Kolaborasi Pendidik SD KKG Kampung Laut';
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, setDoc } = window.fbTools;
+                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
+                    themeConfig: appState.themeConfig
+                }, { merge: true });
+            }
+
             renderHeroVisual();
-            renderAdminDashboard();
             showToast('Gambar Beranda dikembalikan ke ilustrasi bawaan.', 'info');
         }
 
         // -------------------------------------------------------------------
-        // 9. AUTENTIKASI (LOGIN, DAFTAR, LUPA PASSWORD)
+        // 9. AUTENTIKASI FIREBASE (LOGIN, DAFTAR, LUPA PASSWORD)
         // -------------------------------------------------------------------
         function switchAuthMode(mode) {
             ['login-guru', 'daftar-guru', 'login-admin', 'lupa-password'].forEach(m => {
@@ -2980,43 +3042,85 @@
             });
         }
 
-        function handleAuthSubmit(e, role) {
+        async function handleAuthSubmit(e, expectedRole) {
             e.preventDefault();
-            switchRole(role);
+            if (!window.fbAuth || !window.fbTools) {
+                showToast('Koneksi Firebase sedang disiapkan, coba beberapa detik lagi.', 'info');
+                return;
+            }
+
+            const emailInput = expectedRole === 'admin'
+                ? document.getElementById('login-admin-email').value.trim()
+                : document.getElementById('login-guru-email').value.trim();
+            const passInput = expectedRole === 'admin'
+                ? document.getElementById('login-admin-pass').value
+                : document.getElementById('login-guru-pass').value;
+
+            try {
+                const { signInWithEmailAndPassword, doc, getDoc } = window.fbTools;
+                const cred = await signInWithEmailAndPassword(window.fbAuth, emailInput, passInput);
+                const snap = await getDoc(doc(window.fbDb, 'users', cred.user.uid));
+                const role = snap.exists() && snap.data().role === 'admin' ? 'admin' : 'teacher';
+
+                if (expectedRole === 'admin' && role !== 'admin') {
+                    showToast('Akun ini terdaftar sebagai Guru, bukan Admin KKG.', 'error');
+                    navigate('dashboard-guru');
+                    return;
+                }
+
+                showToast(role === 'admin' ? 'Selamat datang, Admin KKG Kampung Laut!' : 'Berhasil masuk ke Dashboard Guru!', 'success');
+                navigate(role === 'admin' ? 'dashboard-admin' : 'dashboard-guru');
+            } catch (err) {
+                console.error(err);
+                showToast('Gagal login: Periksa kembali email dan kata sandi Anda.', 'error');
+            }
         }
 
-        function handleRegisterTeacher(e) {
+        async function handleRegisterTeacher(e) {
             e.preventDefault();
-            const nama = document.getElementById('reg-nama').value;
-            const nip = document.getElementById('reg-nip').value;
-            const sekolah = document.getElementById('reg-sekolah').value;
-            const email = document.getElementById('reg-email').value;
+            if (!window.fbAuth || !window.fbTools) return;
+
+            const nama = document.getElementById('reg-nama').value.trim();
+            const nip = document.getElementById('reg-nip').value.trim();
+            const sekolah = document.getElementById('reg-sekolah').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
             const kelas = document.getElementById('reg-kelas').value;
+            const pass = document.getElementById('reg-pass').value;
 
-            appState.teacherProfile.name = nama;
-            appState.teacherProfile.nip = nip;
-            appState.teacherProfile.school = sekolah;
-            appState.teacherProfile.email = email;
-            appState.teacherProfile.assignedClass = kelas;
-            appState.teacherProfile.joinedClasses = [];
-            appState.teacherProfile.activities = ['Mendaftar akun baru di Ruang Karya Guru KKG Kampung Laut'];
-
-            appState.teachersList.unshift({
-                id: 'guru-' + Date.now(),
-                name: nama,
-                school: sekolah,
-                kelas: kelas,
-                status: 'Aktif'
-            });
-
-            showToast('Pendaftaran berhasil! Silakan masukkan Kode Kelas untuk bergabung ke ruang kelas.', 'success');
-            switchRole('teacher');
+            try {
+                const { createUserWithEmailAndPassword, doc, setDoc } = window.fbTools;
+                const cred = await createUserWithEmailAndPassword(window.fbAuth, email, pass);
+                const newUserDoc = {
+                    name: nama,
+                    nip,
+                    school: sekolah,
+                    email,
+                    assignedClass: kelas,
+                    role: 'teacher',
+                    joinedClasses: [],
+                    activities: ['Mendaftar akun baru di Ruang Karya Guru KKG Kampung Laut']
+                };
+                await setDoc(doc(window.fbDb, 'users', cred.user.uid), newUserDoc);
+                showToast('Pendaftaran berhasil! Silakan masukkan Kode Kelas untuk bergabung ke ruang kelas.', 'success');
+                navigate('dashboard-guru');
+            } catch (err) {
+                console.error(err);
+                showToast('Gagal mendaftar: ' + (err.message || 'Email mungkin sudah digunakan.'), 'error');
+            }
         }
 
-        function handleResetPassword(e) {
+        async function handleResetPassword(e) {
             e.preventDefault();
-            showToast('Tautan atur ulang kata sandi telah dikirim ke email Anda.', 'success');
-            switchAuthMode('login-guru');
+            const email = document.getElementById('reset-email')?.value.trim();
+            if (!email || !window.fbAuth || !window.fbTools) return;
+
+            try {
+                await window.fbTools.sendPasswordResetEmail(window.fbAuth, email);
+                showToast('Tautan atur ulang kata sandi telah dikirim ke email Anda.', 'success');
+                switchAuthMode('login-guru');
+            } catch (err) {
+                showToast('Gagal mengirim email pemulihan: Pastikan email sudah terdaftar.', 'error');
+            }
         }
 
         // -------------------------------------------------------------------
@@ -3068,30 +3172,5 @@
             renderIcons();
         });
     </script>
-<!-- Koneksi Firebase Authentication & Cloud Firestore -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, updateDoc, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-  apiKey: "AIzaSyBpzDr9EpISn1XMguOrW5RmOSUn_8ICsfc",
-  authDomain: "ruang-karya-guru-kkg.firebaseapp.com",
-  projectId: "ruang-karya-guru-kkg",
-  storageBucket: "ruang-karya-guru-kkg.firebasestorage.app",
-  messagingSenderId: "195317911950",
-  appId: "1:195317911950:web:06558f12cee09cbcf314df",
-  measurementId: "G-L9WXLVX8SM"
-};
-
-  const app = initializeApp(firebaseConfig);
-  window.fbAuth = getAuth(app);
-  window.fbDb = getFirestore(app);
-  window.fbTools = {
-    signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut,
-    doc, setDoc, getDoc, collection, onSnapshot, updateDoc, addDoc, deleteDoc
-  };
-  console.log("Firebase KKG Kampung Laut siap terhubung!");
-</script>
 </body>
 </html>
