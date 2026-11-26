@@ -262,7 +262,7 @@
                 </div>
             </div>
 
-            <!-- Bagian Pintasan Ekosistem Kerja Guru (Dinamis Sesuai Generator Admin) -->
+            <!-- Bagian Pintasan Ekosistem Kerja Guru (Dinamis Sesuai Generator Admin + Thumbnail) -->
             <div id="home-generator-section" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
                     <div>
@@ -277,6 +277,28 @@
 
                 <div id="home-generators-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     <!-- Diisi otomatis dari appState.generators -->
+                </div>
+            </div>
+
+            <!-- Bagian Top 5 Guru Paling Aktif Berkarya (Tampil Publik di Beranda) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-200/70">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-600">
+                            <i data-lucide="award" class="w-4 h-4"></i>
+                            <span>Apresiasi Kontributor KKG</span>
+                        </span>
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl text-navy-900 mt-1">Top 5 Guru Paling Aktif Berkarya</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-1">Pendidik dengan kontribusi karya terkurasi terbanyak di KKG Kampung Laut.</p>
+                    </div>
+                    <button onclick="handleUploadAction()" class="px-4 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs sm:text-sm font-semibold transition inline-flex items-center gap-2 self-start sm:self-auto">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i>
+                        <span>Bagikan Karyamu Sekarang</span>
+                    </button>
+                </div>
+
+                <div id="home-top-teachers" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <!-- Diisi otomatis oleh JavaScript -->
                 </div>
             </div>
 
@@ -747,7 +769,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 1. STATE APLIKASI PRODUKSI (KOSONG DARI DATA CONTOH, SINKRON FIRESTORE)
+        // 1. STATE APLIKASI PRODUKSI (SINKRON REAL-TIME CLOUD FIRESTORE)
         // -------------------------------------------------------------------
         const defaultClassrooms = [
             { id: 'kelas-1', name: 'Kelas 1', fase: 'Fase A', code: 'KKG-KL1', membersCount: 0, description: 'Kolaborasi literasi awal, numerasi dasar, dan pembelajaran menyenangkan kelas awal.' },
@@ -1047,7 +1069,7 @@
                     appState.generators = list;
                     refreshCurrentView();
                 }
-            });
+            }, (err) => console.error('Firestore generators error:', err));
 
             onSnapshot(doc(window.fbDb, 'settings', 'appConfig'), async (docSnap) => {
                 if (!docSnap.exists()) {
@@ -1084,7 +1106,7 @@
                 appState.teachersList = list;
                 const homeTeachersEl = document.getElementById('stat-home-teachers');
                 if (homeTeachersEl) homeTeachersEl.textContent = list.length;
-                if (appState.currentView === 'dashboard-admin') renderAdminDashboard();
+                refreshCurrentView();
             });
 
             onSnapshot(collection(window.fbDb, 'discussions'), (snapshot) => {
@@ -1117,7 +1139,57 @@
         }
 
         // -------------------------------------------------------------------
-        // 3. NAVIGASI & HAK AKSES
+        // 3. PERHITUNGAN PERINGKAT GURU TERAKTIF (TOP 5 PUBLIK & REKAP ADMIN)
+        // -------------------------------------------------------------------
+        function getTeacherContributionLeaderboard() {
+            const approvedWorks = appState.works.filter(w => w.status === 'approved');
+            const statsMap = {};
+
+            // Daftarkan semua akun guru yang terdaftar terlebih dahulu
+            appState.teachersList.forEach(t => {
+                if (t.role === 'admin') return;
+                statsMap[t.id] = {
+                    id: t.id,
+                    name: t.name,
+                    school: t.school || 'SDN Kampung Laut',
+                    kelas: t.kelas || '-',
+                    status: t.status || 'Aktif',
+                    worksCount: 0,
+                    totalLikes: 0,
+                    totalViews: 0
+                };
+            });
+
+            // Hitung karya terkurasi (approved) per guru
+            approvedWorks.forEach(w => {
+                if (w.authorId === 'admin-kkg') return;
+                const key = w.authorId || w.author;
+                if (!statsMap[key]) {
+                    statsMap[key] = {
+                        id: key,
+                        name: w.author || 'Guru KKG',
+                        school: w.school || 'SDN Kampung Laut',
+                        kelas: w.kelas || '-',
+                        status: 'Aktif',
+                        worksCount: 0,
+                        totalLikes: 0,
+                        totalViews: 0
+                    };
+                }
+                statsMap[key].worksCount += 1;
+                statsMap[key].totalLikes += (w.likes || 0);
+                statsMap[key].totalViews += (w.views || 0);
+            });
+
+            return Object.values(statsMap).sort((a, b) => {
+                if (b.worksCount !== a.worksCount) return b.worksCount - a.worksCount;
+                if (b.totalLikes !== a.totalLikes) return b.totalLikes - a.totalLikes;
+                return b.totalViews - a.totalViews;
+            });
+        }
+
+        // -------------------------------------------------------------------
+        // 4. NAVIGASI & HAK AKSES
         // -------------------------------------------------------------------
         function updateRoleVisibility() {
             const isMemberOrAdmin = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
@@ -1221,7 +1293,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 4. RENDER BERANDA & KARTU KARYA
+        // 5. RENDER BERANDA, TOP 5 GURU TERAKTIF, & KARTU KARYA
         // -------------------------------------------------------------------
         function renderHeroVisual() {
             const box = document.getElementById('hero-visual-container');
@@ -1284,7 +1356,7 @@
             const homeTeachersEl = document.getElementById('stat-home-teachers');
             if (homeTeachersEl) homeTeachersEl.textContent = appState.teachersList.length;
 
-            // Pintasan Generator di Beranda dinamis dari appState.generators
+            // Pintasan Generator di Beranda dinamis dari appState.generators + mendukung thumbnailUrl
             const homeGenList = document.getElementById('home-generators-list');
             if (homeGenList) {
                 const colorStyles = {
@@ -1295,16 +1367,68 @@
                 };
                 homeGenList.innerHTML = appState.generators.slice(0, 4).map(gen => {
                     const st = colorStyles[gen.color] || colorStyles.sky;
+                    const thumbBlock = gen.thumbnailUrl
+                        ? `<div class="h-28 -mx-5 -mt-5 mb-4 overflow-hidden bg-slate-100 border-b border-slate-100 relative">
+                               <img src="${gen.thumbnailUrl}" alt="${gen.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                           </div>`
+                        : `<div class="w-11 h-11 rounded-xl ${st} flex items-center justify-center mb-4 group-hover:text-white transition">
+                               <i data-lucide="${gen.icon || 'sparkles'}" class="w-5 h-5"></i>
+                           </div>`;
+
                     return `
-                        <div onclick="launchGenerator('${gen.id}')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-skybrand-500/50 transition group">
-                            <div class="w-11 h-11 rounded-xl ${st} flex items-center justify-center mb-4 group-hover:text-white transition">
-                                <i data-lucide="${gen.icon || 'sparkles'}" class="w-5 h-5"></i>
-                            </div>
+                        <div onclick="launchGenerator('${gen.id}')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-skybrand-500/50 transition group overflow-hidden">
+                            ${thumbBlock}
                             <h3 class="font-display font-bold text-base text-navy-900">${gen.name}</h3>
                             <p class="text-xs text-slate-500 mt-1.5 leading-relaxed line-clamp-2">${gen.description}</p>
                         </div>
                     `;
                 }).join('');
+            }
+
+            // Render Top 5 Guru Paling Aktif (Hanya guru dengan minimal 1 karya approved)
+            const topTeachersEl = document.getElementById('home-top-teachers');
+            if (topTeachersEl) {
+                const top5 = getTeacherContributionLeaderboard().filter(t => t.worksCount > 0).slice(0, 5);
+                const rankBadgeStyles = [
+                    { ring: 'border-amber-300 bg-gradient-to-b from-amber-50/90 to-white', badge: 'bg-amber-500 text-white', label: 'Peringkat #1' },
+                    { ring: 'border-slate-300 bg-gradient-to-b from-slate-100/80 to-white', badge: 'bg-slate-600 text-white', label: 'Peringkat #2' },
+                    { ring: 'border-orange-300 bg-gradient-to-b from-orange-50/80 to-white', badge: 'bg-orange-600 text-white', label: 'Peringkat #3' },
+                    { ring: 'border-slate-200 bg-white', badge: 'bg-navy-900 text-white', label: 'Peringkat #4' },
+                    { ring: 'border-slate-200 bg-white', badge: 'bg-navy-900 text-white', label: 'Peringkat #5' }
+                ];
+
+                topTeachersEl.innerHTML = top5.length > 0
+                    ? top5.map((t, idx) => {
+                        const style = rankBadgeStyles[idx] || rankBadgeStyles[3];
+                        return `
+                            <div class="rounded-2xl p-4 border ${style.ring} shadow-xs flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between gap-2 mb-3">
+                                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${style.badge}">${style.label}</span>
+                                        <span class="text-[11px] font-bold text-turq-700 bg-turq-50 px-2 py-0.5 rounded-lg">${t.worksCount} Karya</span>
+                                    </div>
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="w-10 h-10 rounded-xl bg-navy-900 text-white font-display font-extrabold text-sm flex items-center justify-center shrink-0">
+                                            ${t.name.charAt(0)}
+                                        </div>
+                                        <div class="min-w-0">
+                                            <h3 class="font-display font-bold text-sm text-navy-900 truncate" title="${t.name}">${t.name}</h3>
+                                            <p class="text-[11px] text-slate-500 truncate" title="${t.school}">${t.school}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                                    <span>${t.kelas}</span>
+                                    <span class="inline-flex items-center gap-1 font-semibold text-rose-600">
+                                        <i data-lucide="heart" class="w-3 h-3 fill-rose-600"></i> ${t.totalLikes} Apresiasi
+                                    </span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')
+                    : `<div class="col-span-full bg-white rounded-2xl p-6 text-center border border-slate-200/80">
+                        <p class="text-xs text-slate-500">Belum ada karya terbit. Guru dengan kontribusi karya terbanyak akan otomatis tampil di papan apresiasi Top 5 ini.</p>
+                       </div>`;
             }
 
             const container = document.getElementById('home-latest-works');
@@ -1397,7 +1521,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 5. RUANG KELAS (KELAS 1 - KELAS 6) & KODE KELAS
+        // 6. RUANG KELAS (KELAS 1 - KELAS 6) & KODE KELAS
         // -------------------------------------------------------------------
         function renderClassrooms() {
             const grid = document.getElementById('classrooms-grid');
@@ -1617,10 +1741,13 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         ${appState.generators.map(g => `
                             <div class="bg-white rounded-2xl p-5 border border-slate-200/80 flex items-center justify-between gap-4">
-                                <div>
-                                    <span class="text-[11px] font-bold text-turq-600 uppercase">${g.badge}</span>
-                                    <h4 class="font-display font-bold text-base text-navy-900">${g.name} (${cls.name})</h4>
-                                    <p class="text-xs text-slate-500 mt-1">${g.subtitle}</p>
+                                <div class="flex items-center gap-3 min-w-0">
+                                    ${g.thumbnailUrl ? `<img src="${g.thumbnailUrl}" alt="${g.name}" class="w-14 h-12 rounded-xl object-cover border border-slate-200 shrink-0">` : ''}
+                                    <div class="min-w-0">
+                                        <span class="text-[11px] font-bold text-turq-600 uppercase">${g.badge}</span>
+                                        <h4 class="font-display font-bold text-base text-navy-900 truncate">${g.name} (${cls.name})</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5 truncate">${g.subtitle}</p>
+                                    </div>
                                 </div>
                                 <button onclick="launchGenerator('${g.id}', '${cls.name}')" class="px-4 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold shrink-0 transition">
                                     Jalankan
@@ -1696,7 +1823,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 6. GALERI KARYA GURU & QR CODE PROYEKTOR
+        // 7. GALERI KARYA GURU & QR CODE PROYEKTOR
         // -------------------------------------------------------------------
         function renderGallery() {
             const catSelect = document.getElementById('filter-kategori');
@@ -1753,7 +1880,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 7. LABORATORIUM & WORKSPACE GENERATOR INTERAKTIF
+        // 8. LABORATORIUM & WORKSPACE GENERATOR INTERAKTIF
         // -------------------------------------------------------------------
         function renderGenerators() {
             const grid = document.getElementById('generators-grid');
@@ -2221,7 +2348,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 8. DASHBOARD GURU & UNGGAH KARYA
+        // 9. DASHBOARD GURU & UNGGAH KARYA
         // -------------------------------------------------------------------
         function renderTeacherDashboard() {
             const p = appState.teacherProfile;
@@ -2345,7 +2472,7 @@ Topik Utama       : ${topik}
                             </div>
                         </div>
 
-                        <!-- Pintasan Generator (Dinamis Membuka Link Admin) -->
+                        <!-- Pintasan Generator (Dinamis Membuka Link Admin + Menampilkan Thumbnail) -->
                         <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs">
                             <div class="flex items-center justify-between mb-3">
                                 <h2 class="font-display font-bold text-lg text-navy-900">Generator Tersedia</h2>
@@ -2354,10 +2481,16 @@ Topik Utama       : ${topik}
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                                 ${appState.generators.map(gen => {
                                     const bg = genColorStyles[gen.color] || genColorStyles.sky;
+                                    const thumbTop = gen.thumbnailUrl
+                                        ? `<img src="${gen.thumbnailUrl}" alt="${gen.name}" class="w-full h-16 object-cover rounded-xl mb-2 border border-black/5">`
+                                        : '';
                                     return `
-                                        <button onclick="launchGenerator('${gen.id}')" class="p-3.5 rounded-2xl ${bg} text-left transition">
-                                            <p class="font-bold text-xs text-navy-900 line-clamp-1">${gen.name}</p>
-                                            <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-1">${gen.subtitle}</p>
+                                        <button onclick="launchGenerator('${gen.id}')" class="p-3 rounded-2xl ${bg} text-left transition flex flex-col justify-between">
+                                            ${thumbTop}
+                                            <div>
+                                                <p class="font-bold text-xs text-navy-900 line-clamp-1">${gen.name}</p>
+                                                <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-1">${gen.subtitle}</p>
+                                            </div>
                                         </button>
                                     `;
                                 }).join('')}
@@ -2454,7 +2587,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 9. DASHBOARD ADMIN KKG
+        // 10. DASHBOARD ADMIN KKG
         // -------------------------------------------------------------------
         let activeAdminTab = 'kurasi';
 
@@ -2501,7 +2634,7 @@ Topik Utama       : ${topik}
                         Manajemen Generator (${appState.generators.length})
                     </button>
                     <button onclick="switchAdminTab('guru')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold ${activeAdminTab === 'guru' ? 'bg-navy-900 text-white' : 'bg-white text-slate-600 hover:bg-slate-100'}">
-                        Manajemen Akun Guru
+                        Rekap Keaktifan & Akun Guru
                     </button>
                     <button onclick="switchAdminTab('kategori')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold ${activeAdminTab === 'kategori' ? 'bg-navy-900 text-white' : 'bg-white text-slate-600 hover:bg-slate-100'}">
                         Pengaturan Kategori
@@ -2591,25 +2724,37 @@ Topik Utama       : ${topik}
                     </div>
                 `;
             } else if (activeAdminTab === 'guru') {
+                const leaderboardAll = getTeacherContributionLeaderboard();
                 body.innerHTML = `
-                    <h2 class="font-display font-bold text-lg text-navy-900 mb-4">Daftar Akun Guru Terdaftar</h2>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h2 class="font-display font-bold text-lg text-navy-900">Rekap Lengkap Keaktifan & Akun Guru (${leaderboardAll.length})</h2>
+                            <p class="text-xs text-slate-500">Diurutkan berdasarkan jumlah karya terbit terbanyak dan apresiasi rekan sejawat.</p>
+                        </div>
+                    </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs">
                             <thead>
-                                <tr class="border-b border-slate-200 text-slate-500">
-                                    <th class="py-2.5 px-3">Nama Guru</th>
-                                    <th class="py-2.5 px-3">Asal Sekolah</th>
-                                    <th class="py-2.5 px-3">Kelas Diampu</th>
-                                    <th class="py-2.5 px-3">Status</th>
+                                <tr class="border-b border-slate-200 text-slate-500 bg-slate-50/80">
+                                    <th class="py-3 px-3">Peringkat</th>
+                                    <th class="py-3 px-3">Nama Guru</th>
+                                    <th class="py-3 px-3">Asal Sekolah</th>
+                                    <th class="py-3 px-3">Kelas</th>
+                                    <th class="py-3 px-3 text-center">Karya Terbit</th>
+                                    <th class="py-3 px-3 text-center">Apresiasi</th>
+                                    <th class="py-3 px-3 text-center">Dilihat</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100">
-                                ${appState.teachersList.map(t => `
-                                    <tr>
+                                ${leaderboardAll.map((t, index) => `
+                                    <tr class="${index < 5 && t.worksCount > 0 ? 'bg-amber-50/30' : ''}">
+                                        <td class="py-3 px-3 font-extrabold text-navy-900">#${index + 1}</td>
                                         <td class="py-3 px-3 font-semibold text-navy-900">${t.name}</td>
                                         <td class="py-3 px-3 text-slate-600">${t.school}</td>
                                         <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-skybrand-50 text-skybrand-700 font-semibold">${t.kelas}</span></td>
-                                        <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold">${t.status}</span></td>
+                                        <td class="py-3 px-3 text-center font-bold text-turq-700">${t.worksCount}</td>
+                                        <td class="py-3 px-3 text-center font-semibold text-rose-600">${t.totalLikes}</td>
+                                        <td class="py-3 px-3 text-center text-slate-600">${t.totalViews}x</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
@@ -2834,14 +2979,14 @@ Topik Utama       : ${topik}
                 const img = new Image();
                 img.onload = function() {
                     const canvas = document.createElement('canvas');
-                    const maxWidth = 720;
+                    const maxWidth = 540;
                     const scale = img.width > maxWidth ? maxWidth / img.width : 1;
                     canvas.width = Math.round(img.width * scale);
                     canvas.height = Math.round(img.height * scale);
 
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.72);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.65);
 
                     const hiddenInput = document.getElementById(hiddenDataId);
                     if (hiddenInput) hiddenInput.value = compressedDataUrl;
@@ -2862,16 +3007,21 @@ Topik Utama       : ${topik}
             const gen = appState.generators.find(g => g.id === genId);
             const url = normalizeUrl(document.getElementById('edit-gen-url-input').value);
             const thumb = document.getElementById('edit-gen-thumb-data')?.value || '';
-            if (gen && window.fbDb && window.fbTools) {
-                const { doc, updateDoc } = window.fbTools;
-                await updateDoc(doc(window.fbDb, 'generators', genId), {
-                    externalUrl: url,
-                    mode: url ? 'external' : 'internal',
-                    thumbnailUrl: thumb
-                });
+            try {
+                if (gen && window.fbDb && window.fbTools) {
+                    const { doc, updateDoc } = window.fbTools;
+                    await updateDoc(doc(window.fbDb, 'generators', genId), {
+                        externalUrl: url,
+                        mode: url ? 'external' : 'internal',
+                        thumbnailUrl: thumb
+                    });
+                }
+                closeModal();
+                showToast(`Pengaturan untuk ${gen?.name || 'Generator'} berhasil disimpan permanen!`, 'success');
+            } catch (err) {
+                console.error(err);
+                showToast('Gagal menyimpan gambar: ukuran file terlalu besar atau izin Firestore perlu dicek.', 'error');
             }
-            closeModal();
-            showToast(`Pengaturan untuk ${gen?.name || 'Generator'} berhasil disimpan permanen!`, 'success');
         }
 
         async function deleteGenerator(genId) {
@@ -2987,7 +3137,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 10. AUTENTIKASI FIREBASE (LOGIN, DAFTAR, LUPA PASSWORD)
+        // 11. AUTENTIKASI FIREBASE (LOGIN, DAFTAR, LUPA PASSWORD)
         // -------------------------------------------------------------------
         function switchAuthMode(mode) {
             ['login-guru', 'daftar-guru', 'login-admin', 'lupa-password'].forEach(m => {
@@ -3087,7 +3237,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 11. MODAL & TOAST HELPER
+        // 12. MODAL & TOAST HELPER
         // -------------------------------------------------------------------
         function openModal(htmlContent) {
             const modal = document.getElementById('app-modal');
