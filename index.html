@@ -317,38 +317,8 @@
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <div onclick="openGeneratorWorkspace('Generator MPI', 'Media Pembelajaran Interaktif')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-skybrand-500/50 transition group">
-                        <div class="w-11 h-11 rounded-xl bg-skybrand-50 text-skybrand-600 flex items-center justify-center mb-4 group-hover:bg-skybrand-600 group-hover:text-white transition">
-                            <i data-lucide="monitor-play" class="w-5 h-5"></i>
-                        </div>
-                        <h3 class="font-display font-bold text-base text-navy-900">Generator MPI</h3>
-                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Rancang kerangka dan alur media pembelajaran interaktif berbasis layar untuk siswa SD.</p>
-                    </div>
-
-                    <div onclick="openGeneratorWorkspace('Generator RPM', 'Rencana Pembelajaran Mendalam')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-turq-500/50 transition group">
-                        <div class="w-11 h-11 rounded-xl bg-turq-50 text-turq-600 flex items-center justify-center mb-4 group-hover:bg-turq-600 group-hover:text-white transition">
-                            <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
-                        </div>
-                        <h3 class="font-display font-bold text-base text-navy-900">Generator RPM</h3>
-                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Susun Rencana Pembelajaran Mendalam (Deep Learning) terstruktur sesuai fase SD.</p>
-                    </div>
-
-                    <div onclick="openGeneratorWorkspace('Generator Bahan Ajar', 'Materi, LKPD & Modul')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-indigo-500/50 transition group">
-                        <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition">
-                            <i data-lucide="book-open-check" class="w-5 h-5"></i>
-                        </div>
-                        <h3 class="font-display font-bold text-base text-navy-900">Bahan Ajar & LKPD</h3>
-                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Buat ringkasan materi kontekstual Kampung Laut, LKPD, serta bank latihan soal.</p>
-                    </div>
-
-                    <div onclick="openGeneratorWorkspace('Generator Game Edukasi', 'Permainan Pembelajaran')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-amber-500/50 transition group">
-                        <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4 group-hover:bg-amber-600 group-hover:text-white transition">
-                            <i data-lucide="gamepad-2" class="w-5 h-5"></i>
-                        </div>
-                        <h3 class="font-display font-bold text-base text-navy-900">Game Edukasi</h3>
-                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Rancang kuis interaktif dan permainan edukatif agar belajar di kelas lebih hidup.</p>
-                    </div>
+                <div id="home-generators-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Diisi dinamis oleh JS dari appState.generators (menampilkan thumbnail & tautan aplikasi asli) -->
                 </div>
             </div>
 
@@ -1438,8 +1408,56 @@
             }
         }
 
+        function renderHomeGenerators() {
+            const grid = document.getElementById('home-generators-grid');
+            if (!grid) return;
+
+            const colorStyles = {
+                sky: { bg: 'bg-skybrand-50 text-skybrand-600', hover: 'hover:border-skybrand-500/50' },
+                turq: { bg: 'bg-turq-50 text-turq-600', hover: 'hover:border-turq-500/50' },
+                indigo: { bg: 'bg-indigo-50 text-indigo-600', hover: 'hover:border-indigo-500/50' },
+                amber: { bg: 'bg-amber-50 text-amber-600', hover: 'hover:border-amber-500/50' }
+            };
+
+            grid.innerHTML = appState.generators.map(gen => {
+                const st = colorStyles[gen.color] || colorStyles.sky;
+                const isExternal = gen.mode === 'external' && gen.externalUrl;
+                const topVisual = gen.thumbnailUrl
+                    ? `
+                        <div class="h-32 -mx-5 -mt-5 mb-4 relative overflow-hidden bg-navy-900">
+                            <img src="${gen.thumbnailUrl}" alt="${gen.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent"></div>
+                            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/95 text-navy-900 shadow-2xs">${gen.badge}</span>
+                        </div>
+                    `
+                    : `
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-11 h-11 rounded-xl ${st.bg} flex items-center justify-center">
+                                <i data-lucide="${gen.icon || 'cpu'}" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${st.bg}">${gen.badge}</span>
+                        </div>
+                    `;
+
+                return `
+                    <div onclick="launchGenerator('${gen.id}')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md ${st.hover} transition group overflow-hidden flex flex-col justify-between">
+                        <div>
+                            ${topVisual}
+                            <h3 class="font-display font-bold text-base text-navy-900 group-hover:text-skybrand-600 transition">${gen.name}</h3>
+                            <p class="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">${gen.description}</p>
+                        </div>
+                        <div class="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-navy-900">
+                            <span>${isExternal ? 'Buka Aplikasi' : 'Buka Generator'}</span>
+                            <i data-lucide="${isExternal ? 'external-link' : 'arrow-right'}" class="w-3.5 h-3.5 text-turq-600"></i>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         function renderHome() {
             renderHeroVisual();
+            renderHomeGenerators();
 
             // Banner sapaan user yang sedang login di Beranda
             const userBanner = document.getElementById('home-logged-user-banner');
@@ -1843,20 +1861,50 @@
                     </div>
                 `;
             } else if (appState.activeClassTab === 'generator') {
+                const colorStyles = {
+                    sky: { bg: 'bg-skybrand-50 text-skybrand-600', btn: 'hover:bg-skybrand-600' },
+                    turq: { bg: 'bg-turq-50 text-turq-600', btn: 'hover:bg-turq-600' },
+                    indigo: { bg: 'bg-indigo-50 text-indigo-600', btn: 'hover:bg-indigo-600' },
+                    amber: { bg: 'bg-amber-50 text-amber-600', btn: 'hover:bg-amber-600' }
+                };
+
                 container.innerHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        ${appState.generators.map(g => `
-                            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 flex items-center justify-between gap-4">
-                                <div>
-                                    <span class="text-[11px] font-bold text-turq-600 uppercase">${g.badge}</span>
-                                    <h4 class="font-display font-bold text-base text-navy-900">${g.name} (${cls.name})</h4>
-                                    <p class="text-xs text-slate-500 mt-1">${g.subtitle}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${appState.generators.map(g => {
+                            const st = colorStyles[g.color] || colorStyles.sky;
+                            const isExternal = g.mode === 'external' && g.externalUrl;
+                            const headerVisual = g.thumbnailUrl
+                                ? `
+                                    <div class="h-36 -mx-6 -mt-6 mb-4 relative overflow-hidden bg-navy-900">
+                                        <img src="${g.thumbnailUrl}" alt="${g.name}" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-transparent to-navy-950/20"></div>
+                                        <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/95 text-navy-900 shadow-xs">${g.badge}</span>
+                                    </div>
+                                `
+                                : `
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="w-12 h-12 rounded-2xl ${st.bg} flex items-center justify-center">
+                                            <i data-lucide="${g.icon || 'cpu'}" class="w-6 h-6"></i>
+                                        </span>
+                                        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${st.bg}">${g.badge}</span>
+                                    </div>
+                                `;
+
+                            return `
+                                <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
+                                    <div>
+                                        ${headerVisual}
+                                        <h4 class="font-display font-bold text-lg text-navy-900">${g.name} <span class="text-xs font-semibold text-turq-700">(${cls.name})</span></h4>
+                                        <p class="text-xs font-semibold text-slate-400 mt-0.5">${g.subtitle}</p>
+                                        <p class="text-sm text-slate-600 mt-3 leading-relaxed">${g.description}</p>
+                                    </div>
+                                    <button onclick="launchGenerator('${g.id}', '${cls.name}')" class="mt-6 w-full py-3 px-4 rounded-xl bg-navy-900 ${st.btn} text-white text-sm font-semibold flex items-center justify-center gap-2 transition">
+                                        <span>${isExternal ? 'Buka Aplikasi Generator' : 'Jalankan Generator'}</span>
+                                        <i data-lucide="${isExternal ? 'external-link' : 'arrow-right'}" class="w-4 h-4"></i>
+                                    </button>
                                 </div>
-                                <button onclick="launchGenerator('${g.id}', '${cls.name}')" class="px-4 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold shrink-0 transition">
-                                    Jalankan
-                                </button>
-                            </div>
-                        `).join('')}
+                            `;
+                        }).join('')}
                     </div>
                 `;
             }
@@ -2564,24 +2612,20 @@ Topik Utama       : ${topik}
 
                         <!-- Pintasan Generator -->
                         <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs">
-                            <h2 class="font-display font-bold text-lg text-navy-900 mb-3">Generator Tersedia</h2>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                <button onclick="openGeneratorWorkspace('Generator MPI', 'Media Interaktif')" class="p-3.5 rounded-2xl bg-skybrand-50 hover:bg-skybrand-100 text-left transition">
-                                    <p class="font-bold text-xs text-navy-900">Generator MPI</p>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">Media Slide</p>
-                                </button>
-                                <button onclick="openGeneratorWorkspace('Generator RPM', 'Rencana Mendalam')" class="p-3.5 rounded-2xl bg-turq-50 hover:bg-turq-100 text-left transition">
-                                    <p class="font-bold text-xs text-navy-900">Generator RPM</p>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">Perencanaan</p>
-                                </button>
-                                <button onclick="openGeneratorWorkspace('Generator Bahan Ajar', 'LKPD & Modul')" class="p-3.5 rounded-2xl bg-indigo-50 hover:bg-indigo-100 text-left transition">
-                                    <p class="font-bold text-xs text-navy-900">Bahan Ajar</p>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">LKPD & Soal</p>
-                                </button>
-                                <button onclick="openGeneratorWorkspace('Generator Game', 'Game Edukasi')" class="p-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 text-left transition">
-                                    <p class="font-bold text-xs text-navy-900">Game Edukasi</p>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">Kuis Kelas</p>
-                                </button>
+                            <div class="flex items-center justify-between mb-3">
+                                <h2 class="font-display font-bold text-lg text-navy-900">Generator Tersedia</h2>
+                                <button onclick="navigate('generator')" class="text-xs font-semibold text-skybrand-600 hover:underline">Lihat Semua</button>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                                ${appState.generators.map(g => `
+                                    <button onclick="launchGenerator('${g.id}', '${p.assignedClass}')" class="rounded-2xl border border-slate-200/80 bg-slate-50/70 hover:bg-skybrand-50/70 hover:border-skybrand-300 text-left transition overflow-hidden flex flex-col justify-between">
+                                        ${g.thumbnailUrl ? `<img src="${g.thumbnailUrl}" alt="${g.name}" class="w-full h-20 object-cover border-b border-slate-200/70">` : ''}
+                                        <div class="p-3">
+                                            <p class="font-bold text-xs text-navy-900 line-clamp-1">${g.name}</p>
+                                            <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-1">${g.subtitle}</p>
+                                        </div>
+                                    </button>
+                                `).join('')}
                             </div>
                         </div>
                     </div>
