@@ -194,6 +194,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                         <!-- Teks Hero -->
                         <div class="lg:col-span-7 space-y-6">
+                            <div id="home-logged-user-banner" class="hidden"></div>
                             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-xs text-turq-200 text-xs sm:text-sm font-medium">
                                 <i data-lucide="sparkles" class="w-4 h-4 text-turq-400"></i>
                                 <span>Platform Digital Kolaborasi Pendidik SD • Wilayah Pesisir & Perairan</span>
@@ -222,7 +223,48 @@
                         <!-- Ilustrasi SVG / Foto Hero yang Dapat Diganti Admin -->
                         <div class="lg:col-span-5 flex justify-center">
                             <div id="hero-visual-container" class="w-full max-w-md bg-white/10 backdrop-blur-md border border-white/15 rounded-3xl p-6 shadow-2xl">
-                                <!-- Diisi JS -->
+                                <svg viewBox="0 0 420 310" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Latar Belakang Langit & Ombak Kampung Laut -->
+                                    <rect x="10" y="10" width="400" height="290" rx="24" fill="#0F294A"/>
+                                    <circle cx="330" cy="68" r="34" fill="#14B8A6" fill-opacity="0.22"/>
+                                    <circle cx="330" cy="68" r="20" fill="#38BDF8" fill-opacity="0.35"/>
+                                    <!-- Ombak Bawah -->
+                                    <path d="M10 250C70 235 120 268 185 252C250 236 310 266 410 245V276C410 289.255 399.255 300 386 300H34C20.7452 300 10 289.255 10 276V250Z" fill="#0D9488" fill-opacity="0.35"/>
+                                    <path d="M10 266C85 252 145 280 215 266C285 252 340 275 410 262V276C410 289.255 399.255 300 386 300H34C20.7452 300 10 289.255 10 276V266Z" fill="#0284C7" fill-opacity="0.45"/>
+                                    
+                                    <!-- Papan Layar Interaktif Digital -->
+                                    <rect x="52" y="45" width="220" height="145" rx="16" fill="#F8FAFC" stroke="#38BDF8" stroke-width="3"/>
+                                    <rect x="68" y="62" width="90" height="12" rx="6" fill="#0B1F3A"/>
+                                    <rect x="68" y="82" width="140" height="8" rx="4" fill="#94A3B8"/>
+                                    <rect x="68" y="96" width="115" height="8" rx="4" fill="#CBD5E1"/>
+                                    
+                                    <!-- Kartu Modul Mini di Layar -->
+                                    <rect x="68" y="116" width="56" height="54" rx="10" fill="#E0F2FE"/>
+                                    <circle cx="96" cy="136" r="10" fill="#0284C7"/>
+                                    <rect x="78" y="153" width="36" height="6" rx="3" fill="#0369A1"/>
+
+                                    <rect x="134" y="116" width="56" height="54" rx="10" fill="#CCFBF1"/>
+                                    <circle cx="162" cy="136" r="10" fill="#0D9488"/>
+                                    <rect x="144" y="153" width="36" height="6" rx="3" fill="#0F766E"/>
+
+                                    <rect x="200" y="116" width="56" height="54" rx="10" fill="#FEF3C7"/>
+                                    <circle cx="228" cy="136" r="10" fill="#D97706"/>
+                                    <rect x="210" y="153" width="36" height="6" rx="3" fill="#B45309"/>
+
+                                    <!-- Figur Guru Modern -->
+                                    <circle cx="315" cy="132" r="24" fill="#FDBA74"/>
+                                    <!-- Peci / Hijab / Rambut Profesional -->
+                                    <path d="M291 128C291 114.745 301.745 104 315 104C328.255 104 339 114.745 339 128V134H291V128Z" fill="#0B1F3A"/>
+                                    <!-- Badan Guru -->
+                                    <path d="M277 215C277 187.386 294.013 165 315 165C335.987 165 353 187.386 353 215V235H277V215Z" fill="#14B8A6"/>
+                                    <!-- Lengan & Tablet -->
+                                    <rect x="255" y="182" width="54" height="36" rx="8" fill="#1E293B" stroke="#E2E8F0" stroke-width="2"/>
+                                    <circle cx="282" cy="200" r="5" fill="#38BDF8"/>
+                                    
+                                    <!-- Lencana Melayang -->
+                                    <rect x="34" y="175" width="96" height="32" rx="16" fill="#0D9488"/>
+                                    <text x="50" y="195" fill="white" font-family="Inter, sans-serif" font-size="11" font-weight="700">6 Ruang Kelas</text>
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -262,7 +304,7 @@
                 </div>
             </div>
 
-            <!-- Bagian Pintasan Ekosistem Kerja Guru (Dinamis Sesuai Generator Admin + Thumbnail) -->
+            <!-- Bagian Pintasan Ekosistem Kerja Guru (Khusus Guru Anggota / Admin) -->
             <div id="home-generator-section" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
                     <div>
@@ -275,40 +317,49 @@
                     </button>
                 </div>
 
-                <div id="home-generators-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <!-- Diisi otomatis dari appState.generators -->
-                </div>
-            </div>
-
-            <!-- Bagian Top 5 Guru Paling Aktif Berkarya (Tampil Publik di Beranda) -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-200/70">
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-600">
-                            <i data-lucide="award" class="w-4 h-4"></i>
-                            <span>Apresiasi Kontributor KKG</span>
-                        </span>
-                        <h2 class="font-display font-bold text-2xl sm:text-3xl text-navy-900 mt-1">Top 5 Guru Paling Aktif Berkarya</h2>
-                        <p class="text-xs sm:text-sm text-slate-500 mt-1">Pendidik dengan kontribusi karya terkurasi terbanyak di KKG Kampung Laut.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div onclick="openGeneratorWorkspace('Generator MPI', 'Media Pembelajaran Interaktif')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-skybrand-500/50 transition group">
+                        <div class="w-11 h-11 rounded-xl bg-skybrand-50 text-skybrand-600 flex items-center justify-center mb-4 group-hover:bg-skybrand-600 group-hover:text-white transition">
+                            <i data-lucide="monitor-play" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-base text-navy-900">Generator MPI</h3>
+                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Rancang kerangka dan alur media pembelajaran interaktif berbasis layar untuk siswa SD.</p>
                     </div>
-                    <button onclick="handleUploadAction()" class="px-4 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs sm:text-sm font-semibold transition inline-flex items-center gap-2 self-start sm:self-auto">
-                        <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i>
-                        <span>Bagikan Karyamu Sekarang</span>
-                    </button>
-                </div>
 
-                <div id="home-top-teachers" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                    <!-- Diisi otomatis oleh JavaScript -->
+                    <div onclick="openGeneratorWorkspace('Generator RPM', 'Rencana Pembelajaran Mendalam')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-turq-500/50 transition group">
+                        <div class="w-11 h-11 rounded-xl bg-turq-50 text-turq-600 flex items-center justify-center mb-4 group-hover:bg-turq-600 group-hover:text-white transition">
+                            <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-base text-navy-900">Generator RPM</h3>
+                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Susun Rencana Pembelajaran Mendalam (Deep Learning) terstruktur sesuai fase SD.</p>
+                    </div>
+
+                    <div onclick="openGeneratorWorkspace('Generator Bahan Ajar', 'Materi, LKPD & Modul')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-indigo-500/50 transition group">
+                        <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition">
+                            <i data-lucide="book-open-check" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-base text-navy-900">Bahan Ajar & LKPD</h3>
+                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Buat ringkasan materi kontekstual Kampung Laut, LKPD, serta bank latihan soal.</p>
+                    </div>
+
+                    <div onclick="openGeneratorWorkspace('Generator Game Edukasi', 'Permainan Pembelajaran')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-amber-500/50 transition group">
+                        <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4 group-hover:bg-amber-600 group-hover:text-white transition">
+                            <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-base text-navy-900">Game Edukasi</h3>
+                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Rancang kuis interaktif dan permainan edukatif agar belajar di kelas lebih hidup.</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Tampilan Karya Guru Terbaru di Beranda -->
+            <!-- Tampilan 5 Karya Guru Terbaru di Beranda -->
             <div class="bg-white border-t border-slate-200/70 py-12">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-skybrand-600">Kurasi Terkini</span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-skybrand-600">5 Kurasi Terkini</span>
                             <h2 class="font-display font-bold text-2xl sm:text-3xl text-navy-900 mt-1">Karya Guru Terbaru</h2>
+                            <p class="text-xs sm:text-sm text-slate-500 mt-1">Menampilkan 5 karya terbaru yang telah disetujui Admin KKG Kampung Laut.</p>
                         </div>
                         <button onclick="navigate('galeri')" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-navy-900 hover:text-white text-navy-900 text-sm font-semibold transition inline-flex items-center gap-2 self-start sm:self-auto">
                             <span>Jelajahi Seluruh Galeri</span>
@@ -317,7 +368,28 @@
                     </div>
 
                     <div id="home-latest-works" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Diisi otomatis oleh JavaScript dari daftar karya yang sudah disetujui Admin -->
+                        <!-- Diisi otomatis oleh JavaScript (5 karya terbaru berstatus approved) -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bagian Top 5 Guru Kontributor (Paling Bawah Beranda) -->
+            <div class="bg-slate-50 border-t border-slate-200/80 py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-turq-600">Apresiasi Pendidik Aktif</span>
+                            <h2 class="font-display font-bold text-2xl sm:text-3xl text-navy-900 mt-1">Top 5 Guru Kontributor</h2>
+                            <p class="text-xs sm:text-sm text-slate-500 mt-1">Pendidik dengan kontribusi karya terpublikasi dan apresiasi terbanyak di KKG Kampung Laut.</p>
+                        </div>
+                        <button onclick="handleUploadAction()" class="px-4 py-2.5 rounded-xl bg-turq-600 hover:bg-turq-500 text-white text-sm font-semibold transition inline-flex items-center gap-2 self-start sm:self-auto shadow-xs">
+                            <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                            <span>Ikut Berbagi Karya</span>
+                        </button>
+                    </div>
+
+                    <div id="home-top-teachers" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <!-- Diisi otomatis oleh JavaScript -->
                     </div>
                 </div>
             </div>
@@ -522,53 +594,61 @@
         <!-- ================================================================= -->
         <section id="view-auth" class="view-section hidden max-w-lg mx-auto px-4 py-12">
             <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-lg">
-                <!-- Tab Pilihan Auth -->
-                <div class="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-slate-100 mb-6 text-xs font-semibold">
+                <!-- Tab Pilihan Auth (Login Guru & Login Admin) -->
+                <div class="grid grid-cols-2 gap-1.5 p-1 rounded-2xl bg-slate-100 mb-6 text-xs sm:text-sm font-semibold">
                     <button onclick="switchAuthMode('login-guru')" id="auth-tab-login-guru" class="py-2.5 rounded-xl bg-white text-navy-900 shadow-2xs transition">Login Guru</button>
-                    <button onclick="switchAuthMode('daftar-guru')" id="auth-tab-daftar-guru" class="py-2.5 rounded-xl text-slate-600 hover:text-navy-900 transition">Daftar Guru</button>
                     <button onclick="switchAuthMode('login-admin')" id="auth-tab-login-admin" class="py-2.5 rounded-xl text-slate-600 hover:text-navy-900 transition">Login Admin</button>
                 </div>
 
                 <!-- Form Login Guru -->
-                <form id="form-login-guru" onsubmit="handleAuthSubmit(event, 'teacher')" class="space-y-4">
+                <form id="form-login-guru" autocomplete="on" onsubmit="handleAuthSubmit(event, 'teacher')" class="space-y-4">
                     <div class="text-center mb-4">
                         <h2 class="font-display font-bold text-xl text-navy-900">Masuk ke Akun Guru</h2>
                         <p class="text-xs text-slate-500 mt-1">Gunakan email yang terdaftar di KKG Kampung Laut</p>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Email Guru</label>
-                        <input type="email" id="login-guru-email" required placeholder="nama@sekolah.sch.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
+                        <input type="email" id="login-guru-email" name="email" autocomplete="username" required placeholder="nama@sekolah.sch.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
                     </div>
                     <div>
                         <div class="flex justify-between items-center mb-1">
                             <label class="block text-xs font-semibold text-slate-700">Kata Sandi</label>
                             <button type="button" onclick="switchAuthMode('lupa-password')" class="text-xs font-medium text-skybrand-600 hover:underline">Lupa password?</button>
                         </div>
-                        <input type="password" id="login-guru-pass" required placeholder="Masukkan kata sandi" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
+                        <input type="password" id="login-guru-pass" name="password" autocomplete="current-password" required placeholder="Masukkan kata sandi" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-turq-600 text-white font-semibold text-sm transition shadow-sm">
                         Masuk ke Dashboard Guru
                     </button>
+                    <div class="pt-3 border-t border-slate-100 text-center">
+                        <p class="text-xs text-slate-600">
+                            Belum punya akun?
+                            <button type="button" onclick="switchAuthMode('daftar-guru')" class="font-bold text-turq-700 hover:text-navy-900 hover:underline ml-1">
+                                Klik Daftar
+                            </button>
+                        </p>
+                    </div>
                 </form>
 
-                <!-- Form Pendaftaran Guru -->
-                <form id="form-daftar-guru" onsubmit="handleRegisterTeacher(event)" class="hidden space-y-3.5">
+                <!-- Form Pendaftaran Guru (Dibuka dari tombol "Klik Daftar" di Login Guru) -->
+                <form id="form-daftar-guru" autocomplete="off" onsubmit="handleRegisterTeacher(event)" class="hidden space-y-3.5">
                     <div class="text-center mb-3">
-                        <h2 class="font-display font-bold text-xl text-navy-900">Pendaftaran Akun Guru</h2>
+                        <span class="px-2.5 py-1 rounded-full bg-turq-50 text-turq-700 text-[11px] font-bold">Registrasi Pendidik SD</span>
+                        <h2 class="font-display font-bold text-xl text-navy-900 mt-1.5">Pendaftaran Akun Guru</h2>
                         <p class="text-xs text-slate-500 mt-1">Terbuka untuk guru SD. Kode kelas diperlukan saat bergabung ke ruang kelas.</p>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap & Gelar *</label>
-                        <input type="text" id="reg-nama" required placeholder="Contoh: Budi Santoso, S.Pd." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                        <input type="text" id="reg-nama" name="reg_nama" autocomplete="off" required placeholder="Contoh: Budi Santoso, S.Pd." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="block text-xs font-semibold text-slate-700 mb-1">NIP (Opsional)</label>
-                            <input type="text" id="reg-nip" placeholder="19880512..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                            <input type="text" id="reg-nip" name="reg_nip" autocomplete="off" placeholder="19880512..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-700 mb-1">Kelas yang Diampu *</label>
-                            <select id="reg-kelas" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
+                            <select id="reg-kelas" name="reg_kelas" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
                                 <option value="Kelas 1">Kelas 1</option>
                                 <option value="Kelas 2">Kelas 2</option>
                                 <option value="Kelas 3">Kelas 3</option>
@@ -580,23 +660,31 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Asal Sekolah *</label>
-                        <input type="text" id="reg-sekolah" required placeholder="Contoh: SDN Ujungalang 02" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                        <input type="text" id="reg-sekolah" name="reg_sekolah" autocomplete="off" required placeholder="Contoh: SDN Ujungalang 02" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Email Aktif *</label>
-                        <input type="email" id="reg-email" required placeholder="nama@sekolah.sch.id" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                        <input type="email" id="reg-email" name="reg_email" autocomplete="off" required placeholder="nama@sekolah.sch.id" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Password *</label>
-                        <input type="password" id="reg-pass" required minlength="6" placeholder="Minimal 6 karakter" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                        <input type="password" id="reg-pass" name="reg_pass" autocomplete="new-password" required minlength="6" placeholder="Minimal 6 karakter" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-turq-600 hover:bg-turq-500 text-white font-semibold text-sm transition shadow-sm">
                         Daftar & Masuk
                     </button>
+                    <div class="pt-3 border-t border-slate-100 text-center">
+                        <p class="text-xs text-slate-600">
+                            Sudah punya akun guru?
+                            <button type="button" onclick="switchAuthMode('login-guru')" class="font-bold text-navy-900 hover:text-skybrand-600 hover:underline ml-1">
+                                Kembali ke Login Guru
+                            </button>
+                        </p>
+                    </div>
                 </form>
 
                 <!-- Form Login Admin -->
-                <form id="form-login-admin" onsubmit="handleAuthSubmit(event, 'admin')" class="hidden space-y-4">
+                <form id="form-login-admin" autocomplete="on" onsubmit="handleAuthSubmit(event, 'admin')" class="hidden space-y-4">
                     <div class="text-center mb-4">
                         <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold">Area Pengurus & Kurator</span>
                         <h2 class="font-display font-bold text-xl text-navy-900 mt-2">Login Admin KKG</h2>
@@ -604,11 +692,11 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Email Admin</label>
-                        <input type="email" id="login-admin-email" required placeholder="admin@kkgkampunglaut.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
+                        <input type="email" id="login-admin-email" name="email" autocomplete="username" required placeholder="admin@kkgkampunglaut.id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Kata Sandi Admin</label>
-                        <input type="password" id="login-admin-pass" required placeholder="Masukkan kata sandi admin" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
+                        <input type="password" id="login-admin-pass" name="password" autocomplete="current-password" required placeholder="Masukkan kata sandi admin" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-semibold text-sm transition">
                         Masuk ke Dashboard Admin
@@ -759,17 +847,8 @@
             }
         }
 
-        // Helper otomatis melengkapi protokol https:// pada tautan seperti s.id/xxx
-        function normalizeUrl(rawUrl) {
-            if (!rawUrl) return '';
-            const trimmed = rawUrl.trim();
-            if (!trimmed) return '';
-            if (/^https?:\/\//i.test(trimmed)) return trimmed;
-            return 'https://' + trimmed;
-        }
-
         // -------------------------------------------------------------------
-        // 1. STATE APLIKASI PRODUKSI (SINKRON REAL-TIME CLOUD FIRESTORE)
+        // 1. STATE APLIKASI PRODUKSI (KOSONG DARI DATA CONTOH, SINKRON FIRESTORE)
         // -------------------------------------------------------------------
         const defaultClassrooms = [
             { id: 'kelas-1', name: 'Kelas 1', fase: 'Fase A', code: 'KKG-KL1', membersCount: 0, description: 'Kolaborasi literasi awal, numerasi dasar, dan pembelajaran menyenangkan kelas awal.' },
@@ -833,7 +912,7 @@
 
         const appState = {
             currentView: 'beranda',
-            currentUserRole: 'guest',
+            currentUserRole: 'guest', // 'guest' | 'teacher' | 'admin'
             firebaseUser: null,
             activeClassId: null,
             activeClassTab: 'terbaru',
@@ -990,6 +1069,7 @@
                 onAuthStateChanged, doc, getDoc, setDoc, collection, onSnapshot
             } = window.fbTools;
 
+            // 1. Pantau Status Login Pengguna
             onAuthStateChanged(window.fbAuth, async (user) => {
                 appState.firebaseUser = user;
                 if (user) {
@@ -1010,6 +1090,7 @@
                                 activities: Array.isArray(data.activities) ? data.activities : ['Masuk ke Ruang Karya Guru']
                             };
                         } else {
+                            // Jika akun dibuat langsung dari Firebase Console tanpa dokumen Firestore
                             const defaultUser = {
                                 name: user.email.split('@')[0],
                                 nip: '',
@@ -1036,6 +1117,7 @@
                 refreshCurrentView();
             });
 
+            // 2. Pantau Koleksi Karya Guru (works)
             onSnapshot(collection(window.fbDb, 'works'), (snapshot) => {
                 const list = [];
                 snapshot.forEach(d => list.push({ id: d.id, ...d.data() }));
@@ -1044,6 +1126,7 @@
                 refreshCurrentView();
             }, (err) => console.error('Firestore works error:', err));
 
+            // 3. Pantau Koleksi Ruang Kelas (classrooms) & Inisialisasi jika masih kosong
             onSnapshot(collection(window.fbDb, 'classrooms'), async (snapshot) => {
                 if (snapshot.empty) {
                     for (const cls of defaultClassrooms) {
@@ -1058,6 +1141,7 @@
                 }
             });
 
+            // 4. Pantau Koleksi Generator (generators) & Inisialisasi jika masih kosong
             onSnapshot(collection(window.fbDb, 'generators'), async (snapshot) => {
                 if (snapshot.empty) {
                     for (const gen of defaultGenerators) {
@@ -1069,8 +1153,9 @@
                     appState.generators = list;
                     refreshCurrentView();
                 }
-            }, (err) => console.error('Firestore generators error:', err));
+            });
 
+            // 5. Pantau Pengaturan Tema & Kategori (settings/appConfig)
             onSnapshot(doc(window.fbDb, 'settings', 'appConfig'), async (docSnap) => {
                 if (!docSnap.exists()) {
                     await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
@@ -1090,6 +1175,7 @@
                 }
             });
 
+            // 6. Pantau Daftar Guru Terdaftar (users)
             onSnapshot(collection(window.fbDb, 'users'), (snapshot) => {
                 const list = [];
                 snapshot.forEach(d => {
@@ -1106,9 +1192,10 @@
                 appState.teachersList = list;
                 const homeTeachersEl = document.getElementById('stat-home-teachers');
                 if (homeTeachersEl) homeTeachersEl.textContent = list.length;
-                refreshCurrentView();
+                if (appState.currentView === 'dashboard-admin') renderAdminDashboard();
             });
 
+            // 7. Pantau Diskusi Kelas (discussions)
             onSnapshot(collection(window.fbDb, 'discussions'), (snapshot) => {
                 const grouped = {};
                 snapshot.forEach(d => {
@@ -1139,57 +1226,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 3. PERHITUNGAN PERINGKAT GURU TERAKTIF (TOP 5 PUBLIK & REKAP ADMIN)
-        // -------------------------------------------------------------------
-        function getTeacherContributionLeaderboard() {
-            const approvedWorks = appState.works.filter(w => w.status === 'approved');
-            const statsMap = {};
-
-            // Daftarkan semua akun guru yang terdaftar terlebih dahulu
-            appState.teachersList.forEach(t => {
-                if (t.role === 'admin') return;
-                statsMap[t.id] = {
-                    id: t.id,
-                    name: t.name,
-                    school: t.school || 'SDN Kampung Laut',
-                    kelas: t.kelas || '-',
-                    status: t.status || 'Aktif',
-                    worksCount: 0,
-                    totalLikes: 0,
-                    totalViews: 0
-                };
-            });
-
-            // Hitung karya terkurasi (approved) per guru
-            approvedWorks.forEach(w => {
-                if (w.authorId === 'admin-kkg') return;
-                const key = w.authorId || w.author;
-                if (!statsMap[key]) {
-                    statsMap[key] = {
-                        id: key,
-                        name: w.author || 'Guru KKG',
-                        school: w.school || 'SDN Kampung Laut',
-                        kelas: w.kelas || '-',
-                        status: 'Aktif',
-                        worksCount: 0,
-                        totalLikes: 0,
-                        totalViews: 0
-                    };
-                }
-                statsMap[key].worksCount += 1;
-                statsMap[key].totalLikes += (w.likes || 0);
-                statsMap[key].totalViews += (w.views || 0);
-            });
-
-            return Object.values(statsMap).sort((a, b) => {
-                if (b.worksCount !== a.worksCount) return b.worksCount - a.worksCount;
-                if (b.totalLikes !== a.totalLikes) return b.totalLikes - a.totalLikes;
-                return b.totalViews - a.totalViews;
-            });
-        }
-
-        // -------------------------------------------------------------------
-        // 4. NAVIGASI & HAK AKSES
+        // 3. NAVIGASI & HAK AKSES
         // -------------------------------------------------------------------
         function updateRoleVisibility() {
             const isMemberOrAdmin = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
@@ -1242,11 +1279,38 @@
             menu.classList.toggle('hidden');
         }
 
+        function clearAuthForms() {
+            const formLoginGuru = document.getElementById('form-login-guru');
+            const formLoginAdmin = document.getElementById('form-login-admin');
+            const formDaftarGuru = document.getElementById('form-daftar-guru');
+            const formLupaPass = document.getElementById('form-lupa-password');
+
+            if (formLoginGuru) formLoginGuru.reset();
+            if (formLoginAdmin) formLoginAdmin.reset();
+            if (formDaftarGuru) formDaftarGuru.reset();
+            if (formLupaPass) formLupaPass.reset();
+
+            const idsToClear = [
+                'login-guru-email', 'login-guru-pass',
+                'login-admin-email', 'login-admin-pass',
+                'reg-nama', 'reg-nip', 'reg-sekolah', 'reg-email', 'reg-pass',
+                'reset-email'
+            ];
+            idsToClear.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+            const regKelas = document.getElementById('reg-kelas');
+            if (regKelas) regKelas.value = 'Kelas 4';
+        }
+
         async function logoutUser() {
             if (window.fbAuth && window.fbTools) {
                 await window.fbTools.signOut(window.fbAuth);
             }
             appState.currentUserRole = 'guest';
+            appState.firebaseUser = null;
+            clearAuthForms();
             updateHeaderAuth();
             updateRoleVisibility();
             showToast('Anda telah keluar dari akun.', 'info');
@@ -1259,31 +1323,51 @@
 
             if (appState.currentUserRole === 'guest') {
                 container.innerHTML = `
-                    <button onclick="navigate('auth')" class="px-4 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold shadow-xs flex items-center gap-2 transition">
+                    <button onclick="navigate('auth'); switchAuthMode('login-guru');" class="px-4 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold shadow-xs flex items-center gap-2 transition">
                         <i data-lucide="log-in" class="w-4 h-4"></i>
-                        <span>Login Guru</span>
+                        <span>Login</span>
                     </button>
                 `;
             } else if (appState.currentUserRole === 'teacher') {
+                const fullName = appState.teacherProfile.name || 'Guru KKG';
+                const schoolName = appState.teacherProfile.school || '';
                 container.innerHTML = `
                     <div class="flex items-center gap-2">
-                        <button onclick="navigate('dashboard-guru')" class="px-3.5 py-2 rounded-xl bg-skybrand-50 hover:bg-skybrand-100 text-navy-900 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
-                            <i data-lucide="layout-dashboard" class="w-4 h-4 text-skybrand-600"></i>
-                            <span class="hidden sm:inline">Dashboard Guru</span>
+                        <button onclick="navigate('dashboard-guru')" class="px-3 py-1.5 rounded-xl bg-skybrand-50 hover:bg-skybrand-100 border border-skybrand-200/80 text-navy-900 flex items-center gap-2.5 text-left transition">
+                            <div class="w-7 h-7 rounded-lg bg-navy-900 text-white font-display font-bold text-xs flex items-center justify-center shrink-0">
+                                ${fullName.charAt(0).toUpperCase()}
+                            </div>
+                            <div class="leading-tight">
+                                <span class="text-xs sm:text-sm font-bold text-navy-900 flex items-center gap-1">
+                                    <span>Dashboard Guru</span>
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-skybrand-600"></i>
+                                </span>
+                                <span class="block text-[11px] font-semibold text-turq-700 max-w-[135px] sm:max-w-[190px] truncate" title="${fullName}${schoolName ? ' • ' + schoolName : ''}">
+                                    ${fullName}
+                                </span>
+                            </div>
                         </button>
-                        <button onclick="logoutUser()" title="Keluar" class="p-2 rounded-xl text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition">
+                        <button onclick="logoutUser()" title="Keluar Akun" class="p-2 rounded-xl text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition">
                             <i data-lucide="log-out" class="w-4 h-4"></i>
                         </button>
                     </div>
                 `;
             } else if (appState.currentUserRole === 'admin') {
+                const adminEmail = appState.firebaseUser?.email || 'Admin KKG';
                 container.innerHTML = `
                     <div class="flex items-center gap-2">
-                        <button onclick="navigate('dashboard-admin')" class="px-3.5 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
-                            <i data-lucide="shield-check" class="w-4 h-4 text-amber-600"></i>
-                            <span class="hidden sm:inline">Panel Admin</span>
+                        <button onclick="navigate('dashboard-admin')" class="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 flex items-center gap-2.5 text-left transition">
+                            <div class="w-7 h-7 rounded-lg bg-amber-600 text-white font-bold text-xs flex items-center justify-center shrink-0">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            </div>
+                            <div class="leading-tight">
+                                <span class="text-xs sm:text-sm font-bold text-amber-950 block">Panel Admin</span>
+                                <span class="block text-[11px] font-medium text-amber-700 max-w-[135px] sm:max-w-[180px] truncate">
+                                    ${adminEmail}
+                                </span>
+                            </div>
                         </button>
-                        <button onclick="logoutUser()" title="Keluar" class="p-2 rounded-xl text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition">
+                        <button onclick="logoutUser()" title="Keluar Akun" class="p-2 rounded-xl text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition">
                             <i data-lucide="log-out" class="w-4 h-4"></i>
                         </button>
                     </div>
@@ -1293,7 +1377,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 5. RENDER BERANDA, TOP 5 GURU TERAKTIF, & KARTU KARYA
+        // 3. RENDER BERANDA & KARTU KARYA
         // -------------------------------------------------------------------
         function renderHeroVisual() {
             const box = document.getElementById('hero-visual-container');
@@ -1349,108 +1433,120 @@
 
         function renderHome() {
             renderHeroVisual();
-            const approvedWorks = appState.works.filter(w => w.status === 'approved');
+
+            // Banner sapaan user yang sedang login di Beranda
+            const userBanner = document.getElementById('home-logged-user-banner');
+            if (userBanner) {
+                if (appState.currentUserRole === 'teacher') {
+                    const p = appState.teacherProfile;
+                    userBanner.className = 'inline-flex flex-wrap items-center gap-2.5 px-4 py-2 rounded-2xl bg-turq-500/20 border border-turq-300/40 text-white text-xs sm:text-sm';
+                    userBanner.innerHTML = `
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Selamat datang, <strong>${p.name}</strong> <span class="text-turq-200">(${p.school} • ${p.assignedClass})</span></span>
+                    `;
+                } else if (appState.currentUserRole === 'admin') {
+                    userBanner.className = 'inline-flex flex-wrap items-center gap-2.5 px-4 py-2 rounded-2xl bg-amber-500/20 border border-amber-300/40 text-white text-xs sm:text-sm';
+                    userBanner.innerHTML = `
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span>Masuk sebagai <strong>Admin KKG Kampung Laut</strong></span>
+                    `;
+                } else {
+                    userBanner.className = 'hidden';
+                    userBanner.innerHTML = '';
+                }
+            }
+
+            // Urutkan berdasarkan waktu persetujuan terbaru (approvedAt), lalu waktu unggah (createdAt)
+            const approvedWorks = appState.works
+                .filter(w => w.status === 'approved')
+                .sort((a, b) => (b.approvedAt || b.createdAt || 0) - (a.approvedAt || a.createdAt || 0));
+
             const homeWorksEl = document.getElementById('stat-home-works');
             if (homeWorksEl) homeWorksEl.textContent = approvedWorks.length;
 
             const homeTeachersEl = document.getElementById('stat-home-teachers');
             if (homeTeachersEl) homeTeachersEl.textContent = appState.teachersList.length;
 
-            // Pintasan Generator di Beranda dinamis dari appState.generators + mendukung thumbnailUrl
-            const homeGenList = document.getElementById('home-generators-list');
-            if (homeGenList) {
-                const colorStyles = {
-                    sky: 'bg-skybrand-50 text-skybrand-600 group-hover:bg-skybrand-600',
-                    turq: 'bg-turq-50 text-turq-600 group-hover:bg-turq-600',
-                    indigo: 'bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600',
-                    amber: 'bg-amber-50 text-amber-600 group-hover:bg-amber-600'
-                };
-                homeGenList.innerHTML = appState.generators.slice(0, 4).map(gen => {
-                    const st = colorStyles[gen.color] || colorStyles.sky;
-                    const thumbBlock = gen.thumbnailUrl
-                        ? `<div class="h-28 -mx-5 -mt-5 mb-4 overflow-hidden bg-slate-100 border-b border-slate-100 relative">
-                               <img src="${gen.thumbnailUrl}" alt="${gen.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                           </div>`
-                        : `<div class="w-11 h-11 rounded-xl ${st} flex items-center justify-center mb-4 group-hover:text-white transition">
-                               <i data-lucide="${gen.icon || 'sparkles'}" class="w-5 h-5"></i>
-                           </div>`;
-
-                    return `
-                        <div onclick="launchGenerator('${gen.id}')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-skybrand-500/50 transition group overflow-hidden">
-                            ${thumbBlock}
-                            <h3 class="font-display font-bold text-base text-navy-900">${gen.name}</h3>
-                            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed line-clamp-2">${gen.description}</p>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            // Render Top 5 Guru Paling Aktif (Hanya guru dengan minimal 1 karya approved)
-            const topTeachersEl = document.getElementById('home-top-teachers');
-            if (topTeachersEl) {
-                const top5 = getTeacherContributionLeaderboard().filter(t => t.worksCount > 0).slice(0, 5);
-                const rankBadgeStyles = [
-                    { ring: 'border-amber-300 bg-gradient-to-b from-amber-50/90 to-white', badge: 'bg-amber-500 text-white', label: 'Peringkat #1' },
-                    { ring: 'border-slate-300 bg-gradient-to-b from-slate-100/80 to-white', badge: 'bg-slate-600 text-white', label: 'Peringkat #2' },
-                    { ring: 'border-orange-300 bg-gradient-to-b from-orange-50/80 to-white', badge: 'bg-orange-600 text-white', label: 'Peringkat #3' },
-                    { ring: 'border-slate-200 bg-white', badge: 'bg-navy-900 text-white', label: 'Peringkat #4' },
-                    { ring: 'border-slate-200 bg-white', badge: 'bg-navy-900 text-white', label: 'Peringkat #5' }
-                ];
-
-                topTeachersEl.innerHTML = top5.length > 0
-                    ? top5.map((t, idx) => {
-                        const style = rankBadgeStyles[idx] || rankBadgeStyles[3];
-                        return `
-                            <div class="rounded-2xl p-4 border ${style.ring} shadow-xs flex flex-col justify-between">
-                                <div>
-                                    <div class="flex items-center justify-between gap-2 mb-3">
-                                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${style.badge}">${style.label}</span>
-                                        <span class="text-[11px] font-bold text-turq-700 bg-turq-50 px-2 py-0.5 rounded-lg">${t.worksCount} Karya</span>
-                                    </div>
-                                    <div class="flex items-center gap-2.5">
-                                        <div class="w-10 h-10 rounded-xl bg-navy-900 text-white font-display font-extrabold text-sm flex items-center justify-center shrink-0">
-                                            ${t.name.charAt(0)}
-                                        </div>
-                                        <div class="min-w-0">
-                                            <h3 class="font-display font-bold text-sm text-navy-900 truncate" title="${t.name}">${t.name}</h3>
-                                            <p class="text-[11px] text-slate-500 truncate" title="${t.school}">${t.school}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                                    <span>${t.kelas}</span>
-                                    <span class="inline-flex items-center gap-1 font-semibold text-rose-600">
-                                        <i data-lucide="heart" class="w-3 h-3 fill-rose-600"></i> ${t.totalLikes} Apresiasi
-                                    </span>
-                                </div>
-                            </div>
-                        `;
-                    }).join('')
-                    : `<div class="col-span-full bg-white rounded-2xl p-6 text-center border border-slate-200/80">
-                        <p class="text-xs text-slate-500">Belum ada karya terbit. Guru dengan kontribusi karya terbanyak akan otomatis tampil di papan apresiasi Top 5 ini.</p>
-                       </div>`;
-            }
-
+            // Ambil maksimal 5 karya terkini
+            const latestFive = approvedWorks.slice(0, 5);
             const container = document.getElementById('home-latest-works');
             if (container) {
-                container.innerHTML = approvedWorks.length > 0
-                    ? approvedWorks.slice(0, 3).map(w => createWorkCardHTML(w)).join('')
+                container.innerHTML = latestFive.length > 0
+                    ? latestFive.map((w, idx) => createWorkCardHTML(w, idx + 1)).join('')
                     : `<div class="col-span-full bg-slate-50 rounded-3xl p-8 text-center border border-slate-200/80">
                         <p class="font-display font-bold text-navy-900 text-base">Belum Ada Karya yang Diterbitkan</p>
                         <p class="text-xs text-slate-500 mt-1">Silakan login sebagai Guru Anggota KKG untuk mulai mengunggah karya pembelajaran pertama.</p>
                        </div>`;
             }
+
+            // Hitung & tampilkan Top 5 Guru Kontributor di paling bawah Beranda
+            const topTeachersContainer = document.getElementById('home-top-teachers');
+            if (topTeachersContainer) {
+                const statsByAuthor = {};
+                approvedWorks.forEach(w => {
+                    const key = w.authorId || w.author;
+                    if (!statsByAuthor[key]) {
+                        statsByAuthor[key] = {
+                            name: w.author,
+                            school: w.school || 'KKG Kampung Laut',
+                            worksCount: 0,
+                            likesCount: 0
+                        };
+                    }
+                    statsByAuthor[key].worksCount += 1;
+                    statsByAuthor[key].likesCount += (w.likes || 0);
+                });
+
+                const topFiveTeachers = Object.values(statsByAuthor)
+                    .sort((a, b) => (b.worksCount - a.worksCount) || (b.likesCount - a.likesCount))
+                    .slice(0, 5);
+
+                topTeachersContainer.innerHTML = topFiveTeachers.length > 0
+                    ? topFiveTeachers.map((t, index) => `
+                        <div class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-xs flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold ${index === 0 ? 'bg-amber-100 text-amber-800' : 'bg-skybrand-50 text-skybrand-700'}">
+                                        #${index + 1} Kontributor
+                                    </span>
+                                    <i data-lucide="award" class="w-4 h-4 ${index === 0 ? 'text-amber-500' : 'text-turq-500'}"></i>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-900 to-skybrand-600 text-white font-display font-bold text-sm flex items-center justify-center shrink-0">
+                                        ${t.name.charAt(0).toUpperCase()}
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="font-display font-bold text-sm text-navy-900 truncate" title="${t.name}">${t.name}</p>
+                                        <p class="text-[11px] text-slate-500 truncate" title="${t.school}">${t.school}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-600">
+                                <span>${t.worksCount} Karya Terbit</span>
+                                <span class="text-rose-600 flex items-center gap-1">
+                                    <i data-lucide="heart" class="w-3 h-3 fill-rose-600"></i> ${t.likesCount}
+                                </span>
+                            </div>
+                        </div>
+                    `).join('')
+                    : `<div class="col-span-full bg-white rounded-2xl p-6 text-center border border-slate-200/80 text-xs text-slate-500">
+                        Peringkat Top 5 Guru Kontributor akan muncul otomatis setelah karya guru diterbitkan.
+                       </div>`;
+            }
+
             renderIcons();
         }
 
-        function createWorkCardHTML(work) {
+        function createWorkCardHTML(work, rankNumber = null) {
             const likedClass = work.likedByMe ? 'text-rose-600 bg-rose-50 border-rose-200' : 'text-slate-600 bg-slate-50 border-slate-200 hover:bg-rose-50 hover:text-rose-600';
             const commentCount = work.comments ? work.comments.length : 0;
+            const rankBadge = rankNumber ? `<span class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-amber-400 text-navy-950 shadow-xs">Terkini #${rankNumber}</span>` : '';
             const thumbHTML = work.thumbnailUrl
                 ? `
                     <div onclick="openWorkDetailModal('${work.id}', false)" class="cursor-pointer h-44 -mx-5 -mt-5 mb-4 relative overflow-hidden bg-slate-100 border-b border-slate-100 group">
                         <img src="${work.thumbnailUrl}" alt="${work.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                            ${rankBadge}
                             <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-navy-900/90 text-white backdrop-blur-xs shadow-xs">${work.kelas}</span>
                             <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/95 text-turq-700 backdrop-blur-xs shadow-xs">${work.category}</span>
                         </div>
@@ -1459,7 +1555,10 @@
                 : `
                     <div onclick="openWorkDetailModal('${work.id}', false)" class="cursor-pointer h-36 -mx-5 -mt-5 mb-4 relative overflow-hidden bg-gradient-to-br from-navy-900 via-skybrand-900 to-turq-800 p-4 flex flex-col justify-between text-white group">
                         <div class="flex items-center justify-between gap-2 relative z-10">
-                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/15 backdrop-blur-xs">${work.kelas}</span>
+                            <div class="flex items-center gap-1.5">
+                                ${rankBadge}
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/15 backdrop-blur-xs">${work.kelas}</span>
+                            </div>
                             <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-turq-500 text-white">${work.category}</span>
                         </div>
                         <div class="flex items-center justify-between relative z-10">
@@ -1521,7 +1620,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 6. RUANG KELAS (KELAS 1 - KELAS 6) & KODE KELAS
+        // 4. RUANG KELAS (KELAS 1 - KELAS 6) & KODE KELAS
         // -------------------------------------------------------------------
         function renderClassrooms() {
             const grid = document.getElementById('classrooms-grid');
@@ -1741,13 +1840,10 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         ${appState.generators.map(g => `
                             <div class="bg-white rounded-2xl p-5 border border-slate-200/80 flex items-center justify-between gap-4">
-                                <div class="flex items-center gap-3 min-w-0">
-                                    ${g.thumbnailUrl ? `<img src="${g.thumbnailUrl}" alt="${g.name}" class="w-14 h-12 rounded-xl object-cover border border-slate-200 shrink-0">` : ''}
-                                    <div class="min-w-0">
-                                        <span class="text-[11px] font-bold text-turq-600 uppercase">${g.badge}</span>
-                                        <h4 class="font-display font-bold text-base text-navy-900 truncate">${g.name} (${cls.name})</h4>
-                                        <p class="text-xs text-slate-500 mt-0.5 truncate">${g.subtitle}</p>
-                                    </div>
+                                <div>
+                                    <span class="text-[11px] font-bold text-turq-600 uppercase">${g.badge}</span>
+                                    <h4 class="font-display font-bold text-base text-navy-900">${g.name} (${cls.name})</h4>
+                                    <p class="text-xs text-slate-500 mt-1">${g.subtitle}</p>
                                 </div>
                                 <button onclick="launchGenerator('${g.id}', '${cls.name}')" class="px-4 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold shrink-0 transition">
                                     Jalankan
@@ -1823,7 +1919,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 7. GALERI KARYA GURU & QR CODE PROYEKTOR
+        // 5. GALERI KARYA GURU & QR CODE PROYEKTOR
         // -------------------------------------------------------------------
         function renderGallery() {
             const catSelect = document.getElementById('filter-kategori');
@@ -1880,7 +1976,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 8. LABORATORIUM & WORKSPACE GENERATOR INTERAKTIF
+        // 6. LABORATORIUM & WORKSPACE GENERATOR INTERAKTIF
         // -------------------------------------------------------------------
         function renderGenerators() {
             const grid = document.getElementById('generators-grid');
@@ -1940,7 +2036,7 @@
                         </div>
                         <h3 class="font-display font-bold text-lg text-slate-700">Tambah Modul Generator</h3>
                         <p class="text-sm text-slate-500 mt-2 leading-relaxed">
-                            Admin KKG dapat menambahkan tautan generator baru (s.id, Gemini Gem, Canva, atau Web App) kapan saja melalui Dashboard Admin.
+                            Admin KKG dapat menambahkan tautan generator baru (Gemini Gem, Canva, atau Web App) kapan saja melalui Dashboard Admin.
                         </p>
                     </div>
                     ${appState.currentUserRole === 'admin'
@@ -1962,9 +2058,8 @@
             const gen = appState.generators.find(g => g.id === genId);
             if (!gen) return;
 
-            const finalUrl = normalizeUrl(gen.externalUrl);
-            if (finalUrl) {
-                window.open(finalUrl, '_blank', 'noopener,noreferrer');
+            if (gen.mode === 'external' && gen.externalUrl) {
+                window.open(gen.externalUrl, '_blank', 'noopener,noreferrer');
                 showToast(`Membuka ${gen.name} di tab baru...`, 'success');
                 return;
             }
@@ -2108,7 +2203,6 @@ Topik Utama       : ${topik}
                 refreshCurrentView();
             }
         }
-
         async function toggleLikeWork(workId) {
             const work = appState.works.find(w => w.id === workId);
             if (!work) return;
@@ -2128,9 +2222,8 @@ Topik Utama       : ${topik}
         }
 
         function simulateDownload(title, url) {
-            const finalUrl = normalizeUrl(url);
-            if (finalUrl) {
-                window.open(finalUrl, '_blank', 'noopener,noreferrer');
+            if (url) {
+                window.open(url, '_blank', 'noopener,noreferrer');
             }
             showToast(`Membuka tautan karya: "${title}"`, 'success');
         }
@@ -2151,7 +2244,6 @@ Topik Utama       : ${topik}
 
             const comments = work.comments || [];
             const canComment = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
-            const cleanWorkUrl = normalizeUrl(work.downloadUrl);
 
             openModal(`
                 <div class="flex items-start justify-between gap-3 mb-4">
@@ -2178,15 +2270,15 @@ Topik Utama       : ${topik}
                         <span>Diunggah: ${work.date} • <strong>${work.views || 0}x dilihat</strong></span>
                     </div>
                     <p class="text-sm text-slate-700 leading-relaxed">${work.summary}</p>
-                    ${cleanWorkUrl ? `
+                    ${work.downloadUrl ? `
                         <div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
-                            <span class="text-xs text-slate-500 truncate max-w-xs">Tautan: ${cleanWorkUrl}</span>
+                            <span class="text-xs text-slate-500 truncate max-w-xs">Tautan: ${work.downloadUrl}</span>
                             <div class="flex items-center gap-2">
-                                <button type="button" onclick="toggleWorkQrBox('${encodeURIComponent(cleanWorkUrl)}')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-skybrand-50 text-navy-900 border border-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
+                                <button type="button" onclick="toggleWorkQrBox('${encodeURIComponent(work.downloadUrl)}')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-skybrand-50 text-navy-900 border border-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
                                     <i data-lucide="qr-code" class="w-3.5 h-3.5 text-skybrand-600"></i>
                                     <span>QR Code Proyektor</span>
                                 </button>
-                                <button type="button" onclick="simulateDownload('${work.title}', '${cleanWorkUrl}')" class="px-4 py-2 rounded-xl bg-turq-600 hover:bg-turq-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
+                                <button type="button" onclick="simulateDownload('${work.title}', '${work.downloadUrl}')" class="px-4 py-2 rounded-xl bg-turq-600 hover:bg-turq-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
                                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                                     <span>Buka / Unduh Karya</span>
                                 </button>
@@ -2268,7 +2360,6 @@ Topik Utama       : ${topik}
             openWorkDetailModal(workId, false);
             showToast('Respon berhasil disimpan!', 'success');
         }
-
         async function submitNewWork(e) {
             e.preventDefault();
             const title = document.getElementById('up-title').value;
@@ -2276,7 +2367,7 @@ Topik Utama       : ${topik}
             const category = document.getElementById('up-category').value;
             const mapel = document.getElementById('up-mapel').value;
             const summary = document.getElementById('up-summary').value;
-            const downloadUrl = normalizeUrl(document.getElementById('up-url').value);
+            const downloadUrl = document.getElementById('up-url').value;
             const thumbnailUrl = document.getElementById('up-thumb-data')?.value || '';
 
             const isAdmin = appState.currentUserRole === 'admin';
@@ -2314,14 +2405,13 @@ Topik Utama       : ${topik}
             closeModal();
             showToast(isAdmin ? 'Karya Admin langsung diterbitkan ke Galeri!' : 'Karya berhasil dikirim! Status: Menunggu persetujuan Admin.', 'success');
         }
-
         async function addNewGenerator(e) {
             e.preventDefault();
             const name = document.getElementById('new-gen-name').value.trim();
             const subtitle = document.getElementById('new-gen-sub').value.trim();
             const color = document.getElementById('new-gen-color').value;
             const description = document.getElementById('new-gen-desc').value.trim();
-            const externalUrl = normalizeUrl(document.getElementById('new-gen-url').value);
+            const externalUrl = document.getElementById('new-gen-url').value.trim();
             const thumbnailUrl = document.getElementById('new-gen-thumb-data')?.value || '';
 
             const nextLetter = String.fromCharCode(65 + appState.generators.length);
@@ -2348,7 +2438,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 9. DASHBOARD GURU & UNGGAH KARYA
+        // 7. DASHBOARD GURU & UNGGAH KARYA
         // -------------------------------------------------------------------
         function renderTeacherDashboard() {
             const p = appState.teacherProfile;
@@ -2356,13 +2446,6 @@ Topik Utama       : ${topik}
             const totalViews = myWorks.reduce((sum, w) => sum + (w.views || 0), 0);
             const totalLikes = myWorks.reduce((sum, w) => sum + (w.likes || 0), 0);
             const totalComments = myWorks.reduce((sum, w) => sum + (w.comments ? w.comments.length : 0), 0);
-
-            const genColorStyles = {
-                sky: 'bg-skybrand-50 hover:bg-skybrand-100',
-                turq: 'bg-turq-50 hover:bg-turq-100',
-                indigo: 'bg-indigo-50 hover:bg-indigo-100',
-                amber: 'bg-amber-50 hover:bg-amber-100'
-            };
 
             document.getElementById('teacher-dashboard-content').innerHTML = `
                 <!-- Header Profil Guru -->
@@ -2397,7 +2480,7 @@ Topik Utama       : ${topik}
                     <div class="mt-6 pt-6 border-t border-slate-100">
                         <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Ruang Kelas yang Diikuti (${p.joinedClasses.length})</p>
                         <div class="flex flex-wrap gap-2">
-                            ${p.joinedClasses.length === 0 ? `<span class="text-xs text-slate-400">Belum bergabung ke ruang kelas. Klik "Gabung Kelas" untuk memasukkan Kode Kelas.</span>` : p.joinedClasses.map(cid => {
+                            ${p.joinedClasses.map(cid => {
                                 const cObj = appState.classrooms.find(c => c.id === cid);
                                 return cObj ? `
                                     <button onclick="navigate('kelas'); openClassroomDetail('${cObj.id}')" class="px-3.5 py-2 rounded-xl bg-skybrand-50 hover:bg-skybrand-100 text-navy-900 text-xs font-semibold flex items-center gap-2 transition">
@@ -2440,7 +2523,7 @@ Topik Utama       : ${topik}
                             </div>
 
                             <div class="space-y-3">
-                                ${myWorks.length === 0 ? `<p class="text-xs text-slate-400 py-4 text-center">Anda belum mengunggah karya. Klik "Unggah Karya Baru" di atas untuk berbagi karya.</p>` : myWorks.map(w => {
+                                ${myWorks.map(w => {
                                     const cCount = w.comments ? w.comments.length : 0;
                                     return `
                                     <div class="p-4 rounded-2xl border border-slate-100 bg-slate-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -2453,7 +2536,7 @@ Topik Utama       : ${topik}
                                             <h3 class="font-bold text-sm text-navy-900">${w.title}</h3>
                                             <div class="flex flex-wrap items-center gap-3 mt-2 text-xs text-slate-500">
                                                 <span class="inline-flex items-center gap-1 font-medium text-slate-600"><i data-lucide="eye" class="w-3.5 h-3.5 text-skybrand-600"></i> ${w.views || 0}x dilihat</span>
-                                                <span class="inline-flex items-center gap-1 font-medium text-slate-600"><i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500"></i> ${w.likes || 0} apresiasi</span>
+                                                <span class="inline-flex items-center gap-1 font-medium text-slate-600"><i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500"></i> ${w.likes} apresiasi</span>
                                                 <span class="inline-flex items-center gap-1 font-medium text-turq-700"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> ${cCount} respon</span>
                                             </div>
                                         </div>
@@ -2472,28 +2555,26 @@ Topik Utama       : ${topik}
                             </div>
                         </div>
 
-                        <!-- Pintasan Generator (Dinamis Membuka Link Admin + Menampilkan Thumbnail) -->
+                        <!-- Pintasan Generator -->
                         <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs">
-                            <div class="flex items-center justify-between mb-3">
-                                <h2 class="font-display font-bold text-lg text-navy-900">Generator Tersedia</h2>
-                                <button onclick="navigate('generator')" class="text-xs font-semibold text-skybrand-600 hover:underline">Lihat Semua →</button>
-                            </div>
+                            <h2 class="font-display font-bold text-lg text-navy-900 mb-3">Generator Tersedia</h2>
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                ${appState.generators.map(gen => {
-                                    const bg = genColorStyles[gen.color] || genColorStyles.sky;
-                                    const thumbTop = gen.thumbnailUrl
-                                        ? `<img src="${gen.thumbnailUrl}" alt="${gen.name}" class="w-full h-16 object-cover rounded-xl mb-2 border border-black/5">`
-                                        : '';
-                                    return `
-                                        <button onclick="launchGenerator('${gen.id}')" class="p-3 rounded-2xl ${bg} text-left transition flex flex-col justify-between">
-                                            ${thumbTop}
-                                            <div>
-                                                <p class="font-bold text-xs text-navy-900 line-clamp-1">${gen.name}</p>
-                                                <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-1">${gen.subtitle}</p>
-                                            </div>
-                                        </button>
-                                    `;
-                                }).join('')}
+                                <button onclick="openGeneratorWorkspace('Generator MPI', 'Media Interaktif')" class="p-3.5 rounded-2xl bg-skybrand-50 hover:bg-skybrand-100 text-left transition">
+                                    <p class="font-bold text-xs text-navy-900">Generator MPI</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Media Slide</p>
+                                </button>
+                                <button onclick="openGeneratorWorkspace('Generator RPM', 'Rencana Mendalam')" class="p-3.5 rounded-2xl bg-turq-50 hover:bg-turq-100 text-left transition">
+                                    <p class="font-bold text-xs text-navy-900">Generator RPM</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Perencanaan</p>
+                                </button>
+                                <button onclick="openGeneratorWorkspace('Generator Bahan Ajar', 'LKPD & Modul')" class="p-3.5 rounded-2xl bg-indigo-50 hover:bg-indigo-100 text-left transition">
+                                    <p class="font-bold text-xs text-navy-900">Bahan Ajar</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">LKPD & Soal</p>
+                                </button>
+                                <button onclick="openGeneratorWorkspace('Generator Game', 'Game Edukasi')" class="p-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 text-left transition">
+                                    <p class="font-bold text-xs text-navy-900">Game Edukasi</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Kuis Kelas</p>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -2568,8 +2649,8 @@ Topik Utama       : ${topik}
                         <textarea id="up-summary" rows="3" required placeholder="Jelaskan secara singkat isi perangkat dan cara penggunaannya di kelas..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm"></textarea>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan Berkas Eksternal (s.id / Google Drive / Canva / Web)</label>
-                        <input type="text" id="up-url" placeholder="Contoh: s.id/mpi-kelas4 atau https://drive.google.com/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan Berkas Eksternal (Google Drive / Canva / Web)</label>
+                        <input type="url" id="up-url" placeholder="https://drive.google.com/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Unggah Thumbnail / Screenshot Karya (Opsional, Otomatis Dikompres)</label>
@@ -2587,7 +2668,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 10. DASHBOARD ADMIN KKG
+        // 8. DASHBOARD ADMIN KKG
         // -------------------------------------------------------------------
         let activeAdminTab = 'kurasi';
 
@@ -2634,7 +2715,7 @@ Topik Utama       : ${topik}
                         Manajemen Generator (${appState.generators.length})
                     </button>
                     <button onclick="switchAdminTab('guru')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold ${activeAdminTab === 'guru' ? 'bg-navy-900 text-white' : 'bg-white text-slate-600 hover:bg-slate-100'}">
-                        Rekap Keaktifan & Akun Guru
+                        Manajemen Akun Guru
                     </button>
                     <button onclick="switchAdminTab('kategori')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold ${activeAdminTab === 'kategori' ? 'bg-navy-900 text-white' : 'bg-white text-slate-600 hover:bg-slate-100'}">
                         Pengaturan Kategori
@@ -2724,37 +2805,25 @@ Topik Utama       : ${topik}
                     </div>
                 `;
             } else if (activeAdminTab === 'guru') {
-                const leaderboardAll = getTeacherContributionLeaderboard();
                 body.innerHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                        <div>
-                            <h2 class="font-display font-bold text-lg text-navy-900">Rekap Lengkap Keaktifan & Akun Guru (${leaderboardAll.length})</h2>
-                            <p class="text-xs text-slate-500">Diurutkan berdasarkan jumlah karya terbit terbanyak dan apresiasi rekan sejawat.</p>
-                        </div>
-                    </div>
+                    <h2 class="font-display font-bold text-lg text-navy-900 mb-4">Daftar Akun Guru Terdaftar</h2>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs">
                             <thead>
-                                <tr class="border-b border-slate-200 text-slate-500 bg-slate-50/80">
-                                    <th class="py-3 px-3">Peringkat</th>
-                                    <th class="py-3 px-3">Nama Guru</th>
-                                    <th class="py-3 px-3">Asal Sekolah</th>
-                                    <th class="py-3 px-3">Kelas</th>
-                                    <th class="py-3 px-3 text-center">Karya Terbit</th>
-                                    <th class="py-3 px-3 text-center">Apresiasi</th>
-                                    <th class="py-3 px-3 text-center">Dilihat</th>
+                                <tr class="border-b border-slate-200 text-slate-500">
+                                    <th class="py-2.5 px-3">Nama Guru</th>
+                                    <th class="py-2.5 px-3">Asal Sekolah</th>
+                                    <th class="py-2.5 px-3">Kelas Diampu</th>
+                                    <th class="py-2.5 px-3">Status</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100">
-                                ${leaderboardAll.map((t, index) => `
-                                    <tr class="${index < 5 && t.worksCount > 0 ? 'bg-amber-50/30' : ''}">
-                                        <td class="py-3 px-3 font-extrabold text-navy-900">#${index + 1}</td>
+                                ${appState.teachersList.map(t => `
+                                    <tr>
                                         <td class="py-3 px-3 font-semibold text-navy-900">${t.name}</td>
                                         <td class="py-3 px-3 text-slate-600">${t.school}</td>
                                         <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-skybrand-50 text-skybrand-700 font-semibold">${t.kelas}</span></td>
-                                        <td class="py-3 px-3 text-center font-bold text-turq-700">${t.worksCount}</td>
-                                        <td class="py-3 px-3 text-center font-semibold text-rose-600">${t.totalLikes}</td>
-                                        <td class="py-3 px-3 text-center text-slate-600">${t.totalViews}x</td>
+                                        <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold">${t.status}</span></td>
                                     </tr>
                                 `).join('')}
                             </tbody>
@@ -2821,7 +2890,7 @@ Topik Utama       : ${topik}
                                     </div>
                                     <div>
                                         <label class="block text-xs font-semibold text-slate-700 mb-1">Atau Tempel Tautan URL Gambar</label>
-                                        <input type="text" id="admin-hero-url-input" value="${currentImg.startsWith('http') ? currentImg : ''}" placeholder="https://..." oninput="document.getElementById('admin-hero-data-input').value = this.value" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                                        <input type="url" id="admin-hero-url-input" value="${currentImg.startsWith('http') ? currentImg : ''}" placeholder="https://..." oninput="document.getElementById('admin-hero-data-input').value = this.value" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-semibold text-slate-700 mb-1">Teks Lencana Keterangan di Bawah Gambar</label>
@@ -2859,7 +2928,7 @@ Topik Utama       : ${topik}
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
                         <div>
                             <h2 class="font-display font-bold text-lg text-navy-900">Manajemen Modul Generator</h2>
-                            <p class="text-xs text-slate-500">Tambahkan tautan generator eksternal (s.id, Gemini Gem, Canva, Apps Script, dll.) atau gunakan kerangka bawaan.</p>
+                            <p class="text-xs text-slate-500">Tambahkan tautan generator eksternal (Gemini Gem, Canva, Apps Script, dll.) atau gunakan kerangka bawaan.</p>
                         </div>
                     </div>
 
@@ -2891,8 +2960,8 @@ Topik Utama       : ${topik}
                                 <input type="text" id="new-gen-desc" required placeholder="Jelaskan kegunaan generator ini bagi guru..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan URL Generator (Bisa s.id/xxx atau https://...)</label>
-                                <input type="text" id="new-gen-url" placeholder="Contoh: s.id/mpi-kkg atau https://gemini.google.com/gem/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan URL Generator (Kosongkan jika pakai Kerangka Bawaan)</label>
+                                <input type="url" id="new-gen-url" placeholder="https://gemini.google.com/gem/... atau link web app" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
                             </div>
                         </div>
                         <div>
@@ -2949,11 +3018,11 @@ Topik Utama       : ${topik}
                     <h3 class="font-display font-bold text-lg text-navy-900">Atur Tautan & Thumbnail: ${gen.name}</h3>
                     <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
                 </div>
-                <p class="text-xs text-slate-600 mb-4">Tempelkan link generator Anda (bisa langsung ketik <strong>s.id/nama-link</strong> atau URL lengkap <strong>https://...</strong>).</p>
+                <p class="text-xs text-slate-600 mb-4">Tempelkan link generator Anda (misal: Gemini Gem, Google Apps Script, Canva, atau Web App khusus) serta unggah sampul generator bila diinginkan.</p>
                 <form onsubmit="saveGeneratorUrl(event, '${gen.id}')" class="space-y-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">URL Aplikasi Generator</label>
-                        <input type="text" id="edit-gen-url-input" value="${gen.externalUrl || ''}" placeholder="Contoh: s.id/mpi-kkg atau https://..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm">
+                        <input type="url" id="edit-gen-url-input" value="${gen.externalUrl || ''}" placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Unggah / Ganti Thumbnail Sampul Generator</label>
@@ -2979,14 +3048,14 @@ Topik Utama       : ${topik}
                 const img = new Image();
                 img.onload = function() {
                     const canvas = document.createElement('canvas');
-                    const maxWidth = 540;
+                    const maxWidth = 720;
                     const scale = img.width > maxWidth ? maxWidth / img.width : 1;
                     canvas.width = Math.round(img.width * scale);
                     canvas.height = Math.round(img.height * scale);
 
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.65);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.72);
 
                     const hiddenInput = document.getElementById(hiddenDataId);
                     if (hiddenInput) hiddenInput.value = compressedDataUrl;
@@ -3005,23 +3074,18 @@ Topik Utama       : ${topik}
         async function saveGeneratorUrl(e, genId) {
             e.preventDefault();
             const gen = appState.generators.find(g => g.id === genId);
-            const url = normalizeUrl(document.getElementById('edit-gen-url-input').value);
+            const url = document.getElementById('edit-gen-url-input').value.trim();
             const thumb = document.getElementById('edit-gen-thumb-data')?.value || '';
-            try {
-                if (gen && window.fbDb && window.fbTools) {
-                    const { doc, updateDoc } = window.fbTools;
-                    await updateDoc(doc(window.fbDb, 'generators', genId), {
-                        externalUrl: url,
-                        mode: url ? 'external' : 'internal',
-                        thumbnailUrl: thumb
-                    });
-                }
-                closeModal();
-                showToast(`Pengaturan untuk ${gen?.name || 'Generator'} berhasil disimpan permanen!`, 'success');
-            } catch (err) {
-                console.error(err);
-                showToast('Gagal menyimpan gambar: ukuran file terlalu besar atau izin Firestore perlu dicek.', 'error');
+            if (gen && window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'generators', genId), {
+                    externalUrl: url,
+                    mode: url ? 'external' : 'internal',
+                    thumbnailUrl: thumb
+                });
             }
+            closeModal();
+            showToast(`Pengaturan untuk ${gen?.name || 'Generator'} berhasil disimpan permanen!`, 'success');
         }
 
         async function deleteGenerator(genId) {
@@ -3038,10 +3102,11 @@ Topik Utama       : ${topik}
             if (window.fbDb && window.fbTools) {
                 const { doc, updateDoc } = window.fbTools;
                 await updateDoc(doc(window.fbDb, 'works', workId), {
-                    status: 'approved'
+                    status: 'approved',
+                    approvedAt: Date.now()
                 });
             }
-            showToast(`Karya "${w.title}" disetujui & diterbitkan ke Beranda, Galeri & ${w.kelas}!`, 'success');
+            showToast(`Karya "${w.title}" disetujui & masuk urutan #1 Terkini di Beranda!`, 'success');
         }
 
         async function rejectWork(workId) {
@@ -3066,7 +3131,6 @@ Topik Utama       : ${topik}
                 showToast(`Kode akses ${cls.name} diperbarui menjadi ${newCode}`, 'success');
             }
         }
-
         async function addNewCategory(e) {
             e.preventDefault();
             const input = document.getElementById('new-cat-name');
@@ -3137,7 +3201,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 11. AUTENTIKASI FIREBASE (LOGIN, DAFTAR, LUPA PASSWORD)
+        // 9. AUTENTIKASI FIREBASE (LOGIN, DAFTAR, LUPA PASSWORD)
         // -------------------------------------------------------------------
         function switchAuthMode(mode) {
             ['login-guru', 'daftar-guru', 'login-admin', 'lupa-password'].forEach(m => {
@@ -3145,14 +3209,24 @@ Topik Utama       : ${topik}
                 if (form) form.classList.toggle('hidden', m !== mode);
             });
 
-            ['login-guru', 'daftar-guru', 'login-admin'].forEach(t => {
+            const activeTabKey = mode === 'login-admin' ? 'login-admin' : 'login-guru';
+            ['login-guru', 'login-admin'].forEach(t => {
                 const tab = document.getElementById(`auth-tab-${t}`);
                 if (tab) {
-                    tab.className = t === mode
+                    tab.className = t === activeTabKey
                         ? 'py-2.5 rounded-xl bg-white text-navy-900 shadow-2xs transition'
                         : 'py-2.5 rounded-xl text-slate-600 hover:text-navy-900 transition';
                 }
             });
+
+            if (mode === 'daftar-guru') {
+                const formDaftarGuru = document.getElementById('form-daftar-guru');
+                if (formDaftarGuru) formDaftarGuru.reset();
+                ['reg-nama', 'reg-nip', 'reg-sekolah', 'reg-email', 'reg-pass'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.value = '';
+                });
+            }
         }
 
         async function handleAuthSubmit(e, expectedRole) {
@@ -3174,6 +3248,8 @@ Topik Utama       : ${topik}
                 const cred = await signInWithEmailAndPassword(window.fbAuth, emailInput, passInput);
                 const snap = await getDoc(doc(window.fbDb, 'users', cred.user.uid));
                 const role = snap.exists() && snap.data().role === 'admin' ? 'admin' : 'teacher';
+
+                clearAuthForms();
 
                 if (expectedRole === 'admin' && role !== 'admin') {
                     showToast('Akun ini terdaftar sebagai Guru, bukan Admin KKG.', 'error');
@@ -3214,6 +3290,7 @@ Topik Utama       : ${topik}
                     activities: ['Mendaftar akun baru di Ruang Karya Guru KKG Kampung Laut']
                 };
                 await setDoc(doc(window.fbDb, 'users', cred.user.uid), newUserDoc);
+                clearAuthForms();
                 showToast('Pendaftaran berhasil! Silakan masukkan Kode Kelas untuk bergabung ke ruang kelas.', 'success');
                 navigate('dashboard-guru');
             } catch (err) {
@@ -3237,7 +3314,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 12. MODAL & TOAST HELPER
+        // 10. MODAL & TOAST HELPER
         // -------------------------------------------------------------------
         function openModal(htmlContent) {
             const modal = document.getElementById('app-modal');
@@ -3279,6 +3356,7 @@ Topik Utama       : ${topik}
 
         // Inisialisasi Halaman Awal
         window.addEventListener('DOMContentLoaded', () => {
+            clearAuthForms();
             updateHeaderAuth();
             updateRoleVisibility();
             renderHome();
