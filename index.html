@@ -222,48 +222,7 @@
                         <!-- Ilustrasi SVG / Foto Hero yang Dapat Diganti Admin -->
                         <div class="lg:col-span-5 flex justify-center">
                             <div id="hero-visual-container" class="w-full max-w-md bg-white/10 backdrop-blur-md border border-white/15 rounded-3xl p-6 shadow-2xl">
-                                <svg viewBox="0 0 420 310" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <!-- Latar Belakang Langit & Ombak Kampung Laut -->
-                                    <rect x="10" y="10" width="400" height="290" rx="24" fill="#0F294A"/>
-                                    <circle cx="330" cy="68" r="34" fill="#14B8A6" fill-opacity="0.22"/>
-                                    <circle cx="330" cy="68" r="20" fill="#38BDF8" fill-opacity="0.35"/>
-                                    <!-- Ombak Bawah -->
-                                    <path d="M10 250C70 235 120 268 185 252C250 236 310 266 410 245V276C410 289.255 399.255 300 386 300H34C20.7452 300 10 289.255 10 276V250Z" fill="#0D9488" fill-opacity="0.35"/>
-                                    <path d="M10 266C85 252 145 280 215 266C285 252 340 275 410 262V276C410 289.255 399.255 300 386 300H34C20.7452 300 10 289.255 10 276V266Z" fill="#0284C7" fill-opacity="0.45"/>
-                                    
-                                    <!-- Papan Layar Interaktif Digital -->
-                                    <rect x="52" y="45" width="220" height="145" rx="16" fill="#F8FAFC" stroke="#38BDF8" stroke-width="3"/>
-                                    <rect x="68" y="62" width="90" height="12" rx="6" fill="#0B1F3A"/>
-                                    <rect x="68" y="82" width="140" height="8" rx="4" fill="#94A3B8"/>
-                                    <rect x="68" y="96" width="115" height="8" rx="4" fill="#CBD5E1"/>
-                                    
-                                    <!-- Kartu Modul Mini di Layar -->
-                                    <rect x="68" y="116" width="56" height="54" rx="10" fill="#E0F2FE"/>
-                                    <circle cx="96" cy="136" r="10" fill="#0284C7"/>
-                                    <rect x="78" y="153" width="36" height="6" rx="3" fill="#0369A1"/>
-
-                                    <rect x="134" y="116" width="56" height="54" rx="10" fill="#CCFBF1"/>
-                                    <circle cx="162" cy="136" r="10" fill="#0D9488"/>
-                                    <rect x="144" y="153" width="36" height="6" rx="3" fill="#0F766E"/>
-
-                                    <rect x="200" y="116" width="56" height="54" rx="10" fill="#FEF3C7"/>
-                                    <circle cx="228" cy="136" r="10" fill="#D97706"/>
-                                    <rect x="210" y="153" width="36" height="6" rx="3" fill="#B45309"/>
-
-                                    <!-- Figur Guru Modern -->
-                                    <circle cx="315" cy="132" r="24" fill="#FDBA74"/>
-                                    <!-- Peci / Hijab / Rambut Profesional -->
-                                    <path d="M291 128C291 114.745 301.745 104 315 104C328.255 104 339 114.745 339 128V134H291V128Z" fill="#0B1F3A"/>
-                                    <!-- Badan Guru -->
-                                    <path d="M277 215C277 187.386 294.013 165 315 165C335.987 165 353 187.386 353 215V235H277V215Z" fill="#14B8A6"/>
-                                    <!-- Lengan & Tablet -->
-                                    <rect x="255" y="182" width="54" height="36" rx="8" fill="#1E293B" stroke="#E2E8F0" stroke-width="2"/>
-                                    <circle cx="282" cy="200" r="5" fill="#38BDF8"/>
-                                    
-                                    <!-- Lencana Melayang -->
-                                    <rect x="34" y="175" width="96" height="32" rx="16" fill="#0D9488"/>
-                                    <text x="50" y="195" fill="white" font-family="Inter, sans-serif" font-size="11" font-weight="700">6 Ruang Kelas</text>
-                                </svg>
+                                <!-- Diisi JS -->
                             </div>
                         </div>
                     </div>
@@ -303,7 +262,7 @@
                 </div>
             </div>
 
-            <!-- Bagian Pintasan Ekosistem Kerja Guru (Khusus Guru Anggota / Admin) -->
+            <!-- Bagian Pintasan Ekosistem Kerja Guru (Dinamis Sesuai Generator Admin) -->
             <div id="home-generator-section" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
                     <div>
@@ -316,38 +275,8 @@
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <div onclick="openGeneratorWorkspace('Generator MPI', 'Media Pembelajaran Interaktif')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-skybrand-500/50 transition group">
-                        <div class="w-11 h-11 rounded-xl bg-skybrand-50 text-skybrand-600 flex items-center justify-center mb-4 group-hover:bg-skybrand-600 group-hover:text-white transition">
-                            <i data-lucide="monitor-play" class="w-5 h-5"></i>
-                        </div>
-                        <h3 class="font-display font-bold text-base text-navy-900">Generator MPI</h3>
-                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Rancang kerangka dan alur media pembelajaran interaktif berbasis layar untuk siswa SD.</p>
-                    </div>
-
-                    <div onclick="openGeneratorWorkspace('Generator RPM', 'Rencana Pembelajaran Mendalam')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-turq-500/50 transition group">
-                        <div class="w-11 h-11 rounded-xl bg-turq-50 text-turq-600 flex items-center justify-center mb-4 group-hover:bg-turq-600 group-hover:text-white transition">
-                            <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
-                        </div>
-                        <h3 class="font-display font-bold text-base text-navy-900">Generator RPM</h3>
-                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Susun Rencana Pembelajaran Mendalam (Deep Learning) terstruktur sesuai fase SD.</p>
-                    </div>
-
-                    <div onclick="openGeneratorWorkspace('Generator Bahan Ajar', 'Materi, LKPD & Modul')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-indigo-500/50 transition group">
-                        <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition">
-                            <i data-lucide="book-open-check" class="w-5 h-5"></i>
-                        </div>
-                        <h3 class="font-display font-bold text-base text-navy-900">Bahan Ajar & LKPD</h3>
-                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Buat ringkasan materi kontekstual Kampung Laut, LKPD, serta bank latihan soal.</p>
-                    </div>
-
-                    <div onclick="openGeneratorWorkspace('Generator Game Edukasi', 'Permainan Pembelajaran')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-amber-500/50 transition group">
-                        <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4 group-hover:bg-amber-600 group-hover:text-white transition">
-                            <i data-lucide="gamepad-2" class="w-5 h-5"></i>
-                        </div>
-                        <h3 class="font-display font-bold text-base text-navy-900">Game Edukasi</h3>
-                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Rancang kuis interaktif dan permainan edukatif agar belajar di kelas lebih hidup.</p>
-                    </div>
+                <div id="home-generators-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Diisi otomatis dari appState.generators -->
                 </div>
             </div>
 
@@ -808,6 +737,15 @@
             }
         }
 
+        // Helper otomatis melengkapi protokol https:// pada tautan seperti s.id/xxx
+        function normalizeUrl(rawUrl) {
+            if (!rawUrl) return '';
+            const trimmed = rawUrl.trim();
+            if (!trimmed) return '';
+            if (/^https?:\/\//i.test(trimmed)) return trimmed;
+            return 'https://' + trimmed;
+        }
+
         // -------------------------------------------------------------------
         // 1. STATE APLIKASI PRODUKSI (KOSONG DARI DATA CONTOH, SINKRON FIRESTORE)
         // -------------------------------------------------------------------
@@ -873,7 +811,7 @@
 
         const appState = {
             currentView: 'beranda',
-            currentUserRole: 'guest', // 'guest' | 'teacher' | 'admin'
+            currentUserRole: 'guest',
             firebaseUser: null,
             activeClassId: null,
             activeClassTab: 'terbaru',
@@ -1030,7 +968,6 @@
                 onAuthStateChanged, doc, getDoc, setDoc, collection, onSnapshot
             } = window.fbTools;
 
-            // 1. Pantau Status Login Pengguna
             onAuthStateChanged(window.fbAuth, async (user) => {
                 appState.firebaseUser = user;
                 if (user) {
@@ -1051,7 +988,6 @@
                                 activities: Array.isArray(data.activities) ? data.activities : ['Masuk ke Ruang Karya Guru']
                             };
                         } else {
-                            // Jika akun dibuat langsung dari Firebase Console tanpa dokumen Firestore
                             const defaultUser = {
                                 name: user.email.split('@')[0],
                                 nip: '',
@@ -1078,7 +1014,6 @@
                 refreshCurrentView();
             });
 
-            // 2. Pantau Koleksi Karya Guru (works)
             onSnapshot(collection(window.fbDb, 'works'), (snapshot) => {
                 const list = [];
                 snapshot.forEach(d => list.push({ id: d.id, ...d.data() }));
@@ -1087,7 +1022,6 @@
                 refreshCurrentView();
             }, (err) => console.error('Firestore works error:', err));
 
-            // 3. Pantau Koleksi Ruang Kelas (classrooms) & Inisialisasi jika masih kosong
             onSnapshot(collection(window.fbDb, 'classrooms'), async (snapshot) => {
                 if (snapshot.empty) {
                     for (const cls of defaultClassrooms) {
@@ -1102,7 +1036,6 @@
                 }
             });
 
-            // 4. Pantau Koleksi Generator (generators) & Inisialisasi jika masih kosong
             onSnapshot(collection(window.fbDb, 'generators'), async (snapshot) => {
                 if (snapshot.empty) {
                     for (const gen of defaultGenerators) {
@@ -1116,7 +1049,6 @@
                 }
             });
 
-            // 5. Pantau Pengaturan Tema & Kategori (settings/appConfig)
             onSnapshot(doc(window.fbDb, 'settings', 'appConfig'), async (docSnap) => {
                 if (!docSnap.exists()) {
                     await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
@@ -1136,7 +1068,6 @@
                 }
             });
 
-            // 6. Pantau Daftar Guru Terdaftar (users)
             onSnapshot(collection(window.fbDb, 'users'), (snapshot) => {
                 const list = [];
                 snapshot.forEach(d => {
@@ -1156,7 +1087,6 @@
                 if (appState.currentView === 'dashboard-admin') renderAdminDashboard();
             });
 
-            // 7. Pantau Diskusi Kelas (discussions)
             onSnapshot(collection(window.fbDb, 'discussions'), (snapshot) => {
                 const grouped = {};
                 snapshot.forEach(d => {
@@ -1291,7 +1221,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 3. RENDER BERANDA & KARTU KARYA
+        // 4. RENDER BERANDA & KARTU KARYA
         // -------------------------------------------------------------------
         function renderHeroVisual() {
             const box = document.getElementById('hero-visual-container');
@@ -1353,6 +1283,29 @@
 
             const homeTeachersEl = document.getElementById('stat-home-teachers');
             if (homeTeachersEl) homeTeachersEl.textContent = appState.teachersList.length;
+
+            // Pintasan Generator di Beranda dinamis dari appState.generators
+            const homeGenList = document.getElementById('home-generators-list');
+            if (homeGenList) {
+                const colorStyles = {
+                    sky: 'bg-skybrand-50 text-skybrand-600 group-hover:bg-skybrand-600',
+                    turq: 'bg-turq-50 text-turq-600 group-hover:bg-turq-600',
+                    indigo: 'bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600',
+                    amber: 'bg-amber-50 text-amber-600 group-hover:bg-amber-600'
+                };
+                homeGenList.innerHTML = appState.generators.slice(0, 4).map(gen => {
+                    const st = colorStyles[gen.color] || colorStyles.sky;
+                    return `
+                        <div onclick="launchGenerator('${gen.id}')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-skybrand-500/50 transition group">
+                            <div class="w-11 h-11 rounded-xl ${st} flex items-center justify-center mb-4 group-hover:text-white transition">
+                                <i data-lucide="${gen.icon || 'sparkles'}" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-base text-navy-900">${gen.name}</h3>
+                            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed line-clamp-2">${gen.description}</p>
+                        </div>
+                    `;
+                }).join('');
+            }
 
             const container = document.getElementById('home-latest-works');
             if (container) {
@@ -1444,7 +1397,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 4. RUANG KELAS (KELAS 1 - KELAS 6) & KODE KELAS
+        // 5. RUANG KELAS (KELAS 1 - KELAS 6) & KODE KELAS
         // -------------------------------------------------------------------
         function renderClassrooms() {
             const grid = document.getElementById('classrooms-grid');
@@ -1743,7 +1696,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 5. GALERI KARYA GURU & QR CODE PROYEKTOR
+        // 6. GALERI KARYA GURU & QR CODE PROYEKTOR
         // -------------------------------------------------------------------
         function renderGallery() {
             const catSelect = document.getElementById('filter-kategori');
@@ -1800,7 +1753,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 6. LABORATORIUM & WORKSPACE GENERATOR INTERAKTIF
+        // 7. LABORATORIUM & WORKSPACE GENERATOR INTERAKTIF
         // -------------------------------------------------------------------
         function renderGenerators() {
             const grid = document.getElementById('generators-grid');
@@ -1860,7 +1813,7 @@
                         </div>
                         <h3 class="font-display font-bold text-lg text-slate-700">Tambah Modul Generator</h3>
                         <p class="text-sm text-slate-500 mt-2 leading-relaxed">
-                            Admin KKG dapat menambahkan tautan generator baru (Gemini Gem, Canva, atau Web App) kapan saja melalui Dashboard Admin.
+                            Admin KKG dapat menambahkan tautan generator baru (s.id, Gemini Gem, Canva, atau Web App) kapan saja melalui Dashboard Admin.
                         </p>
                     </div>
                     ${appState.currentUserRole === 'admin'
@@ -1882,8 +1835,9 @@
             const gen = appState.generators.find(g => g.id === genId);
             if (!gen) return;
 
-            if (gen.mode === 'external' && gen.externalUrl) {
-                window.open(gen.externalUrl, '_blank', 'noopener,noreferrer');
+            const finalUrl = normalizeUrl(gen.externalUrl);
+            if (finalUrl) {
+                window.open(finalUrl, '_blank', 'noopener,noreferrer');
                 showToast(`Membuka ${gen.name} di tab baru...`, 'success');
                 return;
             }
@@ -2027,6 +1981,7 @@ Topik Utama       : ${topik}
                 refreshCurrentView();
             }
         }
+
         async function toggleLikeWork(workId) {
             const work = appState.works.find(w => w.id === workId);
             if (!work) return;
@@ -2046,8 +2001,9 @@ Topik Utama       : ${topik}
         }
 
         function simulateDownload(title, url) {
-            if (url) {
-                window.open(url, '_blank', 'noopener,noreferrer');
+            const finalUrl = normalizeUrl(url);
+            if (finalUrl) {
+                window.open(finalUrl, '_blank', 'noopener,noreferrer');
             }
             showToast(`Membuka tautan karya: "${title}"`, 'success');
         }
@@ -2068,6 +2024,7 @@ Topik Utama       : ${topik}
 
             const comments = work.comments || [];
             const canComment = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
+            const cleanWorkUrl = normalizeUrl(work.downloadUrl);
 
             openModal(`
                 <div class="flex items-start justify-between gap-3 mb-4">
@@ -2094,15 +2051,15 @@ Topik Utama       : ${topik}
                         <span>Diunggah: ${work.date} • <strong>${work.views || 0}x dilihat</strong></span>
                     </div>
                     <p class="text-sm text-slate-700 leading-relaxed">${work.summary}</p>
-                    ${work.downloadUrl ? `
+                    ${cleanWorkUrl ? `
                         <div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
-                            <span class="text-xs text-slate-500 truncate max-w-xs">Tautan: ${work.downloadUrl}</span>
+                            <span class="text-xs text-slate-500 truncate max-w-xs">Tautan: ${cleanWorkUrl}</span>
                             <div class="flex items-center gap-2">
-                                <button type="button" onclick="toggleWorkQrBox('${encodeURIComponent(work.downloadUrl)}')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-skybrand-50 text-navy-900 border border-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
+                                <button type="button" onclick="toggleWorkQrBox('${encodeURIComponent(cleanWorkUrl)}')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-skybrand-50 text-navy-900 border border-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
                                     <i data-lucide="qr-code" class="w-3.5 h-3.5 text-skybrand-600"></i>
                                     <span>QR Code Proyektor</span>
                                 </button>
-                                <button type="button" onclick="simulateDownload('${work.title}', '${work.downloadUrl}')" class="px-4 py-2 rounded-xl bg-turq-600 hover:bg-turq-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
+                                <button type="button" onclick="simulateDownload('${work.title}', '${cleanWorkUrl}')" class="px-4 py-2 rounded-xl bg-turq-600 hover:bg-turq-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
                                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                                     <span>Buka / Unduh Karya</span>
                                 </button>
@@ -2184,6 +2141,7 @@ Topik Utama       : ${topik}
             openWorkDetailModal(workId, false);
             showToast('Respon berhasil disimpan!', 'success');
         }
+
         async function submitNewWork(e) {
             e.preventDefault();
             const title = document.getElementById('up-title').value;
@@ -2191,7 +2149,7 @@ Topik Utama       : ${topik}
             const category = document.getElementById('up-category').value;
             const mapel = document.getElementById('up-mapel').value;
             const summary = document.getElementById('up-summary').value;
-            const downloadUrl = document.getElementById('up-url').value;
+            const downloadUrl = normalizeUrl(document.getElementById('up-url').value);
             const thumbnailUrl = document.getElementById('up-thumb-data')?.value || '';
 
             const isAdmin = appState.currentUserRole === 'admin';
@@ -2229,13 +2187,14 @@ Topik Utama       : ${topik}
             closeModal();
             showToast(isAdmin ? 'Karya Admin langsung diterbitkan ke Galeri!' : 'Karya berhasil dikirim! Status: Menunggu persetujuan Admin.', 'success');
         }
+
         async function addNewGenerator(e) {
             e.preventDefault();
             const name = document.getElementById('new-gen-name').value.trim();
             const subtitle = document.getElementById('new-gen-sub').value.trim();
             const color = document.getElementById('new-gen-color').value;
             const description = document.getElementById('new-gen-desc').value.trim();
-            const externalUrl = document.getElementById('new-gen-url').value.trim();
+            const externalUrl = normalizeUrl(document.getElementById('new-gen-url').value);
             const thumbnailUrl = document.getElementById('new-gen-thumb-data')?.value || '';
 
             const nextLetter = String.fromCharCode(65 + appState.generators.length);
@@ -2262,7 +2221,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 7. DASHBOARD GURU & UNGGAH KARYA
+        // 8. DASHBOARD GURU & UNGGAH KARYA
         // -------------------------------------------------------------------
         function renderTeacherDashboard() {
             const p = appState.teacherProfile;
@@ -2270,6 +2229,13 @@ Topik Utama       : ${topik}
             const totalViews = myWorks.reduce((sum, w) => sum + (w.views || 0), 0);
             const totalLikes = myWorks.reduce((sum, w) => sum + (w.likes || 0), 0);
             const totalComments = myWorks.reduce((sum, w) => sum + (w.comments ? w.comments.length : 0), 0);
+
+            const genColorStyles = {
+                sky: 'bg-skybrand-50 hover:bg-skybrand-100',
+                turq: 'bg-turq-50 hover:bg-turq-100',
+                indigo: 'bg-indigo-50 hover:bg-indigo-100',
+                amber: 'bg-amber-50 hover:bg-amber-100'
+            };
 
             document.getElementById('teacher-dashboard-content').innerHTML = `
                 <!-- Header Profil Guru -->
@@ -2304,7 +2270,7 @@ Topik Utama       : ${topik}
                     <div class="mt-6 pt-6 border-t border-slate-100">
                         <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Ruang Kelas yang Diikuti (${p.joinedClasses.length})</p>
                         <div class="flex flex-wrap gap-2">
-                            ${p.joinedClasses.map(cid => {
+                            ${p.joinedClasses.length === 0 ? `<span class="text-xs text-slate-400">Belum bergabung ke ruang kelas. Klik "Gabung Kelas" untuk memasukkan Kode Kelas.</span>` : p.joinedClasses.map(cid => {
                                 const cObj = appState.classrooms.find(c => c.id === cid);
                                 return cObj ? `
                                     <button onclick="navigate('kelas'); openClassroomDetail('${cObj.id}')" class="px-3.5 py-2 rounded-xl bg-skybrand-50 hover:bg-skybrand-100 text-navy-900 text-xs font-semibold flex items-center gap-2 transition">
@@ -2347,7 +2313,7 @@ Topik Utama       : ${topik}
                             </div>
 
                             <div class="space-y-3">
-                                ${myWorks.map(w => {
+                                ${myWorks.length === 0 ? `<p class="text-xs text-slate-400 py-4 text-center">Anda belum mengunggah karya. Klik "Unggah Karya Baru" di atas untuk berbagi karya.</p>` : myWorks.map(w => {
                                     const cCount = w.comments ? w.comments.length : 0;
                                     return `
                                     <div class="p-4 rounded-2xl border border-slate-100 bg-slate-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -2360,7 +2326,7 @@ Topik Utama       : ${topik}
                                             <h3 class="font-bold text-sm text-navy-900">${w.title}</h3>
                                             <div class="flex flex-wrap items-center gap-3 mt-2 text-xs text-slate-500">
                                                 <span class="inline-flex items-center gap-1 font-medium text-slate-600"><i data-lucide="eye" class="w-3.5 h-3.5 text-skybrand-600"></i> ${w.views || 0}x dilihat</span>
-                                                <span class="inline-flex items-center gap-1 font-medium text-slate-600"><i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500"></i> ${w.likes} apresiasi</span>
+                                                <span class="inline-flex items-center gap-1 font-medium text-slate-600"><i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500"></i> ${w.likes || 0} apresiasi</span>
                                                 <span class="inline-flex items-center gap-1 font-medium text-turq-700"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> ${cCount} respon</span>
                                             </div>
                                         </div>
@@ -2379,26 +2345,22 @@ Topik Utama       : ${topik}
                             </div>
                         </div>
 
-                        <!-- Pintasan Generator -->
+                        <!-- Pintasan Generator (Dinamis Membuka Link Admin) -->
                         <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs">
-                            <h2 class="font-display font-bold text-lg text-navy-900 mb-3">Generator Tersedia</h2>
+                            <div class="flex items-center justify-between mb-3">
+                                <h2 class="font-display font-bold text-lg text-navy-900">Generator Tersedia</h2>
+                                <button onclick="navigate('generator')" class="text-xs font-semibold text-skybrand-600 hover:underline">Lihat Semua →</button>
+                            </div>
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                <button onclick="openGeneratorWorkspace('Generator MPI', 'Media Interaktif')" class="p-3.5 rounded-2xl bg-skybrand-50 hover:bg-skybrand-100 text-left transition">
-                                    <p class="font-bold text-xs text-navy-900">Generator MPI</p>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">Media Slide</p>
-                                </button>
-                                <button onclick="openGeneratorWorkspace('Generator RPM', 'Rencana Mendalam')" class="p-3.5 rounded-2xl bg-turq-50 hover:bg-turq-100 text-left transition">
-                                    <p class="font-bold text-xs text-navy-900">Generator RPM</p>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">Perencanaan</p>
-                                </button>
-                                <button onclick="openGeneratorWorkspace('Generator Bahan Ajar', 'LKPD & Modul')" class="p-3.5 rounded-2xl bg-indigo-50 hover:bg-indigo-100 text-left transition">
-                                    <p class="font-bold text-xs text-navy-900">Bahan Ajar</p>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">LKPD & Soal</p>
-                                </button>
-                                <button onclick="openGeneratorWorkspace('Generator Game', 'Game Edukasi')" class="p-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 text-left transition">
-                                    <p class="font-bold text-xs text-navy-900">Game Edukasi</p>
-                                    <p class="text-[11px] text-slate-500 mt-0.5">Kuis Kelas</p>
-                                </button>
+                                ${appState.generators.map(gen => {
+                                    const bg = genColorStyles[gen.color] || genColorStyles.sky;
+                                    return `
+                                        <button onclick="launchGenerator('${gen.id}')" class="p-3.5 rounded-2xl ${bg} text-left transition">
+                                            <p class="font-bold text-xs text-navy-900 line-clamp-1">${gen.name}</p>
+                                            <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-1">${gen.subtitle}</p>
+                                        </button>
+                                    `;
+                                }).join('')}
                             </div>
                         </div>
                     </div>
@@ -2473,8 +2435,8 @@ Topik Utama       : ${topik}
                         <textarea id="up-summary" rows="3" required placeholder="Jelaskan secara singkat isi perangkat dan cara penggunaannya di kelas..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm"></textarea>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan Berkas Eksternal (Google Drive / Canva / Web)</label>
-                        <input type="url" id="up-url" placeholder="https://drive.google.com/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan Berkas Eksternal (s.id / Google Drive / Canva / Web)</label>
+                        <input type="text" id="up-url" placeholder="Contoh: s.id/mpi-kelas4 atau https://drive.google.com/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Unggah Thumbnail / Screenshot Karya (Opsional, Otomatis Dikompres)</label>
@@ -2492,7 +2454,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 8. DASHBOARD ADMIN KKG
+        // 9. DASHBOARD ADMIN KKG
         // -------------------------------------------------------------------
         let activeAdminTab = 'kurasi';
 
@@ -2714,7 +2676,7 @@ Topik Utama       : ${topik}
                                     </div>
                                     <div>
                                         <label class="block text-xs font-semibold text-slate-700 mb-1">Atau Tempel Tautan URL Gambar</label>
-                                        <input type="url" id="admin-hero-url-input" value="${currentImg.startsWith('http') ? currentImg : ''}" placeholder="https://..." oninput="document.getElementById('admin-hero-data-input').value = this.value" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                                        <input type="text" id="admin-hero-url-input" value="${currentImg.startsWith('http') ? currentImg : ''}" placeholder="https://..." oninput="document.getElementById('admin-hero-data-input').value = this.value" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-semibold text-slate-700 mb-1">Teks Lencana Keterangan di Bawah Gambar</label>
@@ -2752,7 +2714,7 @@ Topik Utama       : ${topik}
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
                         <div>
                             <h2 class="font-display font-bold text-lg text-navy-900">Manajemen Modul Generator</h2>
-                            <p class="text-xs text-slate-500">Tambahkan tautan generator eksternal (Gemini Gem, Canva, Apps Script, dll.) atau gunakan kerangka bawaan.</p>
+                            <p class="text-xs text-slate-500">Tambahkan tautan generator eksternal (s.id, Gemini Gem, Canva, Apps Script, dll.) atau gunakan kerangka bawaan.</p>
                         </div>
                     </div>
 
@@ -2784,8 +2746,8 @@ Topik Utama       : ${topik}
                                 <input type="text" id="new-gen-desc" required placeholder="Jelaskan kegunaan generator ini bagi guru..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan URL Generator (Kosongkan jika pakai Kerangka Bawaan)</label>
-                                <input type="url" id="new-gen-url" placeholder="https://gemini.google.com/gem/... atau link web app" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan URL Generator (Bisa s.id/xxx atau https://...)</label>
+                                <input type="text" id="new-gen-url" placeholder="Contoh: s.id/mpi-kkg atau https://gemini.google.com/gem/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
                             </div>
                         </div>
                         <div>
@@ -2842,11 +2804,11 @@ Topik Utama       : ${topik}
                     <h3 class="font-display font-bold text-lg text-navy-900">Atur Tautan & Thumbnail: ${gen.name}</h3>
                     <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
                 </div>
-                <p class="text-xs text-slate-600 mb-4">Tempelkan link generator Anda (misal: Gemini Gem, Google Apps Script, Canva, atau Web App khusus) serta unggah sampul generator bila diinginkan.</p>
+                <p class="text-xs text-slate-600 mb-4">Tempelkan link generator Anda (bisa langsung ketik <strong>s.id/nama-link</strong> atau URL lengkap <strong>https://...</strong>).</p>
                 <form onsubmit="saveGeneratorUrl(event, '${gen.id}')" class="space-y-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">URL Aplikasi Generator</label>
-                        <input type="url" id="edit-gen-url-input" value="${gen.externalUrl || ''}" placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm">
+                        <input type="text" id="edit-gen-url-input" value="${gen.externalUrl || ''}" placeholder="Contoh: s.id/mpi-kkg atau https://..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Unggah / Ganti Thumbnail Sampul Generator</label>
@@ -2898,7 +2860,7 @@ Topik Utama       : ${topik}
         async function saveGeneratorUrl(e, genId) {
             e.preventDefault();
             const gen = appState.generators.find(g => g.id === genId);
-            const url = document.getElementById('edit-gen-url-input').value.trim();
+            const url = normalizeUrl(document.getElementById('edit-gen-url-input').value);
             const thumb = document.getElementById('edit-gen-thumb-data')?.value || '';
             if (gen && window.fbDb && window.fbTools) {
                 const { doc, updateDoc } = window.fbTools;
@@ -2954,6 +2916,7 @@ Topik Utama       : ${topik}
                 showToast(`Kode akses ${cls.name} diperbarui menjadi ${newCode}`, 'success');
             }
         }
+
         async function addNewCategory(e) {
             e.preventDefault();
             const input = document.getElementById('new-cat-name');
@@ -3024,7 +2987,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 9. AUTENTIKASI FIREBASE (LOGIN, DAFTAR, LUPA PASSWORD)
+        // 10. AUTENTIKASI FIREBASE (LOGIN, DAFTAR, LUPA PASSWORD)
         // -------------------------------------------------------------------
         function switchAuthMode(mode) {
             ['login-guru', 'daftar-guru', 'login-admin', 'lupa-password'].forEach(m => {
@@ -3124,7 +3087,7 @@ Topik Utama       : ${topik}
         }
 
         // -------------------------------------------------------------------
-        // 10. MODAL & TOAST HELPER
+        // 11. MODAL & TOAST HELPER
         // -------------------------------------------------------------------
         function openModal(htmlContent) {
             const modal = document.getElementById('app-modal');
