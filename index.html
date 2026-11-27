@@ -911,63 +911,6 @@
             { id: 'gen-soal', title: 'Generator Bank Soal & Kisi-Kisi', desc: 'Susun soal HOTS pilihan ganda, isian, dan uraian beserta kunci jawaban otomatis.', url: 'https://gemini.google.com', icon: 'check-square', badge: 'Evaluasi Belajar' }
         ];
 
-        const defaultWorks = [
-            {
-                id: 'work-demo-1',
-                title: 'Petualangan Sejarah Lahirnya Pancasila (Game Edukasi)',
-                description: 'Media pembelajaran interaktif berbasis kuis petualangan untuk siswa Kelas 5 SD pada mata pelajaran Pendidikan Pancasila.',
-                category: 'Game Edukasi',
-                subject: 'Pendidikan Pancasila',
-                className: 'Kelas 5',
-                authorName: 'Wahyono, S.Pd.SD',
-                authorSchool: 'SD Negeri Ujungalang 02',
-                authorEmail: 'wahyono@sekolah.sch.id',
-                thumbnailUrl: '',
-                previewUrl: 'https://wahyono06.github.io',
-                driveUrl: 'https://drive.google.com',
-                status: 'approved',
-                views: 42,
-                likes: 18,
-                createdAt: '27 Nov 2026'
-            },
-            {
-                id: 'work-demo-2',
-                title: 'MPI Iman Kepada Malaikat Allah',
-                description: 'Multimedia Pembelajaran Interaktif lengkap dengan materi audio-visual, latihan soal, dan rangkuman untuk Kelas 4.',
-                category: 'Multimedia Interaktif (MPI)',
-                subject: 'Pendidikan Agama',
-                className: 'Kelas 4',
-                authorName: 'Singgih Prabowo Aji, S.Pd.I',
-                authorSchool: 'SD Negeri Klaces 01',
-                authorEmail: 'singgih@sekolah.sch.id',
-                thumbnailUrl: '',
-                previewUrl: 'https://wahyono06.github.io',
-                driveUrl: 'https://drive.google.com',
-                status: 'approved',
-                views: 35,
-                likes: 14,
-                createdAt: '25 Nov 2026'
-            },
-            {
-                id: 'work-demo-3',
-                title: 'Modul Ajar IPAS: Ekosistem Mangrove Segara Anakan',
-                description: 'Perangkat ajar mendalam berbasis kearifan lokal hutan bakau Kampung Laut lengkap dengan LKPD dan rubrik penilaian.',
-                category: 'Modul Ajar / RPM',
-                subject: 'IPAS',
-                className: 'Kelas 5',
-                authorName: 'Siti Aminah, S.Pd.',
-                authorSchool: 'SD Negeri Panikel 01',
-                authorEmail: 'siti@sekolah.sch.id',
-                thumbnailUrl: '',
-                previewUrl: '',
-                driveUrl: 'https://drive.google.com',
-                status: 'approved',
-                views: 29,
-                likes: 12,
-                createdAt: '22 Nov 2026'
-            }
-        ];
-
         const appState = {
             currentView: 'beranda',
             currentUser: null,
@@ -975,22 +918,11 @@
             activeClassTab: 'terbaru',
             classrooms: [...defaultClassrooms],
             generators: [...defaultGenerators],
-            works: [...defaultWorks],
+            works: [],
             teachersList: [],
             discussions: {},
-            qnaThreads: [
-                {
-                    id: 'qna-1',
-                    title: 'Panduan Unggah Karya Interaktif (GitHub + Google Drive)',
-                    question: 'Bagaimana cara agar media pembelajaran HTML yang saya buat bisa langsung dimainkan di Ruang Karya Guru dan sekaligus bisa diunduh rekan guru lain?',
-                    authorName: 'Siti Aminah, S.Pd.',
-                    authorSchool: 'SDN Panikel 01',
-                    createdAt: '24 Nov 2026',
-                    status: 'answered',
-                    adminReply: 'Silakan unggah file HTML ke GitHub Pages untuk mendapatkan tautan tampilan langsung, lalu unggah paket file ke Google Drive sebagai tautan unduhan. Keduanya dapat dimasukkan pada formulir Unggah Karya.',
-                    replies: []
-                }
-            ],
+            qnaThreads: [],
+            pendingThumbnailData: '',
             categories: ['Modul Ajar / RPM', 'Multimedia Interaktif (MPI)', 'Game Edukasi', 'LKPD & Asesmen', 'Bahan Ajar / Video'],
             subjects: ['Pendidikan Pancasila', 'Bahasa Indonesia', 'Matematika', 'IPAS', 'Seni Budaya', 'PJOK', 'Pendidikan Agama', 'Bahasa Inggris'],
             adminWhatsapp: '6281234567890',
@@ -1300,11 +1232,14 @@
         function renderHomeView() {
             const approvedWorks = appState.works.filter(w => w.status === 'approved');
 
-            // Statistik Beranda
+            // Statistik Beranda (Murni berdasarkan data asli)
             const teachersCountEl = document.getElementById('stat-home-teachers');
             const worksCountEl = document.getElementById('stat-home-works');
-            const uniqueAuthors = new Set(approvedWorks.map(w => w.authorEmail || w.authorName));
-            if (teachersCountEl) teachersCountEl.textContent = `${Math.max(uniqueAuthors.size, appState.teachersList.length, 48)} Guru`;
+            const uniqueAuthors = new Set([
+                ...appState.teachersList.map(t => t.email || t.uid),
+                ...approvedWorks.map(w => w.authorEmail || w.authorName)
+            ].filter(Boolean));
+            if (teachersCountEl) teachersCountEl.textContent = `${uniqueAuthors.size} Guru`;
             if (worksCountEl) worksCountEl.textContent = `${approvedWorks.length} Karya`;
 
             // Pintasan Generator di Beranda
@@ -1828,11 +1763,12 @@
         }
 
         function openUploadWorkModal() {
+            appState.pendingThumbnailData = '';
             openModal(`
                 <div class="flex items-center justify-between mb-4">
                     <div>
                         <h3 class="font-display font-bold text-xl text-navy-900">Unggah Karya Guru Baru</h3>
-                        <p class="text-xs text-slate-500">Tambahkan thumbnail, link tampilan web (opsional), dan link unduhan Google Drive.</p>
+                        <p class="text-xs text-slate-500">Unggah gambar sampul karya, link tampilan web (opsional), dan link unduhan Google Drive.</p>
                     </div>
                     <button onclick="closeModal()" class="p-2 rounded-xl text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
                 </div>
@@ -1865,8 +1801,16 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Link Gambar Thumbnail / Sampul Karya (Opsional)</label>
-                        <input type="url" id="work-thumbnail-url" placeholder="https://contoh.com/gambar-sampul.jpg (Kosongkan untuk sampul otomatis)" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Gambar Thumbnail / Sampul Karya (Opsional)</label>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-3 rounded-2xl border border-dashed border-slate-300 bg-slate-50/70">
+                            <div id="work-thumb-preview-box" class="w-28 h-16 rounded-xl bg-slate-200/80 overflow-hidden flex items-center justify-center text-slate-400 shrink-0 border border-slate-200">
+                                <i data-lucide="image" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1 w-full">
+                                <input type="file" id="work-thumbnail-file" accept="image/*" onchange="handleThumbnailFileChange(event)" class="block w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-navy-900 file:text-white hover:file:bg-skybrand-600 cursor-pointer">
+                                <p class="text-[10px] text-slate-500 mt-1">Pilih file gambar JPG/PNG/WebP dari perangkat (otomatis dikompres agar ringan).</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div>
@@ -1878,7 +1822,7 @@
                         <div>
                             <label class="block text-xs font-bold text-skybrand-700 mb-1">1. Link Tampilan Web (Opsional)</label>
                             <input type="url" id="work-preview-url" placeholder="https://... (GitHub Pages, Canva, Quizizz, Wordwall, Web App)" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white">
-                            <span class="text-[10px] text-slate-500 mt-1 block">Bebas link web apa saja (tidak harus GitHub) agar langsung tampil di layar.</span>
+                            <span class="text-[10px] text-slate-500 mt-1 block">Bebas link web apa saja agar langsung tampil di layar.</span>
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-turq-700 mb-1">2. Link Unduhan (Google Drive) *</label>
@@ -1895,6 +1839,43 @@
             `, 'max-w-2xl');
         }
 
+        function handleThumbnailFileChange(event) {
+            const file = event.target.files && event.target.files[0];
+            const previewBox = document.getElementById('work-thumb-preview-box');
+            if (!file) {
+                appState.pendingThumbnailData = '';
+                if (previewBox) previewBox.innerHTML = `<i data-lucide="image" class="w-5 h-5"></i>`;
+                if (window.lucide) lucide.createIcons();
+                return;
+            }
+            if (!file.type.startsWith('image/')) {
+                showToast('Harap pilih file gambar yang valid (JPG, PNG, atau WebP).', 'error');
+                event.target.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const maxWidth = 640;
+                    const scale = img.width > maxWidth ? (maxWidth / img.width) : 1;
+                    const canvas = document.createElement('canvas');
+                    canvas.width = Math.round(img.width * scale);
+                    canvas.height = Math.round(img.height * scale);
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.78);
+                    appState.pendingThumbnailData = compressedDataUrl;
+                    if (previewBox) {
+                        previewBox.innerHTML = `<img src="${compressedDataUrl}" alt="Pratinjau Thumbnail" class="w-full h-full object-cover">`;
+                    }
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
         async function submitNewWork(event) {
             event.preventDefault();
             const isAdmin = appState.currentUser?.role === 'admin';
@@ -1904,7 +1885,7 @@
                 className: document.getElementById('work-class').value,
                 category: document.getElementById('work-category').value,
                 subject: document.getElementById('work-subject').value,
-                thumbnailUrl: document.getElementById('work-thumbnail-url').value.trim(),
+                thumbnailUrl: appState.pendingThumbnailData || '',
                 description: document.getElementById('work-desc').value.trim(),
                 previewUrl: document.getElementById('work-preview-url').value.trim(),
                 driveUrl: document.getElementById('work-drive-url').value.trim(),
@@ -1918,6 +1899,7 @@
             };
 
             appState.works.unshift(newWork);
+            appState.pendingThumbnailData = '';
             if (window.fbDb && window.fbTools) {
                 window.fbTools.setDoc(window.fbTools.doc(window.fbDb, 'works', newWork.id), newWork).catch(() => {});
             }
@@ -2241,7 +2223,33 @@
         // =================================================================
         // 10. INISIALISASI HALAMAN SAAT PERTAMA DIMUAT
         // =================================================================
+        // 10. SINKRONISASI DATA REAL-TIME & INISIALISASI HALAMAN
+        // =================================================================
+        function initRealtimeSync() {
+            if (!window.fbDb || !window.fbTools) return;
+            const { collection, onSnapshot } = window.fbTools;
+
+            onSnapshot(collection(window.fbDb, 'works'), (snapshot) => {
+                const cloudWorks = [];
+                snapshot.forEach(docSnap => {
+                    cloudWorks.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                appState.works = cloudWorks;
+                refreshCurrentView();
+            }, () => {});
+
+            onSnapshot(collection(window.fbDb, 'users'), (snapshot) => {
+                const users = [];
+                snapshot.forEach(docSnap => {
+                    users.push({ uid: docSnap.id, ...docSnap.data() });
+                });
+                appState.teachersList = users.filter(u => u.role !== 'admin');
+                refreshCurrentView();
+            }, () => {});
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            initRealtimeSync();
             refreshCurrentView();
         });
     </script>
