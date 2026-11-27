@@ -558,10 +558,14 @@
                         </div>
                         <div class="relative">
                             <input type="password" id="login-guru-pass" name="kkg_guru_login_pass" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly');" required placeholder="Masukkan kata sandi" class="w-full pl-4 pr-11 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-skybrand-500">
-                            <button type="button" onclick="togglePasswordVisibility('login-guru-pass', this)" title="Tampilkan / Sembunyikan Sandi" class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-navy-900 transition">
+                            <button type="button" onclick="togglePasswordVisibility('login-guru-pass', this, 'chk-show-guru-pass')" title="Tampilkan / Sembunyikan Sandi" class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-navy-900 transition">
                                 <i data-lucide="eye" class="w-4 h-4"></i>
                             </button>
                         </div>
+                        <label class="inline-flex items-center gap-2 mt-2 cursor-pointer select-none text-xs text-slate-600 hover:text-navy-900">
+                            <input type="checkbox" id="chk-show-guru-pass" onchange="setPasswordVisibility('login-guru-pass', this.checked)" class="rounded border-slate-300 text-navy-900 focus:ring-skybrand-500">
+                            <span>Tampilkan sandi</span>
+                        </label>
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-turq-600 text-white font-semibold text-sm transition shadow-sm">
                         Masuk ke Dashboard Guru
@@ -616,10 +620,14 @@
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Password *</label>
                         <div class="relative">
                             <input type="password" id="reg-pass" name="kkg_reg_guru_pass" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly');" required minlength="6" placeholder="Minimal 6 karakter" class="w-full pl-3.5 pr-11 py-2 rounded-xl border border-slate-200 text-sm">
-                            <button type="button" onclick="togglePasswordVisibility('reg-pass', this)" title="Tampilkan / Sembunyikan Sandi" class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-navy-900 transition">
+                            <button type="button" onclick="togglePasswordVisibility('reg-pass', this, 'chk-show-reg-pass')" title="Tampilkan / Sembunyikan Sandi" class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-navy-900 transition">
                                 <i data-lucide="eye" class="w-4 h-4"></i>
                             </button>
                         </div>
+                        <label class="inline-flex items-center gap-2 mt-1.5 cursor-pointer select-none text-xs text-slate-600 hover:text-navy-900">
+                            <input type="checkbox" id="chk-show-reg-pass" onchange="setPasswordVisibility('reg-pass', this.checked)" class="rounded border-slate-300 text-navy-900 focus:ring-skybrand-500">
+                            <span>Tampilkan sandi</span>
+                        </label>
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-turq-600 hover:bg-turq-500 text-white font-semibold text-sm transition shadow-sm">
                         Daftar & Masuk
@@ -649,10 +657,14 @@
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Kata Sandi Admin</label>
                         <div class="relative">
                             <input type="password" id="login-admin-pass" name="kkg_admin_login_pass" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly');" required placeholder="Masukkan kata sandi admin" class="w-full pl-4 pr-11 py-2.5 rounded-xl border border-slate-200 text-sm">
-                            <button type="button" onclick="togglePasswordVisibility('login-admin-pass', this)" title="Tampilkan / Sembunyikan Sandi" class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-navy-900 transition">
+                            <button type="button" onclick="togglePasswordVisibility('login-admin-pass', this, 'chk-show-admin-pass')" title="Tampilkan / Sembunyikan Sandi" class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-navy-900 transition">
                                 <i data-lucide="eye" class="w-4 h-4"></i>
                             </button>
                         </div>
+                        <label class="inline-flex items-center gap-2 mt-2 cursor-pointer select-none text-xs text-slate-600 hover:text-navy-900">
+                            <input type="checkbox" id="chk-show-admin-pass" onchange="setPasswordVisibility('login-admin-pass', this.checked)" class="rounded border-slate-300 text-navy-900 focus:ring-skybrand-500">
+                            <span>Tampilkan sandi</span>
+                        </label>
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-semibold text-sm transition">
                         Masuk ke Dashboard Admin
@@ -854,11 +866,27 @@
             showToast(`Memulai unduhan langsung "${cleanName}"...`, 'success');
         }
 
-        function togglePasswordVisibility(inputId, btnEl) {
+        function setPasswordVisibility(inputId, isVisible) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            input.type = isVisible ? 'text' : 'password';
+            const wrapper = input.parentElement;
+            const iconBtn = wrapper ? wrapper.querySelector('button') : null;
+            if (iconBtn) {
+                iconBtn.innerHTML = `<i data-lucide="${isVisible ? 'eye-off' : 'eye'}" class="w-4 h-4"></i>`;
+                renderIcons();
+            }
+        }
+
+        function togglePasswordVisibility(inputId, btnEl, checkboxId = '') {
             const input = document.getElementById(inputId);
             if (!input) return;
             const isHidden = input.type === 'password';
             input.type = isHidden ? 'text' : 'password';
+            if (checkboxId) {
+                const chk = document.getElementById(checkboxId);
+                if (chk) chk.checked = isHidden;
+            }
             if (btnEl) {
                 btnEl.innerHTML = `<i data-lucide="${isHidden ? 'eye-off' : 'eye'}" class="w-4 h-4"></i>`;
                 renderIcons();
@@ -1753,6 +1781,8 @@
 
             const likedClass = work.likedByMe ? 'text-rose-600 bg-rose-50 border-rose-200' : 'text-slate-600 bg-slate-50 border-slate-200 hover:bg-rose-50 hover:text-rose-600';
             const commentCount = work.comments ? work.comments.length : 0;
+            const driveUrl = (work.downloadUrl || '').trim();
+            const safeTitleAttr = safeTitle.replace(/'/g, "\\'").replace(/"/g, '&quot;');
             const rankBadge = rankNumber ? `<span class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-amber-400 text-navy-950 shadow-xs">Terkini #${rankNumber}</span>` : '';
             const thumbHTML = work.thumbnailUrl
                 ? `
@@ -1799,33 +1829,42 @@
                     </div>
 
                     <div class="mt-4 pt-3 border-t border-slate-100">
-                        <div class="flex items-center justify-between text-xs text-slate-600 mb-3">
+                        <div class="flex items-center justify-between gap-2 text-xs text-slate-600 mb-3">
                             <div class="flex items-center gap-2 min-w-0">
                                 <div class="w-7 h-7 rounded-full bg-navy-900 text-white font-bold text-xs flex items-center justify-center shrink-0">
                                     ${safeAuthor.charAt(0).toUpperCase()}
                                 </div>
-                                <div class="truncate">
+                                <div class="min-w-0">
                                     <p class="font-semibold text-navy-900 truncate">${safeAuthor}</p>
                                     <p class="text-[11px] text-slate-400 truncate">${safeSchool}</p>
                                 </div>
                             </div>
+                            <span class="text-[11px] text-slate-400 shrink-0">${work.views || 0}x dilihat</span>
                         </div>
 
-                        <div class="flex items-center justify-between gap-2">
-                            <div class="flex items-center gap-1.5">
-                                <button onclick="toggleLikeWork('${work.id}')" title="Beri Apresiasi" class="px-2.5 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1 transition ${likedClass}">
+                        <div class="flex items-center justify-between gap-2 pt-2.5 border-t border-slate-100">
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <button onclick="toggleLikeWork('${work.id}')" title="Beri Apresiasi" class="h-8 px-2.5 rounded-xl border text-xs font-semibold inline-flex items-center justify-center gap-1 transition ${likedClass}">
                                     <i data-lucide="heart" class="w-3.5 h-3.5 ${work.likedByMe ? 'fill-rose-600' : ''}"></i>
                                     <span>${work.likes || 0}</span>
                                 </button>
-                                <button onclick="openWorkDetailModal('${work.id}', false)" title="Lihat Respon & Komentar" class="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-skybrand-50 text-slate-600 hover:text-skybrand-700 text-xs font-semibold flex items-center gap-1 transition">
+                                <button onclick="openWorkDetailModal('${work.id}', false)" title="Lihat Respon & Komentar" class="h-8 px-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-skybrand-50 text-slate-600 hover:text-skybrand-700 text-xs font-semibold inline-flex items-center justify-center gap-1 transition">
                                     <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
                                     <span>${commentCount}</span>
                                 </button>
                             </div>
-                            <button onclick="openWorkDetailModal('${work.id}', false)" class="px-3.5 py-1.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold flex items-center gap-1.5 transition">
-                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                                <span>Lihat Karya</span>
-                            </button>
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <button onclick="openWorkDirectTab('${work.id}')" class="h-8 px-2.5 rounded-xl bg-navy-900 hover:bg-skybrand-700 text-white text-[11px] font-semibold inline-flex items-center justify-center gap-1 whitespace-nowrap transition">
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5 shrink-0"></i>
+                                    <span>Lihat Karya</span>
+                                </button>
+                                ${driveUrl ? `
+                                    <button onclick="triggerDirectDownload('${driveUrl.replace(/'/g, "\\'")}', '${safeTitleAttr}')" title="Unduh Berkas Karya" class="h-8 px-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold inline-flex items-center justify-center gap-1 whitespace-nowrap transition">
+                                        <i data-lucide="download" class="w-3.5 h-3.5 shrink-0"></i>
+                                        <span>Unduh Karya</span>
+                                    </button>
+                                ` : ''}
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -2478,6 +2517,74 @@ Topik Utama       : ${topik}
             showToast(`Membuka tautan karya: "${title}"`, 'success');
         }
 
+        function openWorkDirectTab(workId) {
+            const work = appState.works.find(w => w.id === workId);
+            if (!work) return;
+
+            const targetUrl = (work.webUrl || work.downloadUrl || '').trim();
+            if (!targetUrl) {
+                openWorkDetailModal(workId, false);
+                return;
+            }
+
+            work.views = (work.views || 0) + 1;
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc, increment } = window.fbTools;
+                updateDoc(doc(window.fbDb, 'works', workId), {
+                    views: increment(1)
+                }).catch(() => {});
+            }
+
+            window.open(targetUrl, '_blank', 'noopener,noreferrer');
+            refreshCurrentView();
+        }
+
+        // -------------------------------------------------------------------
+        // RENDER PRATINJAU WEB LANGSUNG & LAYAR PENUH
+        // -------------------------------------------------------------------
+        function renderDirectWebViewer(webUrl) {
+            const container = document.getElementById('auto-html-viewer-container');
+            const badge = document.getElementById('viewer-mode-badge');
+            if (!container) return;
+
+            let embedUrl = (webUrl || '').trim();
+            const driveId = extractGoogleDriveId(embedUrl);
+            if (driveId) {
+                embedUrl = `https://drive.google.com/file/d/${driveId}/preview`;
+            }
+
+            if (badge) {
+                badge.textContent = 'Tampilan Web Aktif';
+                badge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800';
+            }
+
+            container.innerHTML = `
+                <iframe
+                    src="${embedUrl}"
+                    class="w-full h-[380px] sm:h-[460px] border-0 bg-white"
+                    allow="fullscreen; autoplay; clipboard-read; clipboard-write"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+                    loading="lazy"
+                    title="Pratinjau Web Karya Guru">
+                </iframe>
+            `;
+        }
+
+        function toggleViewerFullscreen() {
+            const wrapper = document.getElementById('work-viewer-wrapper');
+            if (!wrapper) return;
+
+            if (!document.fullscreenElement) {
+                if (wrapper.requestFullscreen) {
+                    wrapper.requestFullscreen().catch(() => {
+                        showToast('Mode layar penuh tidak didukung oleh peramban ini.', 'info');
+                    });
+                }
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
         // -------------------------------------------------------------------
         // DETAIL KARYA DENGAN 2 LINK: LINK WEB LANGSUNG & LINK UNDUH DRIVE
         // -------------------------------------------------------------------
@@ -2517,12 +2624,6 @@ Topik Utama       : ${topik}
                     </div>
                     <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 shrink-0"><i data-lucide="x" class="w-5 h-5"></i></button>
                 </div>
-
-                ${work.thumbnailUrl ? `
-                    <div class="mb-4 rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 max-h-56 flex items-center justify-center">
-                        <img src="${work.thumbnailUrl}" alt="Screenshot ${work.title}" class="w-full h-auto max-h-56 object-contain">
-                    </div>
-                ` : ''}
 
                 <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 mb-4">
                     <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 pb-3 mb-3 border-b border-slate-200/80">
