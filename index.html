@@ -1403,6 +1403,7 @@
                         school: u.school || '-',
                         kelas: u.assignedClass || '-',
                         role: u.role || 'teacher',
+                        joinedClasses: Array.isArray(u.joinedClasses) ? u.joinedClasses : [],
                         lastActiveAt: u.lastActiveAt || 0,
                         status: 'Aktif'
                     });
@@ -1410,6 +1411,7 @@
                 appState.teachersList = list;
                 const homeTeachersEl = document.getElementById('stat-home-teachers');
                 if (homeTeachersEl) homeTeachersEl.textContent = list.length;
+                if (appState.currentView === 'kelas' && !appState.activeClassId) renderClassrooms();
                 if (appState.currentView === 'dashboard-admin') renderAdminDashboard();
             });
 
@@ -1992,6 +1994,16 @@
         // -------------------------------------------------------------------
         // 5. RUANG KELAS (KELAS 1 - KELAS 6) & KODE KELAS
         // -------------------------------------------------------------------
+        function getClassMembersCount(classId) {
+            if (Array.isArray(appState.teachersList) && appState.teachersList.length > 0) {
+                return appState.teachersList.filter(t =>
+                    t.role !== 'admin' && Array.isArray(t.joinedClasses) && t.joinedClasses.includes(classId)
+                ).length;
+            }
+            const cls = appState.classrooms.find(c => c.id === classId);
+            return cls ? (cls.membersCount || 0) : 0;
+        }
+
         function renderClassrooms() {
             const grid = document.getElementById('classrooms-grid');
             if (!grid) return;
@@ -2000,6 +2012,7 @@
                 const isJoined = appState.currentUserRole === 'admin' ||
                     (appState.currentUserRole === 'teacher' && appState.teacherProfile.joinedClasses.includes(cls.id));
                 const approvedCount = appState.works.filter(w => w.status === 'approved' && w.kelas === cls.name).length;
+                const realMembersCount = getClassMembersCount(cls.id);
 
                 return `
                     <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-md transition flex flex-col justify-between">
@@ -2019,7 +2032,7 @@
 
                         <div class="mt-6 pt-4 border-t border-slate-100">
                             <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-                                <span>${cls.membersCount || 0} Guru Anggota</span>
+                                <span>${realMembersCount} Guru Anggota</span>
                                 <span>${approvedCount} Karya Terbit</span>
                             </div>
                             <button onclick="openClassroomDetail('${cls.id}')" class="w-full py-2.5 px-4 rounded-xl bg-skybrand-50 hover:bg-navy-900 text-navy-900 hover:text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
@@ -2590,14 +2603,15 @@ Topik Utama       : ${topik}
                 appState.teacherProfile.activities.unshift(`Bergabung ke Ruang ${cls.name} (Kode: ${cls.code})`);
 
                 if (window.fbDb && window.fbTools && appState.firebaseUser) {
-                    const { doc, updateDoc, increment } = window.fbTools;
+                    const { doc, updateDoc, arrayUnion } = window.fbTools;
                     await updateDoc(doc(window.fbDb, 'users', appState.firebaseUser.uid), {
-                        joinedClasses: appState.teacherProfile.joinedClasses,
+                        joinedClasses: arrayUnion(classId),
                         activities: appState.teacherProfile.activities
                     });
+                    const updatedMembersCount = getClassMembersCount(classId);
                     await updateDoc(doc(window.fbDb, 'classrooms', classId), {
-                        membersCount: increment(1)
-                    });
+                        membersCount: updatedMembersCount
+                    }).catch(() => {});
                 }
             }
 
@@ -3292,7 +3306,7 @@ Topik Utama       : ${topik}
         function renderAdminDashboard() {
             const pendingWorks = appState.works.filter(w => w.status === 'pending');
             const approvedWorks = appState.works.filter(w => w.status === 'approved');
-            const totalClassMembers = appState.classrooms.reduce((sum, c) => sum + (c.membersCount || 0), 0);
+            const totalClassMembers = appState.classrooms.reduce((sum, c) => sum + getClassMembersCount(c.id), 0);
             const totalQueue = pendingWorks.length + appState.workRevisions.length;
 
             document.getElementById('admin-dashboard-content').innerHTML = `
@@ -3460,7 +3474,7 @@ Topik Utama       : ${topik}
                                 <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/70 space-y-3">
                                     <div class="flex items-center justify-between">
                                         <span class="font-display font-bold text-navy-900">${cls.name} (${cls.fase})</span>
-                                        <span class="text-xs text-slate-500">${cls.membersCount || 0} anggota</span>
+                                        <span class="text-xs text-slate-500">${getClassMembersCount(cls.id)} anggota</span>
                                     </div>
                                     <div class="flex gap-2">
                                         <input type="text" id="code-input-${cls.id}" value="${cls.code}" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 font-mono text-xs uppercase bg-white">
