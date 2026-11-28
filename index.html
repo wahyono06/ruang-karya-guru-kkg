@@ -1751,9 +1751,9 @@
                 const isExternal = gen.mode === 'external' && gen.externalUrl;
                 const topVisual = gen.thumbnailUrl
                     ? `
-                        <div class="h-32 -mx-5 -mt-5 mb-4 relative overflow-hidden bg-navy-900">
+                        <div class="h-36 -mx-5 -mt-5 mb-2 relative overflow-hidden bg-white">
                             <img src="${gen.thumbnailUrl}" alt="${gen.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-navy-950/15 via-white/25 to-white"></div>
                             <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/95 text-navy-900 shadow-2xs">${gen.badge}</span>
                         </div>
                     `
@@ -1770,7 +1770,7 @@
                     <div onclick="launchGenerator('${gen.id}')" class="cursor-pointer bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md ${st.hover} transition group overflow-hidden flex flex-col justify-between">
                         <div>
                             ${topVisual}
-                            <h3 class="font-display font-bold text-base text-navy-900 group-hover:text-skybrand-600 transition">${gen.name}</h3>
+                            <h3 class="font-display font-bold text-base text-navy-900 group-hover:text-skybrand-600 transition relative z-10">${gen.name}</h3>
                             <p class="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">${gen.description}</p>
                         </div>
                         <div class="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-navy-900">
@@ -2058,8 +2058,8 @@
             document.getElementById('classroom-list-view').classList.add('hidden');
             document.getElementById('classroom-detail-view').classList.remove('hidden');
 
-            const isMember = appState.currentUserRole === 'admin' ||
-                (appState.currentUserRole === 'teacher' && appState.teacherProfile.joinedClasses.includes(cls.id));
+            const isTeacherMember = appState.currentUserRole === 'teacher' && appState.teacherProfile.joinedClasses.includes(cls.id);
+            const isMember = appState.currentUserRole === 'admin' || isTeacherMember;
 
             document.getElementById('class-detail-header').innerHTML = `
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -2073,7 +2073,7 @@
                         <h2 class="font-display font-extrabold text-2xl sm:text-3xl">Ruang Kolaborasi ${cls.name}</h2>
                         <p class="text-sm text-slate-200 mt-1 max-w-2xl">${cls.description}</p>
                     </div>
-                    <div class="shrink-0">
+                    <div class="flex flex-wrap items-center gap-2.5 shrink-0">
                         ${isMember
                             ? `<button onclick="handleUploadAction()" class="px-5 py-3 rounded-2xl bg-turq-500 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-2 transition">
                                 <i data-lucide="upload-cloud" class="w-4 h-4"></i>
@@ -2083,6 +2083,13 @@
                                 <i data-lucide="key-round" class="w-4 h-4 text-turq-600"></i>
                                 <span>Masukkan Kode Kelas</span>
                                </button>`
+                        }
+                        ${isTeacherMember
+                            ? `<button onclick="confirmLeaveClass('${cls.id}')" class="px-4 py-3 rounded-2xl bg-rose-500/20 hover:bg-rose-600 text-rose-100 hover:text-white border border-rose-300/30 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
+                                <i data-lucide="log-out" class="w-4 h-4"></i>
+                                <span>Keluar Kelas</span>
+                               </button>`
+                            : ''
                         }
                     </div>
                 </div>
@@ -2233,9 +2240,9 @@
                             const isExternal = g.mode === 'external' && g.externalUrl;
                             const headerVisual = g.thumbnailUrl
                                 ? `
-                                    <div class="h-36 -mx-6 -mt-6 mb-4 relative overflow-hidden bg-navy-900">
+                                    <div class="h-40 -mx-6 -mt-6 mb-2 relative overflow-hidden bg-white">
                                         <img src="${g.thumbnailUrl}" alt="${g.name}" class="w-full h-full object-cover">
-                                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-transparent to-navy-950/20"></div>
+                                        <div class="absolute inset-0 bg-gradient-to-b from-navy-950/15 via-white/25 to-white"></div>
                                         <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/95 text-navy-900 shadow-xs">${g.badge}</span>
                                     </div>
                                 `
@@ -2252,7 +2259,7 @@
                                 <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
                                     <div>
                                         ${headerVisual}
-                                        <h4 class="font-display font-bold text-lg text-navy-900">${g.name} <span class="text-xs font-semibold text-turq-700">(${cls.name})</span></h4>
+                                        <h4 class="font-display font-bold text-lg text-navy-900 relative z-10">${g.name} <span class="text-xs font-semibold text-turq-700">(${cls.name})</span></h4>
                                         <p class="text-xs font-semibold text-slate-400 mt-0.5">${g.subtitle}</p>
                                         <p class="text-sm text-slate-600 mt-3 leading-relaxed">${g.description}</p>
                                     </div>
@@ -2413,9 +2420,9 @@
                 const isExternal = gen.mode === 'external' && gen.externalUrl;
                 const genHeaderVisual = gen.thumbnailUrl
                     ? `
-                        <div class="h-36 -mx-6 -mt-6 mb-4 relative overflow-hidden bg-navy-900">
+                        <div class="h-40 -mx-6 -mt-6 mb-2 relative overflow-hidden bg-white">
                             <img src="${gen.thumbnailUrl}" alt="${gen.name}" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-transparent to-navy-950/20"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-navy-950/15 via-white/25 to-white"></div>
                             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/95 text-navy-900 shadow-xs">${gen.badge}</span>
                         </div>
                     `
@@ -2432,7 +2439,7 @@
                     <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
                         <div>
                             ${genHeaderVisual}
-                            <h3 class="font-display font-bold text-lg text-navy-900">${gen.name}</h3>
+                            <h3 class="font-display font-bold text-lg text-navy-900 relative z-10">${gen.name}</h3>
                             <p class="text-xs font-semibold text-slate-400 mt-0.5">${gen.subtitle}</p>
                             <p class="text-sm text-slate-600 mt-3 leading-relaxed">${gen.description}</p>
                         </div>
@@ -2624,121 +2631,62 @@ Topik Utama       : ${topik}
             }
         }
 
-        // -------------------------------------------------------------------
-        // SISTEM TANDA SUKA (1x PER PENGGUNA: MERAH JIKA DISUKAI, BATAL JIKA DIKLIK LAGI)
-        // -------------------------------------------------------------------
-        async function toggleLikeWork(workId) {
-            const work = appState.works.find(w => w.id === workId);
-            if (!work) return;
+        function confirmLeaveClass(classId) {
+            if (appState.currentUserRole !== 'teacher') return;
+            const cls = appState.classrooms.find(c => c.id === classId);
+            if (!cls) return;
 
-            const likerId = getCurrentLikerId();
-            const currentlyLiked = isWorkLikedByCurrentUser(work);
-            const nextLiked = !currentlyLiked;
-            const delta = nextLiked ? 1 : -1;
-
-            if (!Array.isArray(work.likedBy)) {
-                work.likedBy = [];
-            }
-
-            if (nextLiked) {
-                if (!work.likedBy.includes(likerId)) {
-                    work.likedBy.push(likerId);
-                }
-            } else {
-                work.likedBy = work.likedBy.filter(id => id !== likerId);
-            }
-            work.likedByMe = nextLiked;
-            work.likes = Math.max(0, (work.likes || 0) + delta);
-
-            refreshCurrentView();
-
-            if (window.fbDb && window.fbTools) {
-                const { doc, updateDoc, increment, arrayUnion, arrayRemove } = window.fbTools;
-                try {
-                    await updateDoc(doc(window.fbDb, 'works', workId), {
-                        likes: increment(delta),
-                        likedBy: nextLiked ? arrayUnion(likerId) : arrayRemove(likerId)
-                    });
-                } catch (err) {
-                    console.error('Gagal memperbarui tanda suka:', err);
-                }
-            }
-
-            showToast(nextLiked ? 'Anda menyukai karya ini ❤️' : 'Tanda suka dibatalkan.', 'info');
+            openModal(`
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-display font-bold text-lg text-navy-900">Keluar dari Ruang ${cls.name}?</h3>
+                    <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
+                    Anda akan keluar dari keanggotaan <strong>${cls.name} (${cls.fase})</strong>. Anda dapat bergabung kembali kapan saja menggunakan Kode Kelas dari Admin KKG.
+                </p>
+                <div class="flex items-center justify-end gap-2.5">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold transition">
+                        Batal
+                    </button>
+                    <button type="button" onclick="executeLeaveClass('${cls.id}')" class="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs sm:text-sm font-semibold transition">
+                        Ya, Keluar Kelas
+                    </button>
+                </div>
+            `);
         }
 
-        function simulateDownload(title, url) {
-            if (url) {
-                window.open(url, '_blank', 'noopener,noreferrer');
-            }
-            showToast(`Membuka tautan karya: "${title}"`, 'success');
-        }
+        async function executeLeaveClass(classId) {
+            if (appState.currentUserRole !== 'teacher') return;
+            const cls = appState.classrooms.find(c => c.id === classId);
+            if (!cls) return;
 
-        function openWorkDirectTab(workId) {
-            const work = appState.works.find(w => w.id === workId);
-            if (!work) return;
+            appState.teacherProfile.joinedClasses = appState.teacherProfile.joinedClasses.filter(id => id !== classId);
+            appState.teacherProfile.activities.unshift(`Keluar dari keanggotaan Ruang ${cls.name}`);
 
-            const targetUrl = (work.webUrl || work.downloadUrl || '').trim();
-            if (!targetUrl) {
-                openWorkDetailModal(workId, false);
-                return;
+            const teacherEntry = appState.teachersList.find(t => t.id === appState.teacherProfile.id);
+            if (teacherEntry && Array.isArray(teacherEntry.joinedClasses)) {
+                teacherEntry.joinedClasses = teacherEntry.joinedClasses.filter(id => id !== classId);
             }
 
-            work.views = (work.views || 0) + 1;
-            if (window.fbDb && window.fbTools) {
-                const { doc, updateDoc, increment } = window.fbTools;
-                updateDoc(doc(window.fbDb, 'works', workId), {
-                    views: increment(1)
+            if (window.fbDb && window.fbTools && appState.firebaseUser) {
+                const { doc, updateDoc, arrayRemove } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'users', appState.firebaseUser.uid), {
+                    joinedClasses: arrayRemove(classId),
+                    activities: appState.teacherProfile.activities
+                }).catch(() => {});
+
+                const updatedMembersCount = getClassMembersCount(classId);
+                await updateDoc(doc(window.fbDb, 'classrooms', classId), {
+                    membersCount: updatedMembersCount
                 }).catch(() => {});
             }
 
-            window.open(targetUrl, '_blank', 'noopener,noreferrer');
-            refreshCurrentView();
-        }
-
-        // -------------------------------------------------------------------
-        // RENDER PRATINJAU WEB LANGSUNG & LAYAR PENUH
-        // -------------------------------------------------------------------
-        function renderDirectWebViewer(webUrl) {
-            const container = document.getElementById('auto-html-viewer-container');
-            const badge = document.getElementById('viewer-mode-badge');
-            if (!container) return;
-
-            let embedUrl = (webUrl || '').trim();
-            const driveId = extractGoogleDriveId(embedUrl);
-            if (driveId) {
-                embedUrl = `https://drive.google.com/file/d/${driveId}/preview`;
-            }
-
-            if (badge) {
-                badge.textContent = 'Tampilan Web Aktif';
-                badge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800';
-            }
-
-            container.innerHTML = `
-                <iframe
-                    src="${embedUrl}"
-                    class="w-full h-[380px] sm:h-[460px] border-0 bg-white"
-                    allow="fullscreen; autoplay; clipboard-read; clipboard-write"
-                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
-                    loading="lazy"
-                    title="Pratinjau Web Karya Guru">
-                </iframe>
-            `;
-        }
-
-        function toggleViewerFullscreen() {
-            const wrapper = document.getElementById('work-viewer-wrapper');
-            if (!wrapper) return;
-
-            if (!document.fullscreenElement) {
-                if (wrapper.requestFullscreen) {
-                    wrapper.requestFullscreen().catch(() => {
-                        showToast('Mode layar penuh tidak didukung oleh peramban ini.', 'info');
-                    });
-                }
-            } else if (document.exitFullscreen) {
-                document.exitFullscreen().catch(() => {});
+            closeModal();
+            showToast(`Anda telah keluar dari keanggotaan ${cls.name}.`, 'info');
+            if (appState.activeClassId === classId) {
+                openClassroomDetail(classId);
+            } else {
+                refreshCurrentView();
             }
         }
 
@@ -2805,27 +2753,24 @@ Topik Utama       : ${topik}
                                     <span>QR Code Proyektor</span>
                                 </button>
                                 ${webUrl ? `
-                                    <a href="${webUrl}" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-skybrand-600 hover:bg-skybrand-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
+                                    <a href="${webUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-navy-900 hover:bg-skybrand-700 text-white text-xs font-semibold flex items-center gap-1.5 transition">
                                         <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                                        <span>Buka Tautan</span>
+                                        <span>Buka Tab Baru</span>
                                     </a>
                                 ` : ''}
                                 ${driveUrl ? `
-                                    <button type="button" onclick="triggerDirectDownload('${driveUrl.replace(/'/g, "\\'")}', '${safeTitleAttr}')" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
+                                    <button type="button" onclick="triggerDirectDownload('${driveUrl.replace(/'/g, "\\'")}', '${safeTitleAttr}')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
                                         <i data-lucide="download" class="w-3.5 h-3.5"></i>
-                                        <span>Unduh</span>
+                                        <span>Unduh Karya</span>
                                     </button>
                                 ` : ''}
                             </div>
                         ` : ''}
                     </div>
-                    ${activeQrUrl ? `
-                        <div id="work-qr-box" class="hidden mt-3 p-4 rounded-2xl bg-white border border-slate-200 text-center">
-                            <p class="text-xs font-bold text-navy-900 mb-2">Pindai QR Code dari Layar Proyektor / HP</p>
-                            <img id="work-qr-img" src="" alt="QR Code Karya" class="w-36 h-36 mx-auto rounded-xl border border-slate-100 p-1">
-                            <p class="text-[11px] text-slate-500 mt-2">Arahkan kamera HP untuk langsung membuka tautan karya ini.</p>
-                        </div>
-                    ` : ''}
+                    <div id="work-qr-box" class="hidden mt-4 p-4 rounded-2xl bg-white border border-slate-200 text-center">
+                        <img id="work-qr-img" src="" alt="QR Code Karya" class="w-40 h-40 mx-auto rounded-xl border border-slate-100">
+                        <p class="text-[11px] text-slate-500 mt-2">Pindai QR Code ini untuk membuka karya langsung di layar proyektor atau gawai siswa.</p>
+                    </div>
                 </div>
 
                 ${webUrl ? `
@@ -2892,6 +2837,103 @@ Topik Utama       : ${topik}
 
             if (webUrl) {
                 renderDirectWebViewer(webUrl);
+            }
+        }
+
+        function getEmbeddableWebUrl(rawUrl) {
+            if (!rawUrl) return '';
+            const trimmed = rawUrl.trim();
+            const driveId = extractGoogleDriveId(trimmed);
+            if (driveId) {
+                return `https://drive.google.com/file/d/${driveId}/preview`;
+            }
+            const ytMatch = trimmed.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+            if (ytMatch && ytMatch[1]) {
+                return `https://www.youtube.com/embed/${ytMatch[1]}`;
+            }
+            return trimmed;
+        }
+
+        function renderDirectWebViewer(rawUrl) {
+            const container = document.getElementById('auto-html-viewer-container');
+            const badge = document.getElementById('viewer-mode-badge');
+            if (!container) return;
+
+            const embedUrl = getEmbeddableWebUrl(rawUrl);
+            if (badge) {
+                badge.textContent = 'Pratinjau Aktif';
+                badge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800';
+            }
+
+            container.innerHTML = `
+                <iframe
+                    src="${embedUrl}"
+                    class="w-full h-[380px] sm:h-[440px] border-0 bg-white"
+                    allow="fullscreen; autoplay; clipboard-write"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                ></iframe>
+            `;
+        }
+
+        function toggleViewerFullscreen() {
+            const wrapper = document.getElementById('work-viewer-wrapper');
+            if (!wrapper) return;
+            if (!document.fullscreenElement) {
+                if (wrapper.requestFullscreen) {
+                    wrapper.requestFullscreen().catch(() => {
+                        showToast('Mode layar penuh tidak didukung oleh browser ini.', 'info');
+                    });
+                }
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        async function toggleLikeWork(workId) {
+            const work = appState.works.find(w => w.id === workId);
+            if (!work) return;
+
+            const likerId = getCurrentLikerId();
+            if (!Array.isArray(work.likedBy)) work.likedBy = [];
+            const alreadyLiked = work.likedBy.includes(likerId);
+
+            if (alreadyLiked) {
+                work.likedBy = work.likedBy.filter(id => id !== likerId);
+                work.likes = Math.max(0, (work.likes || 1) - 1);
+            } else {
+                work.likedBy.push(likerId);
+                work.likes = (work.likes || 0) + 1;
+            }
+
+            refreshCurrentView();
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc, arrayUnion, arrayRemove, increment } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'works', workId), {
+                    likedBy: alreadyLiked ? arrayRemove(likerId) : arrayUnion(likerId),
+                    likes: increment(alreadyLiked ? -1 : 1)
+                }).catch(() => {});
+            }
+        }
+
+        function openWorkDirectTab(workId) {
+            const work = appState.works.find(w => w.id === workId);
+            if (!work) return;
+
+            const targetUrl = (work.webUrl || work.downloadUrl || '').trim();
+            if (targetUrl) {
+                work.views = (work.views || 0) + 1;
+                if (window.fbDb && window.fbTools) {
+                    const { doc, updateDoc, increment } = window.fbTools;
+                    updateDoc(doc(window.fbDb, 'works', workId), {
+                        views: increment(1)
+                    }).catch(() => {});
+                }
+                window.open(targetUrl, '_blank', 'noopener,noreferrer');
+            } else {
+                openWorkDetailModal(workId, false);
             }
         }
 
@@ -3161,13 +3203,18 @@ Topik Utama       : ${topik}
                     <div class="mt-6 pt-6 border-t border-slate-100">
                         <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Ruang Kelas yang Diikuti (${p.joinedClasses.length})</p>
                         <div class="flex flex-wrap gap-2">
-                            ${p.joinedClasses.map(cid => {
+                            ${p.joinedClasses.length === 0 ? `<span class="text-xs text-slate-400">Belum bergabung di ruang kelas mana pun.</span>` : p.joinedClasses.map(cid => {
                                 const cObj = appState.classrooms.find(c => c.id === cid);
                                 return cObj ? `
-                                    <button onclick="navigate('kelas'); openClassroomDetail('${cObj.id}')" class="px-3.5 py-2 rounded-xl bg-skybrand-50 hover:bg-skybrand-100 text-navy-900 text-xs font-semibold flex items-center gap-2 transition">
-                                        <i data-lucide="door-open" class="w-3.5 h-3.5 text-skybrand-600"></i>
-                                        <span>Ruang ${cObj.name}</span>
-                                    </button>
+                                    <div class="inline-flex items-center rounded-xl bg-skybrand-50 border border-skybrand-100 overflow-hidden">
+                                        <button onclick="navigate('kelas'); openClassroomDetail('${cObj.id}')" class="px-3.5 py-2 hover:bg-skybrand-100 text-navy-900 text-xs font-semibold flex items-center gap-2 transition">
+                                            <i data-lucide="door-open" class="w-3.5 h-3.5 text-skybrand-600"></i>
+                                            <span>Ruang ${cObj.name}</span>
+                                        </button>
+                                        <button onclick="confirmLeaveClass('${cObj.id}')" title="Keluar dari ${cObj.name}" class="px-2.5 py-2 hover:bg-rose-100 text-slate-400 hover:text-rose-600 border-l border-skybrand-100 text-xs transition">
+                                            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </div>
                                 ` : '';
                             }).join('')}
                         </div>
