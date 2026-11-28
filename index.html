@@ -77,6 +77,16 @@
             --color-accent-600: #0D9488;
             --color-accent-700: #0F766E;
             --color-accent-800: #115E59;
+
+            /* Satu Bidang Motif Liquid / Fluid Abstract Diagonal Utuh Tanpa Kotak Berulang */
+            --hero-motif-pattern: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 640' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cpath d='M-150 560 C 220 460, 480 260, 860 150 C 1140 70, 1360 -40, 1620 -120 L 1620 120 C 1340 210, 1100 330, 800 430 C 440 550, 160 660, -150 760 Z' fill='%23FFFFFF' fill-opacity='0.028'/%3E%3Cpath d='M-150 280 C 180 200, 460 60, 820 -30 C 1100 -100, 1340 -180, 1620 -250 L 1620 -90 C 1340 -10, 1080 80, 780 160 C 440 250, 160 360, -150 440 Z' fill='%23FFFFFF' fill-opacity='0.022'/%3E%3Cpath d='M180 740 C 520 620, 780 460, 1140 340 C 1340 270, 1480 190, 1650 130 L 1650 320 C 1460 390, 1280 470, 1060 540 C 740 640, 480 760, 180 840 Z' fill='%23FFFFFF' fill-opacity='0.022'/%3E%3Cpath d='M-150 540 C 220 440, 480 240, 860 130 C 1140 50, 1360 -60, 1620 -140' stroke='%23FFFFFF' stroke-opacity='0.045' stroke-width='1.6'/%3E%3Cpath d='M-150 260 C 180 180, 460 40, 820 -50 C 1100 -120, 1340 -200, 1620 -270' stroke='%23FFFFFF' stroke-opacity='0.038' stroke-width='1.4'/%3E%3Cpath d='M180 720 C 520 600, 780 440, 1140 320 C 1340 250, 1480 170, 1650 110' stroke='%23FFFFFF' stroke-opacity='0.038' stroke-width='1.4'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-motif-overlay {
+            background-image: var(--hero-motif-pattern);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         .view-section {
@@ -94,19 +104,19 @@
         /* Motif Latar Belakang Dinamis */
         .batik-kawung {
             background-color: var(--bg-page-color, #f8fafc);
-            background-image: var(--bg-pattern-kawung, url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230B1F3A' stroke-opacity='0.045' stroke-width='1.15'%3E%3Cellipse cx='36' cy='18' rx='9' ry='16'/%3E%3Cellipse cx='36' cy='54' rx='9' ry='16'/%3E%3Cellipse cx='18' cy='36' rx='16' ry='9'/%3E%3Cellipse cx='54' cy='36' rx='16' ry='9'/%3E%3Ccircle cx='36' cy='36' r='3.5'/%3E%3Ccircle cx='36' cy='18' r='1.5'/%3E%3Ccircle cx='36' cy='54' r='1.5'/%3E%3Ccircle cx='18' cy='36' r='1.5'/%3E%3Ccircle cx='54' cy='36' r='1.5'/%3E%3Cpath d='M0 0 L12 12 M72 0 L60 12 M0 72 L12 60 M72 72 L60 60'/%3E%3C/g%3E%3C/svg%3E"));
+            background-image: var(--bg-pattern-kawung, url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230B1F3A' stroke-opacity='0.06' stroke-width='1.2'%3E%3Cellipse cx='36' cy='18' rx='9' ry='16'/%3E%3Cellipse cx='36' cy='54' rx='9' ry='16'/%3E%3Cellipse cx='18' cy='36' rx='16' ry='9'/%3E%3Cellipse cx='54' cy='36' rx='16' ry='9'/%3E%3Ccircle cx='36' cy='36' r='3.5'/%3E%3Ccircle cx='36' cy='18' r='1.5'/%3E%3Ccircle cx='36' cy='54' r='1.5'/%3E%3Ccircle cx='18' cy='36' r='1.5'/%3E%3Ccircle cx='54' cy='36' r='1.5'/%3E%3Cpath d='M0 0 L12 12 M72 0 L60 12 M0 72 L12 60 M72 72 L60 60'/%3E%3C/g%3E%3C/svg%3E"));
         }
         .batik-parang {
-            background-image: var(--bg-pattern-parang, url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230284C7' stroke-opacity='0.055' stroke-width='1.2'%3E%3Cpath d='M-10 20 Q 10 5, 30 20 T 70 20 T 110 20'/%3E%3Cpath d='M-10 40 Q 10 25, 30 40 T 70 40 T 110 40'/%3E%3Cpath d='M-10 60 Q 10 45, 30 60 T 70 60 T 110 60'/%3E%3Cpath d='M-10 80 Q 10 65, 30 80 T 70 80 T 110 80'/%3E%3Ccircle cx='20' cy='30' r='2'/%3E%3Ccircle cx='60' cy='50' r='2'/%3E%3C/g%3E%3C/svg%3E"));
+            background-image: var(--bg-pattern-parang, url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230284C7' stroke-opacity='0.065' stroke-width='1.25'%3E%3Cpath d='M-10 20 Q 10 5, 30 20 T 70 20 T 110 20'/%3E%3Cpath d='M-10 40 Q 10 25, 30 40 T 70 40 T 110 40'/%3E%3Cpath d='M-10 60 Q 10 45, 30 60 T 70 60 T 110 60'/%3E%3Cpath d='M-10 80 Q 10 65, 30 80 T 70 80 T 110 80'/%3E%3Ccircle cx='20' cy='30' r='2'/%3E%3Ccircle cx='60' cy='50' r='2'/%3E%3C/g%3E%3C/svg%3E"));
         }
         .batik-truntum {
-            background-image: var(--bg-pattern-truntum, url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230D9488' stroke-opacity='0.055' stroke-width='1.1'%3E%3Cpath d='M32 14 L35 28 L49 32 L35 36 L32 50 L29 36 L15 32 L29 28 Z'/%3E%3Cpath d='M22 22 L29 29 M42 22 L35 29 M22 42 L29 35 M42 42 L35 35'/%3E%3Ccircle cx='32' cy='32' r='3'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Ccircle cx='64' cy='0' r='5'/%3E%3Ccircle cx='0' cy='64' r='5'/%3E%3Ccircle cx='64' cy='64' r='5'/%3E%3C/g%3E%3C/svg%3E"));
+            background-image: var(--bg-pattern-truntum, url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230D9488' stroke-opacity='0.065' stroke-width='1.15'%3E%3Cpath d='M32 14 L35 28 L49 32 L35 36 L32 50 L29 36 L15 32 L29 28 Z'/%3E%3Cpath d='M22 22 L29 29 M42 22 L35 29 M22 42 L29 35 M42 42 L35 35'/%3E%3Ccircle cx='32' cy='32' r='3'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Ccircle cx='64' cy='0' r='5'/%3E%3Ccircle cx='0' cy='64' r='5'/%3E%3Ccircle cx='64' cy='64' r='5'/%3E%3C/g%3E%3C/svg%3E"));
         }
         .batik-ceplok {
-            background-image: var(--bg-pattern-ceplok, url("data:image/svg+xml,%3Csvg width='76' height='76' viewBox='0 0 76 76' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230369A1' stroke-opacity='0.055' stroke-width='1.15'%3E%3Crect x='14' y='14' width='48' height='48' rx='14' transform='rotate(45 38 38)'/%3E%3Ccircle cx='38' cy='38' r='12'/%3E%3Ccircle cx='38' cy='38' r='4'/%3E%3Ccircle cx='38' cy='16' r='2.5'/%3E%3Ccircle cx='38' cy='60' r='2.5'/%3E%3Ccircle cx='16' cy='38' r='2.5'/%3E%3Ccircle cx='60' cy='38' r='2.5'/%3E%3C/g%3E%3C/svg%3E"));
+            background-image: var(--bg-pattern-ceplok, url("data:image/svg+xml,%3Csvg width='76' height='76' viewBox='0 0 76 76' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230369A1' stroke-opacity='0.065' stroke-width='1.2'%3E%3Crect x='14' y='14' width='48' height='48' rx='14' transform='rotate(45 38 38)'/%3E%3Ccircle cx='38' cy='38' r='12'/%3E%3Ccircle cx='38' cy='38' r='4'/%3E%3Ccircle cx='38' cy='16' r='2.5'/%3E%3Ccircle cx='38' cy='60' r='2.5'/%3E%3Ccircle cx='16' cy='38' r='2.5'/%3E%3Ccircle cx='60' cy='38' r='2.5'/%3E%3C/g%3E%3C/svg%3E"));
         }
         .batik-sidomukti {
-            background-image: var(--bg-pattern-sidomukti, url("data:image/svg+xml,%3Csvg width='84' height='84' viewBox='0 0 84 84' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23B45309' stroke-opacity='0.055' stroke-width='1.15'%3E%3Cpath d='M42 4 L80 42 L42 80 L4 42 Z'/%3E%3Cpath d='M42 16 L68 42 L42 68 L16 42 Z'/%3E%3Ccircle cx='42' cy='42' r='7'/%3E%3Cpath d='M42 26 V32 M42 52 V58 M26 42 H32 M52 42 H58'/%3E%3Ccircle cx='0' cy='42' r='6'/%3E%3Ccircle cx='84' cy='42' r='6'/%3E%3Ccircle cx='42' cy='0' r='6'/%3E%3Ccircle cx='42' cy='84' r='6'/%3E%3C/g%3E%3C/svg%3E"));
+            background-image: var(--bg-pattern-sidomukti, url("data:image/svg+xml,%3Csvg width='84' height='84' viewBox='0 0 84 84' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23B45309' stroke-opacity='0.065' stroke-width='1.2'%3E%3Cpath d='M42 4 L80 42 L42 80 L4 42 Z'/%3E%3Cpath d='M42 16 L68 42 L42 68 L16 42 Z'/%3E%3Ccircle cx='42' cy='42' r='7'/%3E%3Cpath d='M42 26 V32 M42 52 V58 M26 42 H32 M52 42 H58'/%3E%3Ccircle cx='0' cy='42' r='6'/%3E%3Ccircle cx='84' cy='42' r='6'/%3E%3Ccircle cx='42' cy='0' r='6'/%3E%3Ccircle cx='42' cy='84' r='6'/%3E%3C/g%3E%3C/svg%3E"));
         }
     </style>
 </head>
@@ -189,26 +199,28 @@
         <!-- VIEW 1: BERANDA                                                   -->
         <!-- ================================================================= -->
         <section id="view-beranda" class="view-section">
-            <!-- Hero Section -->
+            <!-- Hero Section dengan Motif Liquid / Fluid Abstract Samar -->
             <div class="relative overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-skybrand-900 text-white">
-                <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-turq-500/15 blur-3xl pointer-events-none"></div>
-                <div class="absolute bottom-0 left-10 w-72 h-72 rounded-full bg-skybrand-500/15 blur-3xl pointer-events-none"></div>
+                <!-- Layer Motif Beranda Paling Atas -->
+                <div class="hero-motif-overlay absolute inset-0 pointer-events-none"></div>
+                <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-turq-500/20 blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 left-10 w-72 h-72 rounded-full bg-skybrand-500/20 blur-3xl pointer-events-none"></div>
 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                         <!-- Teks Hero -->
                         <div class="lg:col-span-7 space-y-6">
                             <div id="home-logged-user-banner" class="hidden"></div>
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-xs text-turq-200 text-xs sm:text-sm font-medium">
-                                <i data-lucide="sparkles" class="w-4 h-4 text-turq-400"></i>
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/20 backdrop-blur-xs text-turq-200 text-xs sm:text-sm font-medium">
+                                <i data-lucide="sparkles" class="w-4 h-4 text-turq-300"></i>
                                 <span>Platform Digital Kolaborasi Pendidik SD • Wilayah Pesisir & Perairan</span>
                             </div>
 
                             <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight">
-                                Berkarya, Berbagi, <span class="text-transparent bg-clip-text bg-gradient-to-r from-turq-200 via-sky-300 to-white">Menginspirasi.</span>
+                                Berkarya, Berbagi, <span class="text-transparent bg-clip-text bg-gradient-to-r from-turq-200 via-sky-200 to-white">Menginspirasi.</span>
                             </h1>
 
-                            <p class="text-slate-200 text-base sm:text-lg max-w-2xl leading-relaxed">
+                            <p class="text-slate-100 text-base sm:text-lg max-w-2xl leading-relaxed">
                                 Wadah digital resmi <strong>KKG Kampung Laut</strong> bagi guru Sekolah Dasar untuk menyusun perangkat ajar, mengembangkan media pembelajaran interaktif, menyimpan arsip karya, serta berbagi praktik baik antarsekolah.
                             </p>
 
@@ -217,7 +229,7 @@
                                     <i data-lucide="door-open" class="w-5 h-5"></i>
                                     <span>Jelajahi Ruang Kelas</span>
                                 </button>
-                                <button onclick="navigate('galeri')" class="px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-sm sm:text-base flex items-center gap-2 transition">
+                                <button onclick="navigate('galeri')" class="px-6 py-3.5 rounded-2xl bg-white/15 hover:bg-white/25 text-white border border-white/25 font-semibold text-sm sm:text-base flex items-center gap-2 transition">
                                     <i data-lucide="library" class="w-5 h-5"></i>
                                     <span>Lihat Galeri Karya</span>
                                 </button>
@@ -226,39 +238,39 @@
 
                         <!-- Ilustrasi SVG / Foto Hero yang Dapat Diganti Admin -->
                         <div class="lg:col-span-5 flex justify-center">
-                            <div id="hero-visual-container" class="w-full max-w-md bg-white/10 backdrop-blur-md border border-white/15 rounded-3xl p-6 shadow-2xl"></div>
+                            <div id="hero-visual-container" class="w-full max-w-lg bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-1.5 sm:p-2 shadow-2xl"></div>
                         </div>
                     </div>
 
                     <!-- Ringkasan Statistik Langsung -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10 pt-8 border-t border-white/15">
-                        <div class="bg-white/10 backdrop-blur-xs rounded-2xl p-4 flex items-center gap-4 border border-white/10">
-                            <div class="w-12 h-12 rounded-xl bg-skybrand-500/20 text-sky-300 flex items-center justify-center shrink-0">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10 pt-8 border-t border-white/20">
+                        <div class="bg-white/10 backdrop-blur-xs rounded-2xl p-4 flex items-center gap-4 border border-white/15">
+                            <div class="w-12 h-12 rounded-xl bg-skybrand-500/25 text-sky-200 flex items-center justify-center shrink-0">
                                 <i data-lucide="users" class="w-6 h-6"></i>
                             </div>
                             <div>
                                 <p class="text-2xl sm:text-3xl font-display font-extrabold text-white" id="stat-home-teachers">0</p>
-                                <p class="text-xs sm:text-sm text-slate-300">Guru SD Tergabung</p>
+                                <p class="text-xs sm:text-sm text-slate-200">Guru SD Tergabung</p>
                             </div>
                         </div>
 
-                        <div class="bg-white/10 backdrop-blur-xs rounded-2xl p-4 flex items-center gap-4 border border-white/10">
-                            <div class="w-12 h-12 rounded-xl bg-turq-500/20 text-turq-300 flex items-center justify-center shrink-0">
+                        <div class="bg-white/10 backdrop-blur-xs rounded-2xl p-4 flex items-center gap-4 border border-white/15">
+                            <div class="w-12 h-12 rounded-xl bg-turq-500/25 text-turq-200 flex items-center justify-center shrink-0">
                                 <i data-lucide="school" class="w-6 h-6"></i>
                             </div>
                             <div>
                                 <p class="text-2xl sm:text-3xl font-display font-extrabold text-white">6 Kelas</p>
-                                <p class="text-xs sm:text-sm text-slate-300">Ruang Kolaborasi Kelas 1–6</p>
+                                <p class="text-xs sm:text-sm text-slate-200">Ruang Kolaborasi Kelas 1–6</p>
                             </div>
                         </div>
 
-                        <div class="bg-white/10 backdrop-blur-xs rounded-2xl p-4 flex items-center gap-4 border border-white/10">
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0">
+                        <div class="bg-white/10 backdrop-blur-xs rounded-2xl p-4 flex items-center gap-4 border border-white/15">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/25 text-amber-200 flex items-center justify-center shrink-0">
                                 <i data-lucide="folder-check" class="w-6 h-6"></i>
                             </div>
                             <div>
                                 <p class="text-2xl sm:text-3xl font-display font-extrabold text-white" id="stat-home-works">0</p>
-                                <p class="text-xs sm:text-sm text-slate-300">Karya & Perangkat Terpublikasi</p>
+                                <p class="text-xs sm:text-sm text-slate-200">Karya & Perangkat Terpublikasi</p>
                             </div>
                         </div>
                     </div>
@@ -762,7 +774,8 @@
             addDoc,
             deleteDoc,
             increment,
-            arrayUnion
+            arrayUnion,
+            arrayRemove
         } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -793,7 +806,8 @@
             addDoc,
             deleteDoc,
             increment,
-            arrayUnion
+            arrayUnion,
+            arrayRemove
         };
 
         if (typeof window.initFirebaseSync === 'function') {
@@ -809,6 +823,30 @@
             if (window.lucide && typeof window.lucide.createIcons === 'function') {
                 window.lucide.createIcons();
             }
+        }
+
+        // -------------------------------------------------------------------
+        // IDENTITAS PERANGKAT / AKUN UNTUK VALIDASI 1 SUKA PER PENGGUNA
+        // -------------------------------------------------------------------
+        function getCurrentLikerId() {
+            if (appState.firebaseUser && appState.firebaseUser.uid) {
+                return 'uid_' + appState.firebaseUser.uid;
+            }
+            let guestId = localStorage.getItem('kkg_guest_liker_id');
+            if (!guestId) {
+                guestId = 'guest_' + Math.random().toString(36).substring(2, 12) + Date.now();
+                localStorage.setItem('kkg_guest_liker_id', guestId);
+            }
+            return guestId;
+        }
+
+        function isWorkLikedByCurrentUser(work) {
+            if (!work) return false;
+            const likerId = getCurrentLikerId();
+            if (Array.isArray(work.likedBy)) {
+                return work.likedBy.includes(likerId);
+            }
+            return !!work.likedByMe;
         }
 
         // -------------------------------------------------------------------
@@ -894,7 +932,7 @@
         }
 
         // -------------------------------------------------------------------
-        // 1. STATE APLIKASI PRODUKSI
+        // 1. STATE APLIKASI PRODUKSI & VARIASI TEMA WARNA LENGKAP
         // -------------------------------------------------------------------
         const defaultClassrooms = [
             { id: 'kelas-1', name: 'Kelas 1', fase: 'Fase A', code: 'KKG-KL1', membersCount: 0, description: 'Kolaborasi literasi awal, numerasi dasar, dan pembelajaran menyenangkan kelas awal.' },
@@ -974,7 +1012,7 @@
             palettes: {
                 samudra: {
                     name: 'Samudra Kampung Laut',
-                    desc: 'Biru Navy resmi dipadukan Biru Muda & Hijau Turquoise pesisir (Bawaan).',
+                    desc: 'Biru Navy resmi dipadukan Biru Muda & Hijau Turquoise pesisir dengan motif Batik Kawung.',
                     swatches: ['#0B1F3A', '#0284C7', '#14B8A6'],
                     vars: {
                         '--color-primary-800': '#132a4e',
@@ -998,8 +1036,8 @@
                     }
                 },
                 zamrud: {
-                    name: 'Zamrud Pesisir',
-                    desc: 'Nuansa hijau hutan bakau yang sejuk dan menenangkan.',
+                    name: 'Zamrud Hutan Bakau',
+                    desc: 'Nuansa hijau hutan mangrove Segara Anakan yang sejuk dengan motif daun & ombak.',
                     swatches: ['#064E3B', '#059669', '#10B981'],
                     vars: {
                         '--color-primary-800': '#065F46',
@@ -1022,9 +1060,86 @@
                         '--color-accent-800': '#166534'
                     }
                 },
+                sogan: {
+                    name: 'Sogan Batik Klasik Cilacap',
+                    desc: 'Perpaduan cokelat sogan keraton dan emas keemasan khas batik tradisional Banyumasan-Cilacap.',
+                    swatches: ['#451A03', '#B45309', '#D97706'],
+                    vars: {
+                        '--color-primary-800': '#78350F',
+                        '--color-primary-900': '#451A03',
+                        '--color-primary-950': '#290F02',
+                        '--color-secondary-50': '#FFFBEB',
+                        '--color-secondary-100': '#FEF3C7',
+                        '--color-secondary-500': '#D97706',
+                        '--color-secondary-600': '#B45309',
+                        '--color-secondary-700': '#92400E',
+                        '--color-secondary-900': '#78350F',
+                        '--color-accent-50': '#FEFCE8',
+                        '--color-accent-100': '#FEF9C3',
+                        '--color-accent-200': '#FEF08A',
+                        '--color-accent-300': '#FDE047',
+                        '--color-accent-400': '#FACC15',
+                        '--color-accent-500': '#EAB308',
+                        '--color-accent-600': '#CA8A04',
+                        '--color-accent-700': '#A16207',
+                        '--color-accent-800': '#854D0E',
+                        '--bg-page-color': '#FFFDF9'
+                    }
+                },
+                senja: {
+                    name: 'Senja Segara Anakan',
+                    desc: 'Hangatnya jingga terbenam di perairan Segara Anakan dipadukan koral lembut.',
+                    swatches: ['#7C2D12', '#EA580C', '#F59E0B'],
+                    vars: {
+                        '--color-primary-800': '#9A3412',
+                        '--color-primary-900': '#7C2D12',
+                        '--color-primary-950': '#431407',
+                        '--color-secondary-50': '#FFF7ED',
+                        '--color-secondary-100': '#FFEDD5',
+                        '--color-secondary-500': '#F97316',
+                        '--color-secondary-600': '#EA580C',
+                        '--color-secondary-700': '#C2410C',
+                        '--color-secondary-900': '#7C2D12',
+                        '--color-accent-50': '#FFFBEB',
+                        '--color-accent-100': '#FEF3C7',
+                        '--color-accent-200': '#FDE68A',
+                        '--color-accent-300': '#FCD34D',
+                        '--color-accent-400': '#FBBF24',
+                        '--color-accent-500': '#F59E0B',
+                        '--color-accent-600': '#D97706',
+                        '--color-accent-700': '#B45309',
+                        '--color-accent-800': '#92400E',
+                        '--bg-page-color': '#FFFDFB'
+                    }
+                },
+                hardiknas: {
+                    name: 'Biru Tut Wuri Handayani (Hardiknas)',
+                    desc: 'Tema resmi Hari Pendidikan Nasional dengan biru akademis dan motif bintang cendekia.',
+                    swatches: ['#1E3A8A', '#2563EB', '#0EA5E9'],
+                    vars: {
+                        '--color-primary-800': '#1D4ED8',
+                        '--color-primary-900': '#1E3A8A',
+                        '--color-primary-950': '#172554',
+                        '--color-secondary-50': '#EFF6FF',
+                        '--color-secondary-100': '#DBEAFE',
+                        '--color-secondary-500': '#3B82F6',
+                        '--color-secondary-600': '#2563EB',
+                        '--color-secondary-700': '#1D4ED8',
+                        '--color-secondary-900': '#1E3A8A',
+                        '--color-accent-50': '#F0F9FF',
+                        '--color-accent-100': '#E0F2FE',
+                        '--color-accent-200': '#BAE6FD',
+                        '--color-accent-300': '#7DD3FC',
+                        '--color-accent-400': '#38BDF8',
+                        '--color-accent-500': '#0EA5E9',
+                        '--color-accent-600': '#0284C7',
+                        '--color-accent-700': '#0369A1',
+                        '--color-accent-800': '#075985'
+                    }
+                },
                 kemerdekaan: {
                     name: 'Merah Putih Kemerdekaan (HUT RI)',
-                    desc: 'Nuansa Merah Putih tegas khas Hari Kemerdekaan RI dengan motif Bintang Garuda, Pita Bendera & Kembang Api.',
+                    desc: 'Nuansa Merah Putih tegas khas Hari Kemerdekaan RI dengan motif Bintang Garuda & Pita Bendera.',
                     swatches: ['#991B1B', '#DC2626', '#FFFFFF'],
                     vars: {
                         '--color-primary-800': '#B91C1C',
@@ -1055,7 +1170,7 @@
                 },
                 lebaran: {
                     name: 'Idul Fitri / Lebaran Mubarak',
-                    desc: 'Nuansa Hijau Ketupat & Emas hangat dengan motif Kartu Ucapan Lebaran (Ketupat, Bulan Sabit, Bintang & Lentera).',
+                    desc: 'Nuansa Hijau Ketupat & Emas hangat dengan motif Ketupat, Bulan Sabit, Bintang & Lentera.',
                     swatches: ['#065F46', '#10B981', '#D97706'],
                     vars: {
                         '--color-primary-800': '#047857',
@@ -1085,8 +1200,8 @@
                     }
                 },
                 ungu: {
-                    name: 'Ungu Kreatif',
-                    desc: 'Perpaduan indigo modern dan violet untuk suasana inovasi digital.',
+                    name: 'Ungu Kreatif Digital',
+                    desc: 'Perpaduan indigo modern dan violet untuk suasana inovasi media pembelajaran.',
                     swatches: ['#1E1B4B', '#4F46E5', '#8B5CF6'],
                     vars: {
                         '--color-primary-800': '#312E81',
@@ -1779,7 +1894,10 @@
             const safeDate = work.date || '';
             const safeSummary = work.summary || '';
 
-            const likedClass = work.likedByMe ? 'text-rose-600 bg-rose-50 border-rose-200' : 'text-slate-600 bg-slate-50 border-slate-200 hover:bg-rose-50 hover:text-rose-600';
+            const isLiked = isWorkLikedByCurrentUser(work);
+            const likedClass = isLiked
+                ? 'text-rose-600 bg-rose-50 border-rose-300 shadow-2xs'
+                : 'text-slate-600 bg-slate-50 border-slate-200 hover:bg-rose-50 hover:text-rose-600';
             const commentCount = work.comments ? work.comments.length : 0;
             const driveUrl = (work.downloadUrl || '').trim();
             const safeTitleAttr = safeTitle.replace(/'/g, "\\'").replace(/"/g, '&quot;');
@@ -1844,11 +1962,11 @@
 
                         <div class="flex items-center justify-between gap-2 pt-2.5 border-t border-slate-100">
                             <div class="flex items-center gap-1.5 shrink-0">
-                                <button onclick="toggleLikeWork('${work.id}')" title="Beri Apresiasi" class="h-8 px-2.5 rounded-xl border text-xs font-semibold inline-flex items-center justify-center gap-1 transition ${likedClass}">
-                                    <i data-lucide="heart" class="w-3.5 h-3.5 ${work.likedByMe ? 'fill-rose-600' : ''}"></i>
+                                <button onclick="toggleLikeWork('${work.id}')" title="${isLiked ? 'Klik lagi untuk membatalkan suka' : 'Sukai karya ini (1x per pengguna)'}" class="h-8 px-2.5 rounded-xl border text-xs font-semibold inline-flex items-center justify-center gap-1 transition ${likedClass}">
+                                    <i data-lucide="heart" class="w-3.5 h-3.5 ${isLiked ? 'fill-rose-600 text-rose-600' : ''}"></i>
                                     <span>${work.likes || 0}</span>
                                 </button>
-                                <button onclick="openWorkDetailModal('${work.id}', false)" title="Lihat Respon & Komentar" class="h-8 px-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-skybrand-50 text-slate-600 hover:text-skybrand-700 text-xs font-semibold inline-flex items-center justify-center gap-1 transition">
+                                <button onclick="openWorkDetailModal('${work.id}', false)" title="Lihat & Tulis Komentar" class="h-8 px-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-skybrand-50 text-slate-600 hover:text-skybrand-700 text-xs font-semibold inline-flex items-center justify-center gap-1 transition">
                                     <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
                                     <span>${commentCount}</span>
                                 </button>
@@ -2492,22 +2610,47 @@ Topik Utama       : ${topik}
             }
         }
 
+        // -------------------------------------------------------------------
+        // SISTEM TANDA SUKA (1x PER PENGGUNA: MERAH JIKA DISUKAI, BATAL JIKA DIKLIK LAGI)
+        // -------------------------------------------------------------------
         async function toggleLikeWork(workId) {
             const work = appState.works.find(w => w.id === workId);
             if (!work) return;
-            work.likedByMe = !work.likedByMe;
-            const delta = work.likedByMe ? 1 : -1;
-            work.likes = Math.max(0, (work.likes || 0) + delta);
 
-            if (window.fbDb && window.fbTools) {
-                const { doc, updateDoc, increment } = window.fbTools;
-                await updateDoc(doc(window.fbDb, 'works', workId), {
-                    likes: increment(delta)
-                });
+            const likerId = getCurrentLikerId();
+            const currentlyLiked = isWorkLikedByCurrentUser(work);
+            const nextLiked = !currentlyLiked;
+            const delta = nextLiked ? 1 : -1;
+
+            if (!Array.isArray(work.likedBy)) {
+                work.likedBy = [];
             }
 
+            if (nextLiked) {
+                if (!work.likedBy.includes(likerId)) {
+                    work.likedBy.push(likerId);
+                }
+            } else {
+                work.likedBy = work.likedBy.filter(id => id !== likerId);
+            }
+            work.likedByMe = nextLiked;
+            work.likes = Math.max(0, (work.likes || 0) + delta);
+
             refreshCurrentView();
-            showToast(work.likedByMe ? 'Apresiasi dikirim kepada pembuat karya!' : 'Apresiasi dibatalkan.', 'info');
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc, increment, arrayUnion, arrayRemove } = window.fbTools;
+                try {
+                    await updateDoc(doc(window.fbDb, 'works', workId), {
+                        likes: increment(delta),
+                        likedBy: nextLiked ? arrayUnion(likerId) : arrayRemove(likerId)
+                    });
+                } catch (err) {
+                    console.error('Gagal memperbarui tanda suka:', err);
+                }
+            }
+
+            showToast(nextLiked ? 'Anda menyukai karya ini ❤️' : 'Tanda suka dibatalkan.', 'info');
         }
 
         function simulateDownload(title, url) {
@@ -2610,6 +2753,7 @@ Topik Utama       : ${topik}
             const driveUrl = (work.downloadUrl || '').trim();
             const activeQrUrl = webUrl || driveUrl;
             const safeTitleAttr = (work.title || 'Karya-KKG').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+            const isLiked = isWorkLikedByCurrentUser(work);
 
             openModal(`
                 <div class="flex items-start justify-between gap-3 mb-4">
@@ -2631,9 +2775,16 @@ Topik Utama       : ${topik}
                         <span>Diunggah: ${work.date} • <strong>${work.views || 0}x dilihat</strong></span>
                     </div>
                     <p class="text-sm text-slate-700 leading-relaxed whitespace-pre-line">${work.summary}</p>
-                    ${(webUrl || driveUrl) ? `
-                        <div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
-                            <span class="text-xs text-slate-500">Tautan Karya: <strong class="text-slate-700">${webUrl ? 'Tersedia Pratinjau Web' : 'Berkas Siap Unduh'}</strong></span>
+                    <div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            ${!isRevisionPreview ? `
+                                <button type="button" onclick="toggleLikeWork('${work.id}'); openWorkDetailModal('${work.id}', ${isAdminPreview}, false);" class="px-3.5 py-2 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition ${isLiked ? 'text-rose-600 bg-rose-50 border-rose-300' : 'text-slate-600 bg-white border-slate-300 hover:bg-rose-50 hover:text-rose-600'}">
+                                    <i data-lucide="heart" class="w-3.5 h-3.5 ${isLiked ? 'fill-rose-600 text-rose-600' : ''}"></i>
+                                    <span>${isLiked ? 'Disukai' : 'Sukai'} (${work.likes || 0})</span>
+                                </button>
+                            ` : ''}
+                        </div>
+                        ${(webUrl || driveUrl) ? `
                             <div class="flex flex-wrap items-center gap-2">
                                 <button type="button" onclick="toggleWorkQrBox('${encodeURIComponent(activeQrUrl)}')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-skybrand-50 text-navy-900 border border-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
                                     <i data-lucide="qr-code" class="w-3.5 h-3.5 text-skybrand-600"></i>
@@ -2652,7 +2803,9 @@ Topik Utama       : ${topik}
                                     </button>
                                 ` : ''}
                             </div>
-                        </div>
+                        ` : ''}
+                    </div>
+                    ${activeQrUrl ? `
                         <div id="work-qr-box" class="hidden mt-3 p-4 rounded-2xl bg-white border border-slate-200 text-center">
                             <p class="text-xs font-bold text-navy-900 mb-2">Pindai QR Code dari Layar Proyektor / HP</p>
                             <img id="work-qr-img" src="" alt="QR Code Karya" class="w-36 h-36 mx-auto rounded-xl border border-slate-100 p-1">
@@ -2713,7 +2866,7 @@ Topik Utama       : ${topik}
 
                         ${canComment ? `
                             <form onsubmit="submitWorkComment(event, '${work.id}')" class="flex gap-2">
-                                <input type="text" id="work-comment-input" required placeholder="${appState.teacherProfile.id === work.authorId && appState.currentUserRole === 'teacher' ? 'Tulis balasan untuk rekan guru...' : 'Tulis apresiasi atau pertanyaan untuk penyusun karya...'}" class="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-skybrand-500">
+                                <input type="text" id="work-comment-input" required placeholder="${appState.teacherProfile.id === work.authorId && appState.currentUserRole === 'teacher' ? 'Tulis balasan untuk rekan guru...' : 'Tulis apresiasi atau pertanyaan untuk penyusun karya (bisa berdiskusi berkali-kali)...'}" class="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-skybrand-500">
                                 <button type="submit" class="px-4 py-2 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold transition">Kirim</button>
                             </form>
                         ` : `
@@ -2852,7 +3005,6 @@ Topik Utama       : ${topik}
                 const updatedFields = { title, kelas, category, mapel, summary, webUrl, downloadUrl, thumbnailUrl };
 
                 if (oldWork.status === 'approved' && !isAdmin) {
-                    // Karya yang sudah tayang tetap aman di Galeri sampai revisi disetujui Admin
                     const revPayload = {
                         ...oldWork,
                         ...updatedFields,
@@ -2888,6 +3040,7 @@ Topik Utama       : ${topik}
                 status: isAdmin ? 'approved' : 'pending',
                 approvedAt: isAdmin ? Date.now() : 0,
                 likes: 0,
+                likedBy: [],
                 views: 0,
                 thumbnailUrl,
                 webUrl,
@@ -3423,23 +3576,27 @@ Topik Utama       : ${topik}
                                         <th class="py-3 pl-4 text-right">Aktivitas Terakhir</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-slate-100 text-sm">
-                                    ${sortedUsers.map(t => {
+                                <tbody class="divide-y divide-slate-100 text-xs sm:text-sm">
+                                    ${sortedUsers.length === 0 ? `<tr><td colspan="5" class="py-6 text-center text-slate-400">Belum ada akun terdaftar.</td></tr>` : sortedUsers.map(t => {
                                         const online = isUserOnline(t);
                                         const lastSeenText = online
-                                            ? 'Sedang aktif sekarang'
+                                            ? 'Aktif sekarang'
                                             : (t.lastActiveAt ? new Date(t.lastActiveAt).toLocaleString('id-ID', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : 'Belum tercatat');
                                         return `
-                                        <tr class="${online ? 'bg-emerald-50/40' : ''}">
+                                        <tr>
                                             <td class="py-3.5 pr-4">
                                                 ${online
-                                                    ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Online</span>`
-                                                    : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-500"><span class="w-2 h-2 rounded-full bg-slate-400"></span> Offline</span>`
+                                                    ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Online</span>`
+                                                    : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-500 text-[11px] font-semibold"><span class="w-2 h-2 rounded-full bg-slate-400"></span> Offline</span>`
                                                 }
                                             </td>
                                             <td class="py-3.5 px-4 font-semibold text-navy-900">${t.name}</td>
                                             <td class="py-3.5 px-4 text-slate-600">${t.school}</td>
-                                            <td class="py-3.5 px-4 text-slate-600">${t.role === 'admin' ? '<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-xs font-bold">Admin KKG</span>' : t.kelas}</td>
+                                            <td class="py-3.5 px-4">
+                                                <span class="px-2.5 py-0.5 rounded-full ${t.role === 'admin' ? 'bg-amber-100 text-amber-800' : 'bg-skybrand-50 text-skybrand-700'} text-xs font-semibold">
+                                                    ${t.role === 'admin' ? 'Admin KKG' : t.kelas}
+                                                </span>
+                                            </td>
                                             <td class="py-3.5 pl-4 text-right text-xs text-slate-500">${lastSeenText}</td>
                                         </tr>
                                         `;
@@ -3453,32 +3610,38 @@ Topik Utama       : ${topik}
                 body.innerHTML = `
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
-                            <h2 class="font-display font-bold text-lg text-navy-900">Kelola Kategori Karya</h2>
+                            <div>
+                                <h2 class="font-display font-bold text-lg text-navy-900">Kelola Kategori Karya Guru</h2>
+                                <p class="text-xs text-slate-500">Kategori ini tampil saat guru mengunggah karya dan memfilter galeri/perangkat kelas.</p>
+                            </div>
                             <form onsubmit="addCategory(event)" class="flex gap-2">
-                                <input type="text" id="new-category-name" required placeholder="Contoh: Modul P5 / Video Pembelajaran" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
-                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-turq-600 text-white text-xs sm:text-sm font-semibold">+ Tambah</button>
+                                <input type="text" id="new-cat-name" required placeholder="Nama kategori baru (misal: Modul P5)..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
+                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold">Tambah</button>
                             </form>
                             <div class="flex flex-wrap gap-2 pt-2">
                                 ${appState.categories.map(cat => `
-                                    <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-skybrand-50 text-navy-900 text-xs font-semibold">
-                                        ${cat}
-                                        <button type="button" onclick="deleteCategory('${cat}')" class="text-slate-400 hover:text-rose-600" title="Hapus Kategori"><i data-lucide="x" class="w-3.5 h-3.5"></i></button>
+                                    <span class="px-3.5 py-2 rounded-xl bg-skybrand-50 text-navy-900 text-xs font-semibold flex items-center gap-2">
+                                        <span>${cat}</span>
+                                        <button onclick="removeCategory('${cat}')" class="text-rose-500 hover:text-rose-700 font-bold" title="Hapus Kategori">&times;</button>
                                     </span>
                                 `).join('')}
                             </div>
                         </div>
 
                         <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
-                            <h2 class="font-display font-bold text-lg text-navy-900">Kelola Mata Pelajaran (Mapel)</h2>
+                            <div>
+                                <h2 class="font-display font-bold text-lg text-navy-900">Kelola Mata Pelajaran SD</h2>
+                                <p class="text-xs text-slate-500">Daftar mata pelajaran yang dapat dipilih guru pada form unggah dan filter perangkat.</p>
+                            </div>
                             <form onsubmit="addSubject(event)" class="flex gap-2">
-                                <input type="text" id="new-subject-name" required placeholder="Contoh: Informatika / Pramuka" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
-                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-navy-900 text-white text-xs sm:text-sm font-semibold">+ Tambah</button>
+                                <input type="text" id="new-subject-name" required placeholder="Nama mata pelajaran (misal: Bahasa Jawa)..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm">
+                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-turq-600 hover:bg-turq-500 text-white text-xs sm:text-sm font-semibold">Tambah</button>
                             </form>
                             <div class="flex flex-wrap gap-2 pt-2">
                                 ${appState.subjects.map(subj => `
-                                    <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-turq-50 text-turq-900 text-xs font-semibold">
-                                        ${subj}
-                                        <button type="button" onclick="deleteSubject('${subj}')" class="text-slate-400 hover:text-rose-600" title="Hapus Mapel"><i data-lucide="x" class="w-3.5 h-3.5"></i></button>
+                                    <span class="px-3.5 py-2 rounded-xl bg-turq-50 text-navy-900 text-xs font-semibold flex items-center gap-2">
+                                        <span>${subj}</span>
+                                        <button onclick="removeSubject('${subj}')" class="text-rose-500 hover:text-rose-700 font-bold" title="Hapus Mata Pelajaran">&times;</button>
                                     </span>
                                 `).join('')}
                             </div>
@@ -3486,63 +3649,53 @@ Topik Utama       : ${topik}
                     </div>
                 `;
             } else if (activeAdminTab === 'tampilan') {
-                const currentKey = appState.themeConfig.activePalette;
-                const heroUrl = appState.themeConfig.heroImageUrl || '';
-                const heroCap = appState.themeConfig.heroImageCaption || '';
-
                 body.innerHTML = `
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                         <div class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
                             <div>
-                                <h2 class="font-display font-bold text-lg text-navy-900">Pilihan Palet Warna Portal</h2>
-                                <p class="text-xs text-slate-500 mt-0.5">Perubahan warna akan tersimpan di database sehingga semua pengunjung melihat tema yang sama.</p>
+                                <h2 class="font-display font-bold text-lg text-navy-900">Pilihan Tema Warna & Suasana Hari Besar (8 Tema)</h2>
+                                <p class="text-xs text-slate-500">Pilih suasana warna sekaligus motif latar halaman yang langsung berubah untuk semua pengunjung.</p>
                             </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                                 ${Object.entries(appState.palettes).map(([key, pal]) => {
-                                    const isSelected = key === currentKey;
+                                    const isActive = appState.themeConfig.activePalette === key;
                                     return `
-                                        <div onclick="selectAndSavePalette('${key}')" class="cursor-pointer p-4 rounded-2xl border-2 transition ${isSelected ? 'border-navy-900 bg-skybrand-50/50 shadow-xs' : 'border-slate-200 hover:border-slate-300 bg-white'}">
-                                            <div class="flex items-center justify-between mb-2.5">
+                                        <button type="button" onclick="applyThemePalette('${key}')" class="p-4 rounded-2xl border-2 text-left transition ${isActive ? 'border-navy-900 bg-skybrand-50/60 shadow-xs' : 'border-slate-200 hover:border-slate-300 bg-white'}">
+                                            <div class="flex items-center justify-between mb-2">
                                                 <div class="flex items-center gap-1.5">
-                                                    ${pal.swatches.map(hex => `<span class="w-5 h-5 rounded-full border border-white shadow-2xs" style="background-color:${hex}"></span>`).join('')}
+                                                    ${pal.swatches.map(hex => `<span class="w-5 h-5 rounded-full border border-slate-300 shadow-2xs" style="background:${hex}"></span>`).join('')}
                                                 </div>
-                                                ${isSelected ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-navy-900 text-white">Aktif</span>` : ''}
+                                                ${isActive ? `<span class="px-2 py-0.5 rounded-full bg-navy-900 text-white text-[10px] font-bold">Aktif</span>` : ''}
                                             </div>
-                                            <h3 class="font-display font-bold text-sm text-navy-900">${pal.name}</h3>
-                                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">${pal.desc}</p>
-                                        </div>
+                                            <p class="font-display font-bold text-sm text-navy-900">${pal.name}</p>
+                                            <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">${pal.desc}</p>
+                                        </button>
                                     `;
                                 }).join('')}
                             </div>
                         </div>
 
-                        <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4 h-fit">
+                        <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
                             <div>
                                 <h2 class="font-display font-bold text-lg text-navy-900">Gambar Utama Beranda (Hero)</h2>
-                                <p class="text-xs text-slate-500 mt-0.5">Ganti ilustrasi beranda dengan foto kegiatan KKG Kampung Laut atau unggah langsung dari perangkat.</p>
+                                <p class="text-xs text-slate-500">Unggah foto kegiatan KKG Kampung Laut dari perangkat atau gunakan ilustrasi vektor bawaan.</p>
                             </div>
-                            <form onsubmit="saveHeroAppearance(event)" class="space-y-3.5">
+                            <form onsubmit="saveHeroImageConfig(event)" class="space-y-3">
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Unggah File Foto dari Perangkat</label>
-                                    <input type="file" accept="image/*" onchange="handleHeroFileUpload(this)" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-skybrand-50 file:text-skybrand-700 hover:file:bg-skybrand-100">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Unggah Foto Kegiatan KKG (Otomatis Dikompres)</label>
+                                    <input type="file" id="hero-img-file" accept="image/*" onchange="handleImageFilePreview(this, 'hero-img-preview-box', 'hero-img-data')" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-skybrand-50 file:text-skybrand-700 hover:file:bg-skybrand-100">
+                                    <input type="hidden" id="hero-img-data" value="${appState.themeConfig.heroImageUrl || ''}">
+                                    <div id="hero-img-preview-box" class="${appState.themeConfig.heroImageUrl ? '' : 'hidden'} mt-2.5 rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 p-2">
+                                        <img src="${appState.themeConfig.heroImageUrl || ''}" alt="Pratinjau Hero" class="h-32 w-full object-cover rounded-xl">
+                                    </div>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Atau Tempel URL Gambar / Foto</label>
-                                    <input type="text" id="hero-img-url-input" value="${heroUrl}" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Keterangan Foto Beranda</label>
-                                    <input type="text" id="hero-img-caption-input" value="${heroCap}" placeholder="Kolaborasi Pendidik SD KKG Kampung Laut" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Keterangan Foto / Banner</label>
+                                    <input type="text" id="hero-img-caption" value="${appState.themeConfig.heroImageCaption}" placeholder="Kolaborasi Pendidik SD KKG Kampung Laut" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
                                 </div>
                                 <div class="flex gap-2 pt-1">
-                                    <button type="submit" class="flex-1 py-2.5 px-4 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold transition">
-                                        Simpan Tampilan Beranda
-                                    </button>
-                                    ${heroUrl ? `
-                                        <button type="button" onclick="resetHeroIllustration()" class="py-2.5 px-3.5 rounded-xl bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-600 text-xs font-semibold transition" title="Kembalikan ke Ilustrasi Bawaan">
-                                            Reset
-                                        </button>
-                                    ` : ''}
+                                    <button type="submit" class="flex-1 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs font-semibold transition">Simpan Tampilan</button>
+                                    <button type="button" onclick="resetHeroImage()" class="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">Reset Vektor</button>
                                 </div>
                             </form>
                         </div>
@@ -3552,275 +3705,21 @@ Topik Utama       : ${topik}
             renderIcons();
         }
 
-        async function approveWork(id) {
-            if (window.fbDb && window.fbTools) {
-                const { doc, updateDoc } = window.fbTools;
-                await updateDoc(doc(window.fbDb, 'works', id), {
-                    status: 'approved',
-                    approvedAt: Date.now()
-                });
-            }
-            showToast('Karya disetujui dan diterbitkan ke Galeri Karya!', 'success');
-        }
-
-        async function rejectWork(id) {
-            if (window.fbDb && window.fbTools) {
-                const { doc, deleteDoc } = window.fbTools;
-                await deleteDoc(doc(window.fbDb, 'works', id));
-            }
-            showToast('Karya ditolak dan dihapus dari antrean.', 'info');
-        }
-
-        async function unpublishWorkToPending(id) {
-            if (window.fbDb && window.fbTools) {
-                const { doc, updateDoc } = window.fbTools;
-                await updateDoc(doc(window.fbDb, 'works', id), {
-                    status: 'pending'
-                });
-            }
-            showToast('Karya ditarik dari Galeri dan dikembalikan ke antrean Menunggu Persetujuan.', 'info');
-        }
-
-        async function approveWorkRevision(revId) {
-            const rev = appState.workRevisions.find(r => r.id === revId);
-            if (!rev) return;
-
-            if (window.fbDb && window.fbTools) {
-                const { doc, updateDoc, deleteDoc } = window.fbTools;
-                await updateDoc(doc(window.fbDb, 'works', rev.originalWorkId), {
-                    title: rev.title,
-                    kelas: rev.kelas,
-                    category: rev.category,
-                    mapel: rev.mapel,
-                    summary: rev.summary,
-                    webUrl: rev.webUrl || '',
-                    downloadUrl: rev.downloadUrl,
-                    thumbnailUrl: rev.thumbnailUrl || '',
-                    approvedAt: Date.now()
-                });
-                await deleteDoc(doc(window.fbDb, 'work_revisions', revId));
-            }
-            showToast('Perubahan karya berhasil disetujui dan diperbarui di Galeri!', 'success');
-        }
-
-        async function rejectWorkRevision(revId) {
-            if (window.fbDb && window.fbTools) {
-                await window.fbTools.deleteDoc(window.fbTools.doc(window.fbDb, 'work_revisions', revId));
-            }
-            showToast('Usulan revisi ditolak. Karya versi sebelumnya tetap tayang.', 'info');
-        }
-
-        async function updateClassCode(classId) {
-            const input = document.getElementById(`code-input-${classId}`);
-            const newCode = input?.value.trim().toUpperCase();
-            if (!newCode) return;
-
-            if (window.fbDb && window.fbTools) {
-                const { doc, updateDoc } = window.fbTools;
-                await updateDoc(doc(window.fbDb, 'classrooms', classId), { code: newCode });
-            }
-            showToast(`Kode kelas diperbarui menjadi ${newCode}`, 'success');
-        }
-
-        async function removeGenerator(genId) {
-            if (window.fbDb && window.fbTools) {
-                const { doc, deleteDoc } = window.fbTools;
-                await deleteDoc(doc(window.fbDb, 'generators', genId));
-            }
-            showToast('Modul generator dihapus dari database.', 'info');
-        }
-
-        function openEditGeneratorModal(genId) {
-            const gen = appState.generators.find(g => g.id === genId);
-            if (!gen) return;
-
-            openModal(`
-                <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <span class="px-2.5 py-0.5 rounded-full bg-skybrand-50 text-skybrand-700 text-[11px] font-bold">${gen.badge}</span>
-                        <h3 class="font-display font-bold text-xl text-navy-900 mt-1">Edit Modul Generator</h3>
-                    </div>
-                    <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
-                </div>
-
-                <form onsubmit="submitEditGenerator(event, '${gen.id}')" class="space-y-3.5">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Generator *</label>
-                        <input type="text" id="edit-gen-name" required value="${gen.name.replace(/"/g, '&quot;')}" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Subjudul Singkat *</label>
-                            <input type="text" id="edit-gen-sub" required value="${gen.subtitle.replace(/"/g, '&quot;')}" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Warna Aksen Kartu</label>
-                            <select id="edit-gen-color" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm bg-white">
-                                <option value="sky" ${gen.color === 'sky' ? 'selected' : ''}>Biru Samudra</option>
-                                <option value="turq" ${gen.color === 'turq' ? 'selected' : ''}>Hijau Turquoise</option>
-                                <option value="indigo" ${gen.color === 'indigo' ? 'selected' : ''}>Indigo Modern</option>
-                                <option value="amber" ${gen.color === 'amber' ? 'selected' : ''}>Emas Hangat</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Deskripsi Fungsi *</label>
-                        <textarea id="edit-gen-desc" rows="2" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">${gen.description}</textarea>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan URL Aplikasi Eksternal (Kosongkan jika pakai Workspace bawaan)</label>
-                        <input type="url" id="edit-gen-url" value="${gen.externalUrl || ''}" placeholder="https://gemini.google.com/gem/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Unggah / Ganti Gambar Kartu Generator (Opsional)</label>
-                        <input type="file" id="edit-gen-thumb-file" accept="image/*" onchange="handleImageFilePreview(this, 'edit-gen-thumb-preview', 'edit-gen-thumb-data')" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-skybrand-50 file:text-skybrand-700 hover:file:bg-skybrand-100">
-                        <input type="hidden" id="edit-gen-thumb-data" value="${gen.thumbnailUrl || ''}">
-                        <div id="edit-gen-thumb-preview" class="${gen.thumbnailUrl ? '' : 'hidden'} mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 p-2 relative">
-                            <img src="${gen.thumbnailUrl || ''}" alt="Pratinjau Gambar Generator" class="h-28 w-full object-cover rounded-xl">
-                            <button type="button" onclick="clearGeneratorThumbnail('edit-gen-thumb-preview', 'edit-gen-thumb-data')" class="mt-1.5 text-[11px] font-semibold text-rose-600 hover:underline">Hapus Gambar Kartu</button>
-                        </div>
-                    </div>
-                    <div class="flex gap-2 pt-2">
-                        <button type="button" onclick="closeModal()" class="flex-1 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold transition">Batal</button>
-                        <button type="submit" class="flex-1 py-2.5 rounded-xl bg-navy-900 hover:bg-turq-600 text-white text-xs sm:text-sm font-semibold transition">Simpan Perubahan</button>
-                    </div>
-                </form>
-            `);
-        }
-
-        function clearGeneratorThumbnail(previewBoxId, hiddenInputId) {
-            const box = document.getElementById(previewBoxId);
-            const hidden = document.getElementById(hiddenInputId);
-            if (hidden) hidden.value = '';
-            if (box) box.classList.add('hidden');
-        }
-
-        async function submitEditGenerator(e, genId) {
-            e.preventDefault();
-            const name = document.getElementById('edit-gen-name').value.trim();
-            const subtitle = document.getElementById('edit-gen-sub').value.trim();
-            const color = document.getElementById('edit-gen-color').value;
-            const description = document.getElementById('edit-gen-desc').value.trim();
-            const externalUrl = document.getElementById('edit-gen-url').value.trim();
-            const thumbnailUrl = document.getElementById('edit-gen-thumb-data')?.value || '';
-
-            const updatedData = {
-                name,
-                subtitle,
-                color,
-                description,
-                externalUrl,
-                thumbnailUrl,
-                mode: externalUrl ? 'external' : 'internal'
-            };
-
-            if (window.fbDb && window.fbTools) {
-                const { doc, updateDoc } = window.fbTools;
-                await updateDoc(doc(window.fbDb, 'generators', genId), updatedData);
-            }
-
-            closeModal();
-            showToast(`Modul "${name}" berhasil diperbarui!`, 'success');
-        }
-
-        async function addCategory(e) {
-            e.preventDefault();
-            const input = document.getElementById('new-category-name');
-            const val = input.value.trim();
-            if (!val) return;
-            if (!appState.categories.includes(val)) {
-                appState.categories.push(val);
-                if (window.fbDb && window.fbTools) {
-                    const { doc, setDoc } = window.fbTools;
-                    await setDoc(doc(window.fbDb, 'settings', 'appConfig'), { categories: appState.categories }, { merge: true });
-                }
-                showToast(`Kategori "${val}" ditambahkan!`, 'success');
-            }
-            input.value = '';
-            renderAdminTabBody();
-        }
-
-        async function deleteCategory(cat) {
-            appState.categories = appState.categories.filter(c => c !== cat);
-            if (window.fbDb && window.fbTools) {
-                const { doc, setDoc } = window.fbTools;
-                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), { categories: appState.categories }, { merge: true });
-            }
-            showToast(`Kategori "${cat}" dihapus.`, 'info');
-            renderAdminTabBody();
-        }
-
-        async function addSubject(e) {
-            e.preventDefault();
-            const input = document.getElementById('new-subject-name');
-            const val = input.value.trim();
-            if (!val) return;
-            if (!appState.subjects.includes(val)) {
-                appState.subjects.push(val);
-                if (window.fbDb && window.fbTools) {
-                    const { doc, setDoc } = window.fbTools;
-                    await setDoc(doc(window.fbDb, 'settings', 'appConfig'), { subjects: appState.subjects }, { merge: true });
-                }
-                showToast(`Mata pelajaran "${val}" ditambahkan!`, 'success');
-            }
-            input.value = '';
-            renderAdminTabBody();
-        }
-
-        async function deleteSubject(subj) {
-            appState.subjects = appState.subjects.filter(s => s !== subj);
-            if (window.fbDb && window.fbTools) {
-                const { doc, setDoc } = window.fbTools;
-                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), { subjects: appState.subjects }, { merge: true });
-            }
-            showToast(`Mata pelajaran "${subj}" dihapus.`, 'info');
-            renderAdminTabBody();
-        }
-
-        // -------------------------------------------------------------------
-        // 10. KUSTOMISASI TEMA WARNA & GAMBAR BERANDA (ADMIN)
-        // -------------------------------------------------------------------
-        function applyThemePalette(paletteKey, silent = true) {
-            const pal = appState.palettes[paletteKey] || appState.palettes.samudra;
-            const root = document.documentElement;
-            const allCssKeys = new Set([
-                ...Object.keys(appState.palettes.samudra.vars),
-                ...Object.keys(pal.vars),
-                '--bg-page-color',
-                '--bg-pattern-kawung',
-                '--bg-pattern-parang',
-                '--bg-pattern-truntum',
-                '--bg-pattern-ceplok',
-                '--bg-pattern-sidomukti'
-            ]);
-            allCssKeys.forEach(cssVar => {
-                if (pal.vars[cssVar]) {
-                    root.style.setProperty(cssVar, pal.vars[cssVar]);
-                } else {
-                    root.style.removeProperty(cssVar);
-                }
-            });
-            appState.themeConfig.activePalette = paletteKey;
-            if (!silent) {
-                showToast(`Tema warna diubah ke "${pal.name}"`, 'success');
-            }
-        }
-
-        async function selectAndSavePalette(paletteKey) {
-            applyThemePalette(paletteKey, false);
+        async function saveAppConfigToFirestore() {
             if (window.fbDb && window.fbTools) {
                 const { doc, setDoc } = window.fbTools;
                 await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
-                    themeConfig: appState.themeConfig
+                    themeConfig: appState.themeConfig,
+                    categories: appState.categories,
+                    subjects: appState.subjects
                 }, { merge: true });
             }
-            renderAdminTabBody();
         }
 
-        function compressImageFile(file, maxWidth = 800, quality = 0.72) {
+        function compressImageFile(file, maxWidth = 960, quality = 0.78) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
-                reader.onload = (ev) => {
+                reader.onload = (event) => {
                     const img = new Image();
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
@@ -3837,235 +3736,290 @@ Topik Utama       : ${topik}
                         resolve(canvas.toDataURL('image/jpeg', quality));
                     };
                     img.onerror = reject;
-                    img.src = ev.target.result;
+                    img.src = event.target.result;
                 };
                 reader.onerror = reject;
                 reader.readAsDataURL(file);
             });
         }
 
-        async function handleImageFilePreview(inputEl, previewBoxId, hiddenInputId) {
-            const file = inputEl.files?.[0];
+        async function handleImageFilePreview(fileInput, previewBoxId, hiddenInputId) {
+            const file = fileInput?.files?.[0];
             if (!file) return;
             try {
-                const compressedDataUrl = await compressImageFile(file, 720, 0.72);
-                const hidden = document.getElementById(hiddenInputId);
+                const compressedDataUrl = await compressImageFile(file, 960, 0.78);
+                const hiddenEl = document.getElementById(hiddenInputId);
                 const previewBox = document.getElementById(previewBoxId);
-                if (hidden) hidden.value = compressedDataUrl;
+                if (hiddenEl) hiddenEl.value = compressedDataUrl;
                 if (previewBox) {
-                    const img = previewBox.querySelector('img');
-                    if (img) img.src = compressedDataUrl;
+                    const imgEl = previewBox.querySelector('img');
+                    if (imgEl) imgEl.src = compressedDataUrl;
                     previewBox.classList.remove('hidden');
                 }
-                showToast('Thumbnail berhasil dimuat & dioptimalkan.', 'success');
+                showToast('Gambar berhasil dipilih & dikompres otomatis.', 'success');
             } catch (err) {
-                showToast('Gagal memproses file gambar.', 'error');
+                showToast('Gagal memproses file gambar. Coba file JPG/PNG lain.', 'error');
             }
         }
 
-        async function handleHeroFileUpload(inputEl) {
-            const file = inputEl.files?.[0];
-            if (!file) return;
-            try {
-                const compressedDataUrl = await compressImageFile(file, 960, 0.75);
-                const urlInput = document.getElementById('hero-img-url-input');
-                if (urlInput) urlInput.value = compressedDataUrl;
-                appState.themeConfig.heroImageUrl = compressedDataUrl;
-                if (window.fbDb && window.fbTools) {
-                    const { doc, setDoc } = window.fbTools;
-                    await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
-                        themeConfig: appState.themeConfig
-                    }, { merge: true });
-                }
-                showToast('Foto beranda berhasil diunggah & disimpan!', 'success');
-                renderAdminTabBody();
-            } catch (err) {
-                showToast('Gagal mengunggah foto beranda.', 'error');
-            }
-        }
+        async function applyThemePalette(paletteKey, silent = false) {
+            const pal = appState.palettes[paletteKey];
+            if (!pal) return;
+            appState.themeConfig.activePalette = paletteKey;
+            const root = document.documentElement;
 
-        async function saveHeroAppearance(e) {
-            e.preventDefault();
-            const urlVal = document.getElementById('hero-img-url-input')?.value.trim() || '';
-            const capVal = document.getElementById('hero-img-caption-input')?.value.trim() || 'Kolaborasi Pendidik SD KKG Kampung Laut';
-            appState.themeConfig.heroImageUrl = urlVal;
-            appState.themeConfig.heroImageCaption = capVal;
-            if (window.fbDb && window.fbTools) {
-                const { doc, setDoc } = window.fbTools;
-                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
-                    themeConfig: appState.themeConfig
-                }, { merge: true });
-            }
-            showToast('Gambar utama beranda berhasil disimpan!', 'success');
-            renderAdminTabBody();
-        }
+            const resetVars = [
+                '--bg-page-color',
+                '--hero-motif-pattern',
+                '--bg-pattern-kawung',
+                '--bg-pattern-parang',
+                '--bg-pattern-truntum',
+                '--bg-pattern-ceplok',
+                '--bg-pattern-sidomukti'
+            ];
+            resetVars.forEach(prop => root.style.removeProperty(prop));
 
-        async function resetHeroIllustration() {
-            appState.themeConfig.heroImageUrl = '';
-            if (window.fbDb && window.fbTools) {
-                const { doc, setDoc } = window.fbTools;
-                await setDoc(doc(window.fbDb, 'settings', 'appConfig'), {
-                    themeConfig: appState.themeConfig
-                }, { merge: true });
-            }
-            showToast('Dikembalikan ke ilustrasi SVG bawaan Kampung Laut.', 'info');
-            renderAdminTabBody();
-        }
-
-        // -------------------------------------------------------------------
-        // 11. AUTENTIKASI FIREBASE AUTHENTICATION & FIRESTORE
-        // -------------------------------------------------------------------
-        function switchAuthMode(mode) {
-            clearAuthForms();
-
-            const forms = ['form-login-guru', 'form-daftar-guru', 'form-login-admin', 'form-lupa-password'];
-            forms.forEach(fid => document.getElementById(fid)?.classList.add('hidden'));
-
-            const tabs = ['auth-tab-login-guru', 'auth-tab-login-admin'];
-            tabs.forEach(tid => {
-                const el = document.getElementById(tid);
-                if (el) el.className = 'py-2.5 rounded-xl text-slate-600 hover:text-navy-900 transition';
+            Object.entries(pal.vars).forEach(([cssVar, val]) => {
+                root.style.setProperty(cssVar, val);
             });
-
-            document.getElementById(`form-${mode}`)?.classList.remove('hidden');
-            const activeTabId = mode === 'daftar-guru' ? 'auth-tab-login-guru' : `auth-tab-${mode}`;
-            const activeTab = document.getElementById(activeTabId);
-            if (activeTab) activeTab.className = 'py-2.5 rounded-xl bg-white text-navy-900 shadow-2xs transition';
-        }
-
-        async function handleAuthSubmit(e, role) {
-            e.preventDefault();
-            if (!window.fbAuth || !window.fbTools) {
-                showToast('Layanan Firebase sedang memuat, silakan coba sebentar lagi.', 'info');
-                return;
-            }
-
-            const emailInput = role === 'admin' ? document.getElementById('login-admin-email') : document.getElementById('login-guru-email');
-            const passInput = role === 'admin' ? document.getElementById('login-admin-pass') : document.getElementById('login-guru-pass');
-            const email = emailInput.value.trim();
-            const pass = passInput.value;
-
-            try {
-                const { signInWithEmailAndPassword, doc, getDoc, setDoc } = window.fbTools;
-                const cred = await signInWithEmailAndPassword(window.fbAuth, email, pass);
-                const userRef = doc(window.fbDb, 'users', cred.user.uid);
-                const snap = await getDoc(userRef);
-
-                if (role === 'admin') {
-                    const userData = snap.exists() ? snap.data() : null;
-                    if (!userData || userData.role !== 'admin') {
-                        await window.fbTools.signOut(window.fbAuth);
-                        showToast('Akun ini tidak memiliki hak akses Admin KKG. Gunakan tab Login Guru.', 'error');
-                        return;
-                    }
-                    appState.currentUserRole = 'admin';
-                    clearAuthForms();
-                    updateHeaderAuth();
-                    updateRoleVisibility();
-                    showToast('Berhasil masuk sebagai Admin KKG Kampung Laut.', 'success');
-                    navigate('dashboard-admin');
-                } else {
-                    if (!snap.exists()) {
-                        await setDoc(userRef, {
-                            name: email.split('@')[0],
-                            nip: '',
-                            school: 'SDN Kampung Laut',
-                            email,
-                            assignedClass: 'Kelas 4',
-                            role: 'teacher',
-                            joinedClasses: [],
-                            activities: ['Login ke Ruang Karya Guru']
-                        });
-                    }
-                    appState.currentUserRole = 'teacher';
-                    clearAuthForms();
-                    updateHeaderAuth();
-                    updateRoleVisibility();
-                    showToast('Selamat datang kembali di Ruang Karya Guru!', 'success');
-                    navigate('dashboard-guru');
-                }
-            } catch (err) {
-                let msg = 'Email atau kata sandi tidak sesuai.';
-                if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
-                    msg = 'Email atau kata sandi salah. Periksa kembali atau klik Daftar.';
-                } else if (err.code === 'auth/too-many-requests') {
-                    msg = 'Terlalu banyak percobaan login. Tunggu beberapa saat.';
-                }
-                showToast(msg, 'error');
+            if (!silent) {
+                await saveAppConfigToFirestore();
+                renderAdminTabBody();
+                showToast(`Tema warna diubah menjadi "${pal.name}".`, 'success');
             }
         }
 
-        async function handleRegisterTeacher(e) {
+        async function saveHeroImageConfig(e) {
             e.preventDefault();
-            if (!window.fbAuth || !window.fbTools) return;
+            const url = document.getElementById('hero-img-data')?.value || '';
+            const caption = document.getElementById('hero-img-caption').value.trim();
+            appState.themeConfig.heroImageUrl = url;
+            appState.themeConfig.heroImageCaption = caption || 'Kolaborasi Pendidik SD KKG Kampung Laut';
+            await saveAppConfigToFirestore();
+            showToast('Tampilan gambar utama Beranda diperbarui!', 'success');
+        }
 
-            const nama = document.getElementById('reg-nama').value.trim();
-            const nip = document.getElementById('reg-nip').value.trim();
-            const kelas = document.getElementById('reg-kelas').value;
-            const sekolah = document.getElementById('reg-sekolah').value.trim();
-            const email = document.getElementById('reg-email').value.trim();
-            const pass = document.getElementById('reg-pass').value;
+        async function resetHeroImage() {
+            appState.themeConfig.heroImageUrl = '';
+            appState.themeConfig.heroImageCaption = 'Kolaborasi Pendidik SD KKG Kampung Laut';
+            await saveAppConfigToFirestore();
+            renderAdminTabBody();
+            showToast('Tampilan Beranda dikembalikan ke ilustrasi vektor KKG.', 'info');
+        }
 
-            try {
-                const { createUserWithEmailAndPassword, doc, setDoc } = window.fbTools;
-                const cred = await createUserWithEmailAndPassword(window.fbAuth, email, pass);
+        function openEditGeneratorModal(genId) {
+            const gen = appState.generators.find(g => g.id === genId);
+            if (!gen) return;
 
-                const profileData = {
-                    name: nama,
-                    nip: nip || '-',
-                    school: sekolah,
-                    email: email,
-                    assignedClass: kelas,
-                    role: 'teacher',
-                    joinedClasses: [],
-                    activities: ['Mendaftarkan akun guru ke KKG Kampung Laut']
-                };
+            openModal(`
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-skybrand-50 text-skybrand-700 text-[11px] font-bold">${gen.badge}</span>
+                        <h3 class="font-display font-bold text-xl text-navy-900 mt-1">Edit Modul Generator</h3>
+                    </div>
+                    <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+                </div>
+                <form onsubmit="saveEditedGenerator(event, '${gen.id}')" class="space-y-3.5">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Generator *</label>
+                        <input type="text" id="edit-gen-name" required value="${gen.name}" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Subjudul Singkat *</label>
+                            <input type="text" id="edit-gen-sub" required value="${gen.subtitle}" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Warna Aksen Kartu</label>
+                            <select id="edit-gen-color" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm bg-white">
+                                <option value="sky" ${gen.color === 'sky' ? 'selected' : ''}>Biru Samudra</option>
+                                <option value="turq" ${gen.color === 'turq' ? 'selected' : ''}>Hijau Turquoise</option>
+                                <option value="indigo" ${gen.color === 'indigo' ? 'selected' : ''}>Indigo Modern</option>
+                                <option value="amber" ${gen.color === 'amber' ? 'selected' : ''}>Emas Hangat</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Deskripsi Fungsi *</label>
+                        <textarea id="edit-gen-desc" rows="2" required class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">${gen.description}</textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan URL Aplikasi Eksternal (Kosongkan jika memakai Workspace Bawaan)</label>
+                        <input type="url" id="edit-gen-url" value="${gen.externalUrl || ''}" placeholder="https://gemini.google.com/gem/..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Gambar / Ikon Kartu Generator (Opsional)</label>
+                        <input type="file" id="edit-gen-thumb-file" accept="image/*" onchange="handleImageFilePreview(this, 'edit-gen-thumb-preview', 'edit-gen-thumb-data')" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-skybrand-50 file:text-skybrand-700 hover:file:bg-skybrand-100">
+                        <input type="hidden" id="edit-gen-thumb-data" value="${gen.thumbnailUrl || ''}">
+                        <div id="edit-gen-thumb-preview" class="${gen.thumbnailUrl ? '' : 'hidden'} mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 p-2">
+                            <img src="${gen.thumbnailUrl || ''}" alt="Pratinjau Gambar Generator" class="h-24 w-full object-cover rounded-xl">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-turq-600 text-white font-semibold text-sm transition">
+                        Simpan Perubahan Generator
+                    </button>
+                </form>
+            `);
+        }
 
-                await setDoc(doc(window.fbDb, 'users', cred.user.uid), profileData);
+        async function saveEditedGenerator(e, genId) {
+            e.preventDefault();
+            const name = document.getElementById('edit-gen-name').value.trim();
+            const subtitle = document.getElementById('edit-gen-sub').value.trim();
+            const color = document.getElementById('edit-gen-color').value;
+            const description = document.getElementById('edit-gen-desc').value.trim();
+            const externalUrl = document.getElementById('edit-gen-url').value.trim();
+            const thumbnailUrl = document.getElementById('edit-gen-thumb-data')?.value || '';
 
-                appState.currentUserRole = 'teacher';
-                appState.teacherProfile = { id: cred.user.uid, ...profileData };
-                clearAuthForms();
-                updateHeaderAuth();
-                updateRoleVisibility();
-                showToast('Pendaftaran berhasil! Silakan masuk ruang kelas menggunakan Kode Kelas dari Admin.', 'success');
-                navigate('dashboard-guru');
-            } catch (err) {
-                let msg = 'Gagal mendaftarkan akun.';
-                if (err.code === 'auth/email-already-in-use') {
-                    msg = 'Email ini sudah terdaftar. Silakan masuk melalui tab Login Guru.';
-                } else if (err.code === 'auth/weak-password') {
-                    msg = 'Kata sandi terlalu lemah (minimal 6 karakter).';
-                }
-                showToast(msg, 'error');
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'generators', genId), {
+                    name,
+                    subtitle,
+                    color,
+                    description,
+                    mode: externalUrl ? 'external' : 'internal',
+                    externalUrl,
+                    thumbnailUrl
+                });
+            }
+            closeModal();
+            showToast(`Perubahan pada "${name}" berhasil disimpan!`, 'success');
+        }
+
+        async function removeGenerator(genId) {
+            if (window.fbDb && window.fbTools) {
+                const { doc, deleteDoc } = window.fbTools;
+                await deleteDoc(doc(window.fbDb, 'generators', genId));
+            }
+            showToast('Modul generator dihapus dari database.', 'info');
+        }
+
+        async function approveWork(workId) {
+            const w = appState.works.find(item => item.id === workId);
+            if (!w) return;
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'works', workId), {
+                    status: 'approved',
+                    approvedAt: Date.now()
+                });
+            }
+            showToast(`Karya "${w.title}" disetujui & diterbitkan ke Galeri!`, 'success');
+        }
+
+        async function rejectWork(workId) {
+            if (window.fbDb && window.fbTools) {
+                const { doc, deleteDoc } = window.fbTools;
+                await deleteDoc(doc(window.fbDb, 'works', workId));
+            }
+            showToast('Karya ditolak dan dihapus dari antrean.', 'info');
+        }
+
+        async function unpublishWorkToPending(workId) {
+            const w = appState.works.find(item => item.id === workId);
+            if (!w) return;
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'works', workId), {
+                    status: 'pending'
+                });
+            }
+            showToast(`Karya "${w.title}" ditarik dari Galeri kembali ke status Menunggu Persetujuan.`, 'info');
+        }
+
+        async function approveWorkRevision(revId) {
+            const rev = appState.workRevisions.find(r => r.id === revId);
+            if (!rev) return;
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc, deleteDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'works', rev.originalWorkId), {
+                    title: rev.title,
+                    kelas: rev.kelas,
+                    category: rev.category,
+                    mapel: rev.mapel,
+                    summary: rev.summary,
+                    webUrl: rev.webUrl,
+                    downloadUrl: rev.downloadUrl,
+                    thumbnailUrl: rev.thumbnailUrl || '',
+                    approvedAt: Date.now()
+                });
+                await deleteDoc(doc(window.fbDb, 'work_revisions', revId));
+            }
+            showToast(`Perubahan pada "${rev.title}" telah diterapkan ke Galeri!`, 'success');
+        }
+
+        async function rejectWorkRevision(revId) {
+            if (window.fbDb && window.fbTools) {
+                const { doc, deleteDoc } = window.fbTools;
+                await deleteDoc(doc(window.fbDb, 'work_revisions', revId));
+            }
+            showToast('Usulan revisi ditolak. Karya versi lama tetap tayang di Galeri.', 'info');
+        }
+
+        async function updateClassCode(classId) {
+            const input = document.getElementById(`code-input-${classId}`);
+            const cls = appState.classrooms.find(c => c.id === classId);
+            if (!input || !cls || !input.value.trim()) return;
+            const newCode = input.value.trim().toUpperCase();
+
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'classrooms', classId), { code: newCode });
+            }
+            showToast(`Kode akses ${cls.name} diperbarui menjadi "${newCode}".`, 'success');
+        }
+
+        async function addCategory(e) {
+            e.preventDefault();
+            const val = document.getElementById('new-cat-name').value.trim();
+            if (!val) return;
+            if (!appState.categories.includes(val)) {
+                appState.categories.push(val);
+                await saveAppConfigToFirestore();
+                renderAdminTabBody();
+                showToast(`Kategori "${val}" ditambahkan.`, 'success');
             }
         }
 
-        async function handleResetPassword(e) {
-            e.preventDefault();
-            const email = document.getElementById('reset-email').value.trim();
-            if (!email || !window.fbAuth || !window.fbTools) return;
+        async function removeCategory(cat) {
+            appState.categories = appState.categories.filter(c => c !== cat);
+            await saveAppConfigToFirestore();
+            renderAdminTabBody();
+            showToast(`Kategori "${cat}" dihapus.`, 'info');
+        }
 
-            try {
-                await window.fbTools.sendPasswordResetEmail(window.fbAuth, email);
-                showToast(`Tautan pemulihan kata sandi telah dikirim ke ${email}. Cek kotak masuk/spam Anda.`, 'success');
-                switchAuthMode('login-guru');
-            } catch (err) {
-                showToast('Gagal mengirim email pemulihan. Pastikan email sudah terdaftar.', 'error');
+        async function addSubject(e) {
+            e.preventDefault();
+            const val = document.getElementById('new-subject-name').value.trim();
+            if (!val) return;
+            if (!appState.subjects.includes(val)) {
+                appState.subjects.push(val);
+                await saveAppConfigToFirestore();
+                renderAdminTabBody();
+                showToast(`Mata pelajaran "${val}" ditambahkan.`, 'success');
             }
+        }
+
+        async function removeSubject(subj) {
+            appState.subjects = appState.subjects.filter(s => s !== subj);
+            await saveAppConfigToFirestore();
+            renderAdminTabBody();
+            showToast(`Mata pelajaran "${subj}" dihapus.`, 'info');
         }
 
         // -------------------------------------------------------------------
-        // 12. FORUM Q&A & TANYA ADMIN (KHUSUS ANGGOTA)
+        // 10. FORUM Q&A & TANYA ADMIN (KHUSUS ANGGOTA LOGIN)
         // -------------------------------------------------------------------
         function renderQnaView() {
             const actionArea = document.getElementById('qna-header-action');
-            const listEl = document.getElementById('qna-threads-list');
-            if (!actionArea || !listEl) return;
+            const listContainer = document.getElementById('qna-threads-list');
+            if (!actionArea || !listContainer) return;
 
-            const isMemberOrAdmin = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
+            const isMember = appState.currentUserRole === 'teacher' || appState.currentUserRole === 'admin';
 
-            if (isMemberOrAdmin) {
+            if (isMember) {
                 actionArea.innerHTML = `
                     <button onclick="openAskAdminModal()" class="px-5 py-3 rounded-2xl bg-turq-500 hover:bg-turq-400 text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 transition">
                         <i data-lucide="message-square-plus" class="w-4 h-4"></i>
@@ -4081,166 +4035,165 @@ Topik Utama       : ${topik}
                 `;
             }
 
-            const query = (document.getElementById('qna-search')?.value || '').toLowerCase();
+            const keyword = (document.getElementById('qna-search')?.value || '').toLowerCase();
             const statusFilter = document.getElementById('qna-filter-status')?.value || 'all';
 
-            const filtered = (appState.qnaThreads || []).filter(item => {
-                const matchSearch = !query ||
-                    (item.question || '').toLowerCase().includes(query) ||
-                    (item.topic || '').toLowerCase().includes(query) ||
-                    (item.author || '').toLowerCase().includes(query);
+            const filtered = (appState.qnaThreads || []).filter(t => {
+                const matchKeyword = !keyword ||
+                    (t.title || '').toLowerCase().includes(keyword) ||
+                    (t.question || '').toLowerCase().includes(keyword) ||
+                    (t.authorName || '').toLowerCase().includes(keyword);
                 const matchStatus = statusFilter === 'all' ||
-                    (statusFilter === 'answered' && item.hasAdminReply) ||
-                    (statusFilter === 'waiting' && !item.hasAdminReply);
-                return matchSearch && matchStatus;
+                    (statusFilter === 'answered' && t.hasAdminReply) ||
+                    (statusFilter === 'waiting' && !t.hasAdminReply);
+                return matchKeyword && matchStatus;
             });
 
             if (filtered.length === 0) {
-                listEl.innerHTML = `
-                    <div class="bg-white rounded-3xl p-10 text-center border border-slate-200/80 shadow-xs">
-                        <div class="w-12 h-12 rounded-2xl bg-skybrand-50 text-skybrand-600 flex items-center justify-center mx-auto mb-3">
-                            <i data-lucide="help-circle" class="w-6 h-6"></i>
-                        </div>
-                        <p class="font-display font-bold text-navy-900 text-base">Belum Ada Pertanyaan di Forum Q&A</p>
-                        <p class="text-xs text-slate-500 mt-1">Guru anggota dapat mengajukan pertanyaan seputar perangkat ajar, kode kelas, atau teknis aplikasi.</p>
+                listContainer.innerHTML = `
+                    <div class="bg-white rounded-3xl p-10 text-center border border-slate-200/80">
+                        <p class="font-display font-bold text-navy-900 text-base">Belum Ada Topik Tanya Jawab</p>
+                        <p class="text-xs text-slate-500 mt-1">Guru Anggota dapat mengajukan pertanyaan seputar perangkat ajar, kode kelas, atau teknis aplikasi kepada Admin.</p>
                     </div>
                 `;
                 renderIcons();
                 return;
             }
 
-            listEl.innerHTML = filtered.map(thread => {
+            listContainer.innerHTML = filtered.map(thread => {
                 const replies = Array.isArray(thread.replies) ? thread.replies : [];
+                const statusBadge = thread.hasAdminReply
+                    ? `<span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3 h-3"></i> Dijawab Admin</span>`
+                    : `<span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> Menunggu Jawaban Admin</span>`;
+
                 return `
-                    <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
+                    <article class="bg-white rounded-3xl p-5 sm:p-6 border ${thread.pinned ? 'border-turq-300 ring-2 ring-turq-500/10' : 'border-slate-200/90'} shadow-xs space-y-4">
                         <div class="flex flex-wrap items-start justify-between gap-2">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-navy-900 text-white font-display font-bold text-sm flex items-center justify-center shrink-0">
-                                    ${(thread.author || 'G').charAt(0).toUpperCase()}
-                                </div>
-                                <div>
-                                    <div class="flex flex-wrap items-center gap-2">
-                                        <span class="font-bold text-sm text-navy-900">${thread.author}</span>
-                                        <span class="text-xs text-slate-400">• ${thread.school || 'KKG Kampung Laut'}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 mt-0.5">
-                                        <span class="px-2 py-0.5 rounded-md bg-skybrand-50 text-skybrand-700 text-[11px] font-semibold">${thread.topic || 'Umum'}</span>
-                                        <span class="text-[11px] text-slate-400">${thread.time || ''}</span>
-                                    </div>
-                                </div>
+                            <div class="flex flex-wrap items-center gap-2">
+                                ${thread.pinned ? `<span class="px-2.5 py-0.5 rounded-full bg-navy-900 text-white text-[10px] font-bold">Disematkan</span>` : ''}
+                                <span class="px-2.5 py-0.5 rounded-lg bg-skybrand-50 text-skybrand-700 text-[11px] font-bold">${thread.topic || 'Umum'}</span>
+                                ${statusBadge}
                             </div>
                             <div class="flex items-center gap-2">
-                                ${thread.hasAdminReply
-                                    ? `<span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Dijawab Admin</span>`
-                                    : `<span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> Menunggu Admin</span>`
-                                }
+                                <span class="text-xs text-slate-400">${thread.date || ''}</span>
                                 ${appState.currentUserRole === 'admin' ? `
-                                    <button onclick="deleteQnaThread('${thread.id}')" title="Hapus Pertanyaan" class="p-1.5 rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition">
-                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    <button onclick="togglePinQna('${thread.id}', ${!thread.pinned})" title="Sematkan / Lepas Sematan" class="p-1.5 rounded-lg text-slate-400 hover:text-navy-900 hover:bg-slate-100">
+                                        <i data-lucide="pin" class="w-3.5 h-3.5"></i>
+                                    </button>
+                                    <button onclick="deleteQnaThread('${thread.id}')" title="Hapus Thread" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50">
+                                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                                     </button>
                                 ` : ''}
                             </div>
                         </div>
 
-                        <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                            ${thread.question}
-                        </p>
+                        <div>
+                            <h3 class="font-display font-bold text-base sm:text-lg text-navy-900">${thread.title}</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Oleh: <strong class="text-navy-900">${thread.authorName}</strong> (${thread.authorSchool})</p>
+                            <p class="text-sm text-slate-700 mt-3 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded-2xl border border-slate-100">${thread.question}</p>
+                        </div>
 
-                        <!-- Daftar Jawaban / Balasan -->
-                        ${replies.length > 0 ? `
-                            <div class="space-y-2.5 pl-3 sm:pl-6 border-l-2 border-turq-300">
-                                ${replies.map(r => `
-                                    <div class="p-3.5 rounded-2xl ${r.isAdmin ? 'bg-turq-50/80 border border-turq-200' : 'bg-slate-50 border border-slate-100'} text-xs sm:text-sm">
-                                        <div class="flex items-center justify-between mb-1">
-                                            <div class="flex items-center gap-1.5">
-                                                <span class="font-bold text-navy-900">${r.author}</span>
-                                                ${r.isAdmin ? `<span class="px-2 py-0.5 rounded-full bg-navy-900 text-white text-[10px] font-bold">Admin KKG</span>` : ''}
-                                            </div>
-                                            <span class="text-[11px] text-slate-400">${r.time || ''}</span>
+                        <div class="space-y-2.5 pl-3 sm:pl-5 border-l-2 border-slate-200">
+                            ${replies.length === 0 ? `<p class="text-xs text-slate-400 italic">Belum ada balasan pada diskusi ini.</p>` : replies.map(rep => `
+                                <div class="p-3.5 rounded-2xl ${rep.isAdmin ? 'bg-turq-50/80 border border-turq-200' : 'bg-slate-50 border border-slate-200/70'} text-xs sm:text-sm">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-bold ${rep.isAdmin ? 'text-turq-900' : 'text-navy-900'}">${rep.author}</span>
+                                            ${rep.isAdmin ? `<span class="px-2 py-0.5 rounded-full bg-turq-600 text-white text-[10px] font-bold">Admin KKG</span>` : `<span class="text-[11px] text-slate-400">• ${rep.school || ''}</span>`}
                                         </div>
-                                        <p class="text-slate-700 leading-relaxed">${r.text}</p>
+                                        <span class="text-[11px] text-slate-400">${rep.time}</span>
                                     </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
+                                    <p class="text-slate-700 leading-relaxed whitespace-pre-line">${rep.text}</p>
+                                </div>
+                            `).join('')}
+                        </div>
 
-                        <!-- Form Balas (Khusus Guru Anggota & Admin) -->
-                        ${isMemberOrAdmin ? `
+                        ${isMember ? `
                             <form onsubmit="submitQnaReply(event, '${thread.id}')" class="flex flex-col sm:flex-row gap-2 pt-2">
-                                <input type="text" id="qna-reply-${thread.id}" required placeholder="${appState.currentUserRole === 'admin' ? 'Tulis jawaban resmi Admin KKG...' : 'Tambahkan tanggapan atau pertanyaan lanjutan...'}" class="flex-1 px-4 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-skybrand-500">
-                                <button type="submit" class="px-4 py-2 rounded-xl ${appState.currentUserRole === 'admin' ? 'bg-turq-600 hover:bg-turq-500' : 'bg-navy-900 hover:bg-skybrand-700'} text-white text-xs font-semibold transition">
+                                <input type="text" id="qna-reply-input-${thread.id}" required placeholder="${appState.currentUserRole === 'admin' ? 'Tulis jawaban resmi Admin KKG...' : 'Tulis tanggapan atau pertanyaan lanjutan...'}" class="flex-1 px-3.5 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-skybrand-500">
+                                <button type="submit" class="px-4 py-2 rounded-xl ${appState.currentUserRole === 'admin' ? 'bg-turq-600 hover:bg-turq-500' : 'bg-navy-900 hover:bg-skybrand-700'} text-white text-xs font-semibold transition shrink-0">
                                     ${appState.currentUserRole === 'admin' ? 'Kirim Jawaban Admin' : 'Kirim Balasan'}
                                 </button>
                             </form>
                         ` : `
-                            <p class="text-[11px] text-slate-400 italic">Login sebagai Guru Anggota KKG untuk ikut menanggapi diskusi ini.</p>
+                            <div class="pt-2 text-xs text-slate-400">
+                                Login sebagai Guru Anggota untuk ikut menanggapi diskusi ini.
+                            </div>
                         `}
-                    </div>
+                    </article>
                 `;
             }).join('');
-
             renderIcons();
         }
 
         function openAskAdminModal() {
             if (appState.currentUserRole === 'guest') {
-                showToast('Silakan login sebagai Guru terlebih dahulu.', 'info');
+                showToast('Silakan login sebagai Guru Anggota terlebih dahulu.', 'info');
                 navigate('auth');
+                switchAuthMode('login-guru');
                 return;
             }
 
             openModal(`
                 <div class="flex items-center justify-between mb-4">
                     <div>
-                        <span class="px-2.5 py-0.5 rounded-full bg-turq-50 text-turq-700 text-[11px] font-bold">Forum Komunikasi KKG</span>
-                        <h3 class="font-display font-bold text-xl text-navy-900 mt-1">Ajukan Pertanyaan ke Admin</h3>
+                        <h3 class="font-display font-bold text-xl text-navy-900">Ajukan Pertanyaan ke Admin KKG</h3>
+                        <p class="text-xs text-slate-500">Pertanyaan Anda akan tampil di Forum Q&A dan langsung mendapat notifikasi pada Panel Admin.</p>
                     </div>
                     <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
                 </div>
-
-                <form onsubmit="submitNewQnaQuestion(event)" class="space-y-4">
+                <form onsubmit="submitNewQnaThread(event)" class="space-y-3.5">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Topik Pertanyaan</label>
-                        <select id="qna-topic" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm bg-white">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Kategori Topik *</label>
+                        <select id="qna-topic" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm bg-white">
                             <option value="Kurasi & Unggah Karya">Kurasi & Unggah Karya</option>
-                            <option value="Kode Ruang Kelas">Kode Ruang Kelas</option>
+                            <option value="Kode Akses Ruang Kelas">Kode Akses Ruang Kelas</option>
                             <option value="Perangkat Ajar & Generator">Perangkat Ajar & Generator</option>
-                            <option value="Kegiatan KKG Kampung Laut">Kegiatan KKG Kampung Laut</option>
-                            <option value="Bantuan Teknis Website">Bantuan Teknis Website</option>
+                            <option value="Teknis Akun & Aplikasi">Teknis Akun & Aplikasi</option>
+                            <option value="Saran & Masukan KKG">Saran & Masukan KKG</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Isi Pertanyaan Anda *</label>
-                        <textarea id="qna-question-text" rows="4" required placeholder="Tuliskan pertanyaan Anda secara jelas agar Admin dan rekan guru dapat membantu..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm"></textarea>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Judul Pertanyaan Singkat *</label>
+                        <input type="text" id="qna-title" required placeholder="Contoh: Cara membagikan link HTML interaktif dari Google Drive" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Uraian Pertanyaan *</label>
+                        <textarea id="qna-question" rows="4" required placeholder="Tuliskan pertanyaan atau kendala Anda secara jelas..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm"></textarea>
                     </div>
                     <button type="submit" class="w-full py-3 rounded-xl bg-navy-900 hover:bg-turq-600 text-white font-semibold text-sm transition">
-                        Kirim Pertanyaan ke Forum Q&A
+                        Kirim Pertanyaan ke Forum
                     </button>
                 </form>
             `);
         }
 
-        async function submitNewQnaQuestion(e) {
+        async function submitNewQnaThread(e) {
             e.preventDefault();
-            const topic = document.getElementById('qna-topic').value;
-            const question = document.getElementById('qna-question-text').value.trim();
-            if (!question) return;
+            if (appState.currentUserRole === 'guest') return;
 
+            const topic = document.getElementById('qna-topic').value;
+            const title = document.getElementById('qna-title').value.trim();
+            const question = document.getElementById('qna-question').value.trim();
             const isAdmin = appState.currentUserRole === 'admin';
-            const newThread = {
-                authorId: isAdmin ? 'admin-kkg' : appState.teacherProfile.id,
-                author: isAdmin ? 'Admin KKG Kampung Laut' : appState.teacherProfile.name,
-                school: isAdmin ? 'Pengurus KKG' : appState.teacherProfile.school,
+
+            const payload = {
                 topic,
+                title,
                 question,
-                time: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }),
+                authorId: isAdmin ? 'admin-kkg' : appState.teacherProfile.id,
+                authorName: isAdmin ? 'Admin KKG Kampung Laut' : appState.teacherProfile.name,
+                authorSchool: isAdmin ? 'Pengurus KKG' : appState.teacherProfile.school,
+                date: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }),
                 createdAt: Date.now(),
                 hasAdminReply: isAdmin,
+                pinned: false,
                 replies: []
             };
 
             if (window.fbDb && window.fbTools) {
-                await window.fbTools.addDoc(window.fbTools.collection(window.fbDb, 'qna_threads'), newThread);
+                const { collection, addDoc } = window.fbTools;
+                await addDoc(collection(window.fbDb, 'qna_threads'), payload);
             }
 
             closeModal();
@@ -4249,7 +4202,8 @@ Topik Utama       : ${topik}
 
         async function submitQnaReply(e, threadId) {
             e.preventDefault();
-            const input = document.getElementById(`qna-reply-${threadId}`);
+            if (appState.currentUserRole === 'guest') return;
+            const input = document.getElementById(`qna-reply-input-${threadId}`);
             const text = input?.value.trim();
             if (!text) return;
 
@@ -4268,25 +4222,142 @@ Topik Utama       : ${topik}
                 const updatePayload = {
                     replies: arrayUnion(replyObj)
                 };
-                if (isAdmin) {
-                    updatePayload.hasAdminReply = true;
-                }
+                if (isAdmin) updatePayload.hasAdminReply = true;
                 await updateDoc(doc(window.fbDb, 'qna_threads', threadId), updatePayload);
             }
 
-            if (input) input.value = '';
-            showToast(isAdmin ? 'Jawaban Admin berhasil diterbitkan!' : 'Balasan berhasil dikirim!', 'success');
+            input.value = '';
+            showToast(isAdmin ? 'Jawaban resmi Admin berhasil dipublikasikan!' : 'Tanggapan berhasil dikirim!', 'success');
+        }
+
+        async function togglePinQna(threadId, nextPinState) {
+            if (window.fbDb && window.fbTools) {
+                const { doc, updateDoc } = window.fbTools;
+                await updateDoc(doc(window.fbDb, 'qna_threads', threadId), { pinned: nextPinState });
+            }
+            showToast(nextPinState ? 'Topik disematkan di paling atas.' : 'Sematan topik dilepas.', 'info');
         }
 
         async function deleteQnaThread(threadId) {
             if (window.fbDb && window.fbTools) {
-                await window.fbTools.deleteDoc(window.fbTools.doc(window.fbDb, 'qna_threads', threadId));
+                const { doc, deleteDoc } = window.fbTools;
+                await deleteDoc(doc(window.fbDb, 'qna_threads', threadId));
             }
-            showToast('Pertanyaan Q&A dihapus oleh Admin.', 'info');
+            showToast('Thread Q&A dihapus.', 'info');
         }
 
         // -------------------------------------------------------------------
-        // 13. UTILITAS MODAL & TOAST
+        // 11. AUTENTIKASI FIREBASE (LOGIN, DAFTAR & RESET PASSWORD)
+        // -------------------------------------------------------------------
+        function switchAuthMode(mode) {
+            clearAuthForms();
+            ['login-guru', 'daftar-guru', 'login-admin', 'lupa-password'].forEach(m => {
+                const form = document.getElementById(`form-${m}`);
+                if (form) form.classList.toggle('hidden', m !== mode);
+
+                const tab = document.getElementById(`auth-tab-${m}`);
+                if (tab) {
+                    if (m === mode || (mode === 'daftar-guru' && m === 'login-guru')) {
+                        tab.className = 'py-2.5 rounded-xl bg-white text-navy-900 shadow-2xs transition';
+                    } else {
+                        tab.className = 'py-2.5 rounded-xl text-slate-600 hover:text-navy-900 transition';
+                    }
+                }
+            });
+        }
+
+        async function handleAuthSubmit(e, role) {
+            e.preventDefault();
+            if (!window.fbAuth || !window.fbTools) {
+                showToast('Layanan Firebase sedang memuat, coba sesaat lagi.', 'info');
+                return;
+            }
+
+            const email = role === 'admin'
+                ? document.getElementById('login-admin-email').value.trim()
+                : document.getElementById('login-guru-email').value.trim();
+            const pass = role === 'admin'
+                ? document.getElementById('login-admin-pass').value
+                : document.getElementById('login-guru-pass').value;
+
+            try {
+                const { signInWithEmailAndPassword, signOut, doc, getDoc } = window.fbTools;
+                const cred = await signInWithEmailAndPassword(window.fbAuth, email, pass);
+                const snap = await getDoc(doc(window.fbDb, 'users', cred.user.uid));
+                const dbRole = snap.exists() ? snap.data().role : 'teacher';
+
+                if (role === 'admin' && dbRole !== 'admin') {
+                    await signOut(window.fbAuth);
+                    showToast('Akun ini tidak memiliki hak akses Admin KKG.', 'error');
+                    return;
+                }
+
+                showToast(dbRole === 'admin' ? 'Selamat datang di Panel Admin KKG!' : 'Berhasil masuk ke akun Guru!', 'success');
+                navigate(dbRole === 'admin' ? 'dashboard-admin' : 'dashboard-guru');
+            } catch (err) {
+                let msg = 'Gagal masuk. Periksa kembali email dan kata sandi Anda.';
+                if (err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
+                    msg = 'Email atau kata sandi tidak sesuai.';
+                }
+                showToast(msg, 'error');
+            }
+        }
+
+        async function handleRegisterTeacher(e) {
+            e.preventDefault();
+            if (!window.fbAuth || !window.fbTools) return;
+
+            const name = document.getElementById('reg-nama').value.trim();
+            const nip = document.getElementById('reg-nip').value.trim();
+            const assignedClass = document.getElementById('reg-kelas').value;
+            const school = document.getElementById('reg-sekolah').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const pass = document.getElementById('reg-pass').value;
+
+            try {
+                const { createUserWithEmailAndPassword, doc, setDoc } = window.fbTools;
+                const cred = await createUserWithEmailAndPassword(window.fbAuth, email, pass);
+
+                const newProfile = {
+                    name,
+                    nip,
+                    school,
+                    email,
+                    assignedClass,
+                    role: 'teacher',
+                    joinedClasses: [],
+                    activities: ['Mendaftar akun Guru Ruang Karya KKG Kampung Laut']
+                };
+
+                await setDoc(doc(window.fbDb, 'users', cred.user.uid), newProfile);
+                appState.teacherProfile = { id: cred.user.uid, ...newProfile };
+                appState.currentUserRole = 'teacher';
+
+                showToast(`Selamat datang, ${name}! Akun Anda aktif di database.`, 'success');
+                navigate('dashboard-guru');
+            } catch (err) {
+                let msg = 'Pendaftaran gagal. Pastikan email valid dan belum terdaftar.';
+                if (err.code === 'auth/email-already-in-use') msg = 'Email ini sudah terdaftar. Silakan langsung login.';
+                if (err.code === 'auth/weak-password') msg = 'Kata sandi minimal 6 karakter.';
+                showToast(msg, 'error');
+            }
+        }
+
+        async function handleResetPassword(e) {
+            e.preventDefault();
+            if (!window.fbAuth || !window.fbTools) return;
+            const email = document.getElementById('reset-email').value.trim();
+            try {
+                await window.fbTools.sendPasswordResetEmail(window.fbAuth, email);
+                showToast(`Tautan pemulihan kata sandi dikirim ke ${email}.`, 'success');
+                switchAuthMode('login-guru');
+            } catch (err) {
+                showToast('Gagal mengirim email pemulihan. Pastikan email terdaftar.', 'error');
+            }
+        }
+
+        // -------------------------------------------------------------------
+        // 12. UTILITAS MODAL & TOAST
         // -------------------------------------------------------------------
         function openModal(htmlContent) {
             const modal = document.getElementById('app-modal');
@@ -4303,30 +4374,39 @@ Topik Utama       : ${topik}
             modal.classList.remove('flex');
         }
 
+        document.getElementById('app-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
-            const colors = {
+            const toast = document.createElement('div');
+            const bgMap = {
                 success: 'bg-navy-900 text-white border-turq-500',
                 error: 'bg-rose-700 text-white border-rose-400',
                 info: 'bg-slate-800 text-white border-skybrand-500'
             };
-            const toast = document.createElement('div');
-            toast.className = `pointer-events-auto px-4 py-3 rounded-2xl shadow-lg border-l-4 text-xs sm:text-sm font-medium flex items-center justify-between gap-3 transition-all ${colors[type] || colors.info}`;
+            toast.className = `pointer-events-auto px-4 py-3 rounded-2xl shadow-lg border-l-4 text-xs sm:text-sm font-medium flex items-center justify-between gap-3 transition-all duration-300 ${bgMap[type] || bgMap.info}`;
             toast.innerHTML = `<span>${message}</span>`;
             container.appendChild(toast);
+
             setTimeout(() => {
                 toast.style.opacity = '0';
+                toast.style.transform = 'translateY(8px)';
                 setTimeout(() => toast.remove(), 300);
-            }, 3400);
+            }, 3500);
         }
 
+        // -------------------------------------------------------------------
+        // 13. INISIALISASI HALAMAN AWAL
+        // -------------------------------------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
-            applyThemePalette(appState.themeConfig.activePalette, true);
+            clearAuthForms();
             updateHeaderAuth();
             updateRoleVisibility();
             renderHome();
             renderIcons();
-            if (window.fbAuth && typeof window.initFirebaseSync === 'function') {
+            if (typeof window.initFirebaseSync === 'function') {
                 window.initFirebaseSync();
             }
         });
